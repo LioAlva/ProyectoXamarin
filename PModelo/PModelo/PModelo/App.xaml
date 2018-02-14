@@ -1,10 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PModelo.App">
+             x:Class="PModelo.App"
+             xmlns:infra="clr-namespace:PModelo.Infrastructure;assembly=PModelo"
+             >
 	<Application.Resources>
 
 		<!-- Application resource dictionary -->
+        <ResourceDictionary>
+            <!-- General colors -->
+            <Color x:Key="MainColor">#ff3b77</Color>
+            <Color x:Key="FontColor">#52656b</Color>
+            <Color x:Key="AccentColor1">#cdff00</Color>
+            <Color x:Key="AccentColor2">#b8b89f</Color>
+            <Color x:Key="BackgroundColor">#ffffff</Color>
+            <!-- Menu colors -->
+            <Color x:Key="MenuColor">#52656b</Color>
+            <Color x:Key="MenuFontColor">#ffffff</Color>
 
-	</Application.Resources>
+
+            <!-- Locator -->
+            <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
+
+        </ResourceDictionary>
+
+
+    </Application.Resources>
 </Application>
