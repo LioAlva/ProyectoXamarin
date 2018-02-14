@@ -45,6 +45,7 @@
     </ListView>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="icon.png"/>
+        <ToolbarItem Icon="icon.png" Command="{Binding GoToCommand}" 
+                 CommandParameter="NewOrderPage"/>
     </ContentPage.ToolbarItems>
 </ContentPage>

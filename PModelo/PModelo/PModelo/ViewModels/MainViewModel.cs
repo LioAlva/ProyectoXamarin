@@ -1,21 +1,54 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using PModelo.Pages;
+using PModelo.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 
 namespace PModelo.ViewModels
 {
     public class MainViewModel
     {
+        #region Attributes
+        private NavigationService navigationService;
+        #endregion
+
+        #region Properties
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
         public ObservableCollection<OrderViewModel> Orders { get; set; }
+        #endregion
 
         public MainViewModel()
         {
+            navigationService = new NavigationService();
             LoadMenu();
             LoadData();
         }
+
+
+        #region Commands
+        public ICommand GoToCommand { get { return new RelayCommand<string>(GoTo); } }
+
+        private void GoTo(string pageName)
+        {
+            navigationService.Navigate(pageName);
+        }
+
+
+        public ICommand StartCommand { get { return new RelayCommand(Start); } }
+
+        private void Start()
+        {
+            navigationService.SetMainPage(new MasterPage());
+        }
+
+
+
+        #endregion
+
 
         private void LoadData()
         {

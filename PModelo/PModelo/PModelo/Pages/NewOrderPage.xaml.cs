@@ -10,18 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace PModelo.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MasterPage : MasterDetailPage
-    {
-		public MasterPage ()
+	public partial class NewOrderPage : ContentPage
+	{
+		public NewOrderPage ()
 		{
 			InitializeComponent ();
 		}
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-            App.Master = this;
-            App.Navigator = Navigator;
-        }
-    }
+	}
 }

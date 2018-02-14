@@ -13,6 +13,7 @@
             <Color x:Key="FontColor">#52656b</Color>
             <Color x:Key="AccentColor1">#cdff00</Color>
             <Color x:Key="AccentColor2">#b8b89f</Color>
+            <Color x:Key="AccentColor">#b8b10f</Color>
             <Color x:Key="BackgroundColor">#ffffff</Color>
             <!-- Menu colors -->
             <Color x:Key="MenuColor">#52656b</Color>
@@ -21,6 +22,21 @@
 
             <!-- Locator -->
             <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
+
+            <!-- Fonts -->
+            <OnPlatform x:Key="GeneralButtonFont" x:TypeArguments="Font" iOS="12" Android="14" WinPhone="16"/>
+
+            <!-- Styles -->
+            <Style x:Key="GeneralButton" TargetType="Button">
+                <Setter Property="Font" Value="{StaticResource GeneralButtonFont}"/>
+                <Setter Property="BorderRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource MenuFontColor}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+
 
         </ResourceDictionary>
 
