@@ -8,6 +8,12 @@
              >
 
     <ListView
+    ItemTemplate="{StaticResource OrderItemTemplate}"
+    ItemsSource="{Binding Orders}"
+    HasUnevenRows="True">
+    </ListView>
+    
+    <!--<ListView
     ItemsSource="{Binding Orders}"
     HasUnevenRows="True">
         <ListView.ItemTemplate>
@@ -42,7 +48,7 @@
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="icon.png" Command="{Binding GoToCommand}" 

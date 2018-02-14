@@ -20,6 +20,10 @@
                   BorderRadius="20"
                   BackgroundColor="{StaticResource MenuFontColor}"
                   TextColor="{StaticResource MainColor}"
-                  Text="Iniciar"/>
-            </StackLayout>      
+                  Text="Iniciar01"/>
+
+         
+
+
+    </StackLayout>      
 </ContentPage>

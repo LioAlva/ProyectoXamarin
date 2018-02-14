@@ -32,6 +32,22 @@
               TextColor="{StaticResource MenuFontColor}" 
               Text="Guardar" />
 
+            <Button 
+                  Font="{StaticResource GeneralButtonFont}"
+                  HeightRequest="50"
+                  BorderRadius="25"
+                  BackgroundColor="{StaticResource MainColor}" 
+                  TextColor="{StaticResource MenuFontColor}" 
+                  Text="Guardar0" />
+
+            <Button 
+              Style="{StaticResource GeneralButton}"
+              Text="Guardar1" />
+
+            <Button
+              Text="Guardar" />
+
+
         </StackLayout>
     </ScrollView>
 

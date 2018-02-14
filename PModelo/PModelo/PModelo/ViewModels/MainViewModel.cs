@@ -21,8 +21,27 @@ namespace PModelo.ViewModels
         public ObservableCollection<OrderViewModel> Orders { get; set; }
         #endregion
 
+        #region Singleton
+
+        static MainViewModel instance;
+
+        public static MainViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new MainViewModel();
+            }
+
+            return instance;
+        }
+
+        #endregion
+
+
         public MainViewModel()
         {
+            instance = this;
+
             navigationService = new NavigationService();
             LoadMenu();
             LoadData();
