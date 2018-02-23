@@ -1,4 +1,5 @@
-﻿using PModelo.Pages;
+﻿using PModelo.Models;
+using PModelo.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,13 @@ namespace PModelo
 	{
         public static NavigationPage Navigator { get; internal set; }
         public static MasterPage Master { get; internal set; }
+        public static User CurrentUser { get; internal set; }
 
         public App ()
 		{
 			InitializeComponent();
 
-			MainPage = new MasterPage();
+			MainPage = new WelcomePage();
 		}
 
 		protected override void OnStart ()

@@ -1,4 +1,6 @@
-﻿using PModelo.Pages;
+﻿using PModelo.Models;
+using PModelo.Pages;
+using PModelo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,9 +36,28 @@ namespace PModelo.Services
             }
         }
 
-        internal void SetMainPage(Page page)
+        public void SetMainPage(string page)
         {
-            App.Current.MainPage = page;
+            switch (page)
+            {
+                case "MasterPage":
+                    App.Current.MainPage = new MasterPage();
+                    break;
+                //case "LoginPage":
+                //    App.Current.MainPage = new LoginPage();
+                //    break;
+                //case "SignInPage":
+                //    App.CurrentUser = user;//esta
+                //    App.Current.MainPage = new SignInPage();
+                //    break;
+                //case "LoginFacebookPage":
+                //    App.Current.MainPage = new LoginFacebookPage();
+                //    break;
+                //case "PasswordRecoverPage":
+                //    App.Current.MainPage = new PasswordRecoverPage();
+                //    break;
+                default: break;
+            }
         }
     }
 

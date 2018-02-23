@@ -11,8 +11,6 @@ using System.Threading.Tasks;
 
 namespace PModelo.Services
 {
-    //class ApiService
-    //{
         public class ApiService
         {
             public async Task<TokenResponse> GetToken(string urlBase, string username, string password)
@@ -22,13 +20,13 @@ namespace PModelo.Services
                     var client = new HttpClient();
                     client.BaseAddress = new Uri(urlBase);
                     var response = await client.PostAsync("Token",
-                        new StringContent(string.Format("grant_type=password&username={0}&password={1}", username, password),
-                        Encoding.UTF8, "application/x-www-form-urlencoded"));
+                    new StringContent(string.Format("grant_type=password&username={0}&password={1}", username, password),
+                    Encoding.UTF8, "application/x-www-form-urlencoded"));
                     var resultJSON = await response.Content.ReadAsStringAsync();
                     var result = JsonConvert.DeserializeObject<TokenResponse>(resultJSON);
                     return result;
                 }
-                catch
+                catch(Exception ex)
                 {
                     return null;
                 }
@@ -231,7 +229,5 @@ namespace PModelo.Services
                     };
                 }
             }
-        //}
-
     }
 }

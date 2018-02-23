@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using PModelo.Models;
 using PModelo.Pages;
 using PModelo.Services;
 using System;
@@ -19,11 +20,14 @@ namespace PModelo.ViewModels
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
         public ObservableCollection<OrderViewModel> Orders { get; set; }
-        #endregion
 
-        #region Singleton
+        public LoginViewModel Login { get; set; }
 
-        static MainViewModel instance;
+    #endregion
+
+    #region Singleton
+
+    static MainViewModel instance;
 
         public static MainViewModel GetInstance()
         {
@@ -43,6 +47,8 @@ namespace PModelo.ViewModels
             instance = this;
 
             navigationService = new NavigationService();
+            Login = new LoginViewModel();
+
             LoadMenu();
             LoadData();
         }
@@ -57,12 +63,12 @@ namespace PModelo.ViewModels
         }
 
 
-        public ICommand StartCommand { get { return new RelayCommand(Start); } }
+        //public ICommand StartCommand { get { return new RelayCommand(Start); } }
 
-        private void Start()
-        {
-            navigationService.SetMainPage(new MasterPage());
-        }
+        //private void Start()
+        //{
+        //    navigationService.SetMainPage(new MasterPage());
+        //}
 
 
 
@@ -84,6 +90,7 @@ namespace PModelo.ViewModels
             }
         }
 
+        #region Methods
         private void LoadMenu()
         {
             Menu = new ObservableCollection<MenuItemViewModel>();
@@ -116,6 +123,14 @@ namespace PModelo.ViewModels
                 Title = "Ajustes",
             });
         }
+
+        public void SetCurrentUser(User user)
+        {
+            App.CurrentUser = user;
+        } 
+        #endregion
+
+
     }
 
 }
