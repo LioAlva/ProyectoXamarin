@@ -17,7 +17,6 @@ namespace PModelo.ViewModels
             navigationService = new NavigationService();
         }
 
-
         public string Icon { get; set; }
 
         public string Title { get; set; }

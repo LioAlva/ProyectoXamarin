@@ -19,7 +19,7 @@ namespace PModelo
 		{
 			InitializeComponent();
 
-			MainPage = new WelcomePage();
+			MainPage = new Loginpage();
 		}
 
 		protected override void OnStart ()

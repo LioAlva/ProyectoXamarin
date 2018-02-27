@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.DataGridViewPage"
+             xmlns:local="clr-namespace:PModelo.ViewModels"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             >
+
+    <!--<ContentPage.BindingContext>
+        <local:ViewModel x:Name="DataGridViewModel" />
+    </ContentPage.BindingContext>-->
+
+    <ContentPage.BindingContext>
+        <local:DataGridViewModel x:Name="DataGridViewModel" />
+    </ContentPage.BindingContext>
+
+    <StackLayout HorizontalOptions="FillAndExpand"
+                 Orientation="Vertical"
+                 VerticalOptions="FillAndExpand">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <SearchBar x:Name="filterText"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       IsVisible="true"
+                       Placeholder="Search here to Filter"
+                       TextChanged="OnFilterTextChanged" />
+
+            <syncfusion:SfDataGrid x:Name="dataGrid"
+                                   Grid.Row="1"
+                                   Grid.Column="0"
+                                   AutoGenerateColumns="false"
+                                   ColumnSizer="Star"
+                                   HorizontalOptions="FillAndExpand"
+                                   SelectionMode="Single"
+                                   VerticalOptions="FillAndExpand">
+
+                <syncfusion:SfDataGrid.Columns>
+                    <syncfusion:GridTextColumn MappingName="OrderID" />
+
+                    <syncfusion:GridTextColumn MappingName="CustomerID" />
+
+                    <syncfusion:GridTextColumn MappingName="Freight" />
+
+                    <syncfusion:GridTextColumn MappingName="Country" />
+
+                </syncfusion:SfDataGrid.Columns>
+
+            </syncfusion:SfDataGrid>
+        </Grid>
+
+
+        <!--filtro que no sirve -->
+        <!--<Grid ColumnSpacing="10" Padding="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Label x:Name="filterlabel"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="15"
+                   HorizontalOptions="Start"
+                   Text="Filter Options"
+                   VerticalOptions="Center" />
+
+            <Picker x:Name="ColumnsList"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    HorizontalOptions="Start"
+                    SelectedIndexChanged="OnColumnsSelectionChanged"
+                    WidthRequest="200">
+                <Picker.Items>
+                    <x:String>All Columns</x:String>
+                    <x:String>CustomerID</x:String>
+                    <x:String>BookID</x:String>
+                    <x:String>FirstName</x:String>
+                    <x:String>LastName</x:String>
+                    <x:String>BookName</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Picker x:Name="OptionsList"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HorizontalOptions="Start"
+                    IsVisible="False"
+                    SelectedIndexChanged="OnFilterOptionsChanged"
+                    WidthRequest="200">
+                <Picker.Items>
+                    <x:String>Equals</x:String>
+                    <x:String>NotEquals</x:String>
+                    <x:String>Contains</x:String>
+                </Picker.Items>
+            </Picker>
+        </Grid>-->
+    </StackLayout>
+
+</ContentPage>

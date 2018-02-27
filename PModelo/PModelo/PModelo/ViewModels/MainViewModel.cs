@@ -122,6 +122,15 @@ namespace PModelo.ViewModels
                 PageName = "SettingsPage",
                 Title = "Ajustes",
             });
+
+            Menu.Add(new MenuItemViewModel
+            {
+                Icon = "icon.png",
+                PageName = "ListViewPage",
+                Title = "ListViewPage",
+            });
+
+            //
         }
 
         public void SetCurrentUser(User user)

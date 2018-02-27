@@ -31,8 +31,14 @@ namespace PModelo.Services
                 case "MainPage":
                     App.Navigator.PopToRootAsync();
                     break;
+
+                case "ListViewPage":
+                    App.Navigator.PushAsync(new DataGridViewPage());
+                    break;
                 default:
                     break;
+
+                    //ListViewPage
             }
         }
 

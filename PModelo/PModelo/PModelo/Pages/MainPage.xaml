@@ -50,8 +50,8 @@
         </ListView.ItemTemplate>
     </ListView>-->
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Icon="icon.png" Command="{Binding GoToCommand}" 
                  CommandParameter="NewOrderPage"/>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 </ContentPage>
