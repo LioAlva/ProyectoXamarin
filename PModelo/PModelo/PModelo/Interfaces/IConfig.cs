@@ -1,7 +1,4 @@
 ﻿using SQLite.Net.Interop;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PModelo.Interfaces
 {
@@ -11,5 +8,4 @@ namespace PModelo.Interfaces
 
         ISQLitePlatform Platform { get; }
     }
-
 }

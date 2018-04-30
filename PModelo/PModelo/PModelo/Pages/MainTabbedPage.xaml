@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.MainTabbedPage"
+             xmlns:local="clr-namespace:PModelo.Pages;assembly=PModelo"
+            >
+  <!--Pages can be added as references or inline-->
+    <local:ReportsPage/>
+    <NavigationPage Title="Schedule" Icon="icon.png">
+        <x:Arguments>
+            <local:Loginpage />
+        </x:Arguments>
+    </NavigationPage>
+    <local:DataGridViewPage />
+</TabbedPage>

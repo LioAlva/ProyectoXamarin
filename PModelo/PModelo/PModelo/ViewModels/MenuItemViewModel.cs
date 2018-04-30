@@ -23,38 +23,23 @@ namespace PModelo.ViewModels
 
         public string PageName { get; set; }
 
-        public ICommand NavigateCommand
-        {
-            get
-            {
-                return new RelayCommand(() => navigationService.Navigate(PageName));
-            }
-        }
-
-
-        //public ICommand NavigateCommand { get { return new RelayCommand(Navigate); } }
-
-        //private void Navigate()
+        //public ICommand NavigateCommand
         //{
-        //    App.Master.IsPresented = false;
-        //    switch (PageName)
+        //    get
         //    {
-        //        case "AlarmsPage":
-        //            App.Navigator.PushAsync(new ProbaPage());
-        //            break;
-        //        case "ClientsPage":
-        //            App.Navigator.PushAsync(new ProbaPage());
-        //            break;
-        //        case "SettingsPage":
-        //            App.Navigator.PushAsync(new ProbaPage());
-        //            break;
-        //        case "MainPage":
-        //            App.Navigator.PopToRootAsync();
-        //            break;
-        //        default:
-        //            break;
+        //        return new RelayCommand(
+        //            () => navigationService.Navigate(PageName)
+        //            );
         //    }
         //}
+
+
+        public ICommand NavigateCommand { get { return new RelayCommand(Navigate); } }
+
+        private async void Navigate()
+        {
+            await navigationService.Navigate(PageName);
+        }
 
     }
 }

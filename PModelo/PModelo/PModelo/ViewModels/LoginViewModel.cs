@@ -1,17 +1,19 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using Syncfusion.SfBusyIndicator.XForms;
+using GalaSoft.MvvmLight.Command;
 using Plugin.Connectivity;
 using PModelo.Models;
 using PModelo.Services;
 using PModelo.Util;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
+using System;
+using Xamarin.Forms;
+using PModelo.Pages;
+using System.Threading.Tasks;
 
 namespace PModelo.ViewModels
 {
-    public class LoginViewModel: INotifyPropertyChanged
+    public class LoginViewModel:  INotifyPropertyChanged
     {
         #region Attributes
         private ApiService apiService;
@@ -28,12 +30,35 @@ namespace PModelo.ViewModels
 
         private bool isRunning;
 
+        private bool isBusy;
+
         private bool isEnabled;
 
         private bool isRemembered;
+
+        SfBusyIndicator busyIndicator;
         #endregion
 
         #region Properties
+
+
+        public SfBusyIndicator BusyIndicator
+        {
+            set
+            {
+                if (busyIndicator != value)
+                {
+                    busyIndicator = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("BusyIndicator"));
+                }
+            }
+            get
+            {
+                return busyIndicator;
+            }
+        }
+
+
         public string Email
         {
             set
@@ -63,6 +88,22 @@ namespace PModelo.ViewModels
             get
             {
                 return password;
+            }
+        }
+
+        public bool IsBusy
+        {
+            set
+            {
+                if (isBusy != value)
+                {
+                    isBusy = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsBusy"));
+                }
+            }
+            get
+            {
+                return isBusy;
             }
         }
 
@@ -122,22 +163,41 @@ namespace PModelo.ViewModels
         #region Constructors
         public LoginViewModel()
         {
+            busyIndicator = new SfBusyIndicator();
+
             apiService = new ApiService();
             dialogService = new DialogService();
             dataService = new DataService();
             navigationService = new NavigationService();
 
             IsRemembered = true;
-            IsEnabled = true;
-            Email = null;
-            Password = null;
+            //IsEnabled = true;
         }
         #endregion
 
         #region Commands
-        public ICommand LoginCommand { get { return new RelayCommand(Login); } }
+        //LoginCommand
+        public ICommand LoginFacebookCommand { get { return new RelayCommand(LoginFacebook); } }
 
-        private async void Login()
+        private  async void LoginFacebook()
+        {
+           await navigationService.Navigate("ListaRojaPage");
+        }
+
+        public ICommand LoginCommand { get { return new RelayCommand(LoginX); } }
+
+        private async  void LoginX()
+        {
+            //await Navigation.PushAsync(new ProbaPage());
+            //await navigationService.NavigateL("WelcomePage");
+            await navigationService.Navigate("WelcomePage");
+
+        }
+
+
+        public ICommand NewLoginCommand { get { return new RelayCommand(NewLogin); } }
+
+        private async void NewLogin()
         {
             if (string.IsNullOrEmpty(Email))
             {
@@ -151,13 +211,17 @@ namespace PModelo.ViewModels
                 return;
             }
 
-            IsRunning = true;
-            IsEnabled = false;
+//            BusyIndicator.IsBusy = true;
+            IsBusy = true;
+            //IsRunning = true;
+            //IsEnabled = false;
 
             if (!CrossConnectivity.Current.IsConnected)
             {
-                IsRunning = false;
-                IsEnabled = true;
+                //BusyIndicator.IsBusy = false;
+                IsBusy = false;
+                //IsRunning = false;
+                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", "Revise su configuración de Internet.");
                 return;
             }
@@ -165,8 +229,10 @@ namespace PModelo.ViewModels
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
             if (!isReachable)
             {
-                IsRunning = false;
-                IsEnabled = true;
+                IsBusy = false;
+                //BusyIndicator.IsBusy = false;
+                //IsRunning = false;
+                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", "Revise su configuración de Internet.");
                 return;
             }
@@ -176,8 +242,10 @@ namespace PModelo.ViewModels
 
             if (token == null)
             {
-                IsRunning = false;
-                IsEnabled = true;
+                IsBusy = false;
+                //BusyIndicator.IsBusy = false;
+                //IsRunning = false;
+                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", "Usuario o password incorrecto.");
                 Password = null;
                 return;
@@ -185,8 +253,10 @@ namespace PModelo.ViewModels
 
             if (string.IsNullOrEmpty(token.AccessToken))
             {
-                IsRunning = false;
-                IsEnabled = true;
+                IsBusy = false;
+                //BusyIndicator.IsBusy = false;
+                //IsRunning = false;
+                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", token.ErrorDescription);
                 Password = null;
                 return;
@@ -196,8 +266,10 @@ namespace PModelo.ViewModels
 
             if (!response.IsSuccess)
             {
-                IsRunning = false;
-                IsEnabled = true;
+                IsBusy = false;
+                //BusyIndicator.IsBusy = false;
+                //IsRunning = false;
+                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", "Problem ocurred retrieving user information, try latter.");
                 return;
             }
@@ -218,8 +290,8 @@ namespace PModelo.ViewModels
             Email = null;
             Password = null;
 
-            IsRunning = false;
-            IsEnabled = true;
+            IsBusy = false;
+            
             navigationService.SetMainPage("MasterPage");
         }
         #endregion

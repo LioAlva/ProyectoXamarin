@@ -2,15 +2,17 @@
 <MasterDetailPage  xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PModelo.Pages.MasterPage"
-             xmlns:pages="clr-namespace:PModelo.Pages;assembly=PModelo">
+             xmlns:pages="clr-namespace:PModelo.Pages;assembly=PModelo"
+             BackgroundColor="{StaticResource MenuFontColor}"
+                   >
     
     <MasterDetailPage.Master>
         <pages:MenuPage></pages:MenuPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage x:Name="Navigator"
-                        BarBackgroundColor="{StaticResource MainColor}"
-                        >
+                        BarBackgroundColor="{StaticResource MallColor}">
+            
             <x:Arguments>
                 <pages:MainPage>
                 </pages:MainPage>

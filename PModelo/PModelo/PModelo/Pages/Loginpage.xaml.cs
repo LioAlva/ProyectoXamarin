@@ -16,5 +16,27 @@ namespace PModelo.Pages
 		{
 			InitializeComponent ();
 		}
-	}
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            //App.MasterLogin = this;
+            //App.Navigator = NavigatorL;
+        }
+
+        async void OnUpcomingAppointmentsButtonClicked(object sender, EventArgs e)
+        {
+            //await App.Navigator.PushAsync(new MasterPage());
+            await Navigation.PushAsync(new WelcomePage());
+
+        }
+
+        //OnUpcomingAppointmentsRETURNClicked
+        async void OnUpcomingAppointmentsRETURNClicked(object sender, EventArgs e)
+        {
+            //await App.Navigator.PushAsync(new MasterPage());
+            await Navigation.PopToRootAsync();
+
+        }
+    }
 }

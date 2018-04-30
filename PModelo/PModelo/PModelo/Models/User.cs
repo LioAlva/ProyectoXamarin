@@ -15,6 +15,12 @@ namespace PModelo.Models
 
         public string LastName { get; set; }
 
+        public string MotherLastName { get; set; }
+
+        public string DNI { get; set; }
+
+        public string Cargo { get; set; }
+
         public int UserTypeId { get; set; }
 
         public string Picture { get; set; }
@@ -27,6 +33,7 @@ namespace PModelo.Models
 
         public int Points { get; set; }
 
+        public string NameSort => FirstName[0].ToString();
         //[ManyToOne]
         //public UserType UserType { get; set; }
 
@@ -51,7 +58,7 @@ namespace PModelo.Models
             {
                 if (string.IsNullOrEmpty(Picture))
                 {
-                    return "avatar_user.png";
+                    return "icon.png";
                 }
 
                 return string.Format("http://soccerbackend.azurewebsites.net{0}", Picture.Substring(1));

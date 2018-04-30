@@ -1,11 +1,11 @@
 ﻿using PModelo.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using Xamarin.Forms.Internals;
 
 namespace PModelo.Repository
 {
+    [Preserve(AllMembers = true)]
     public class ListViewRepository
     {
         #region private variables

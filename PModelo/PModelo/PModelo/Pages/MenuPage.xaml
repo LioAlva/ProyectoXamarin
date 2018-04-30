@@ -4,37 +4,92 @@
              x:Class="PModelo.Pages.MenuPage"
              Title="Menú"
              Icon="icon.png"
-             BackgroundColor="{StaticResource MenuColor}"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
+    <ScrollView>
 
-    <ListView 
+        <StackLayout Orientation="Vertical">
+
+            <Label  FontSize="Medium" HorizontalOptions="Center" TextColor="White"  />
+
+            <!-- 
+         This StackLayout you can use for other
+         data that you want to have in your menu drawer
+    -->
+
+            <StackLayout BackgroundColor="#2196F3"
+                 HeightRequest="150">
+
+                <Label Text=""
+             FontSize="20"
+             VerticalOptions="CenterAndExpand"
+             TextColor="White"
+             HorizontalOptions="Center"/>
+            </StackLayout>
+            <ListView 
     ItemsSource="{Binding Menu}"
     HasUnevenRows="True">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Grid>
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
-                        </Grid.GestureRecognizers>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Image 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image 
               Source="{Binding Icon}"
-              WidthRequest="50"
-              HeightRequest="50"/>
-                        <Label 
+              WidthRequest="55"
+              HeightRequest="55"/>
+                                <Label 
               Grid.Column="1"
               VerticalOptions="Center"
-              TextColor="{StaticResource MenuFontColor}"
-              Text="{Binding Title}"/>
-                    </Grid>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+              FontAttributes="Bold"
+              Text="{Binding Title}"
+              TextColor="Black"
+              />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!--<ListView 
+              RowHeight="60"
+              SeparatorVisibility="None"
+              BackgroundColor="White"
+              ItemSelected="OnMenuItemSelected">
 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            -->
+            <!-- Main design for our menu items -->
+            <!--
+                            <StackLayout VerticalOptions="FillAndExpand"
+                         Orientation="Horizontal"
+                         Padding="20,10,0,10"
+                         Spacing="20">
+
+                                <Image Source="{Binding Icon}"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     VerticalOptions="Center"
+                                       />
+
+                                <Label Text="{Binding Title}"
+                     FontSize="Medium"
+                     VerticalOptions="Center"
+                     TextColor="#343f42"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>-->
+        </StackLayout>
+
+    </ScrollView>
 </ContentPage>

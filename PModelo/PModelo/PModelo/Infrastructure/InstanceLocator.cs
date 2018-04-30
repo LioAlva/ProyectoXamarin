@@ -13,6 +13,13 @@ namespace PModelo.Infrastructure
         {
             Main = new MainViewModel();
         }
+
+        //public MainBarViewModel MainBar { get; set; }
+
+        //public InstanceLocator()
+        //{
+        //    MainBar = new MainBarViewModel();
+        //}
     }
 
 }

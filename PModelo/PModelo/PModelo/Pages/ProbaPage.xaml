@@ -1,12 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PModelo.Pages.ProbaPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Esto es una prueba de Command y Manejo de parametros!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+             x:Class="PModelo.Pages.ProbaPage"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             BindingContext="{Binding MainBar, Source={StaticResource Locator}}"
+             >
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Order="Secondary" Text="Third option" />
+        <ToolbarItem Order="Primary"
+                     Icon="icon.png"
+                     Priority="0"
+                     Text="New" />
+    </ContentPage.ToolbarItems>
+    
+        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Name:" HorizontalOptions="FillAndExpand" />
+                <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" />
+            </StackLayout>
+            <Button x:Name="navigateButton" Text="Previous Page" Clicked="OnNavigateButtonClicked" />
         </StackLayout>
-    </ContentPage.Content>
+
 </ContentPage>

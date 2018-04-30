@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xf:BottomBarPage 
+             xmlns="http://xamarin.com/schemas/2014/forms"
+	         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
+             xmlns:example="clr-namespace:PModelo.Pages;assembly=PModelo"
+             xmlns:pages="clr-namespace:PModelo.Pages;assembly=PModelo"
+             x:Class="PModelo.Pages.BarPage">
+
+    <!--<NavigationPage x:Name="NavigatorD"
+                    Icon="icon.png"
+                    Title="Post"
+                    BarBackgroundColor="{StaticResource MallColor}">
+        <x:Arguments>
+            <pages:DashboardPage BackgroundColor="{StaticResource BackgroundColor}">
+            </pages:DashboardPage>
+        </x:Arguments>
+    </NavigationPage>-->
+
+    <!--<NavigationPage x:Name="NavigatorD"
+                    Icon="icon.png"
+                    Title="Post"
+                    BarBackgroundColor="{StaticResource MallColor}">
+        <x:Arguments>
+            <pages:CierreVentarPage BackgroundColor="{StaticResource BackgroundColor}">
+            </pages:CierreVentarPage>
+        </x:Arguments>
+    </NavigationPage>-->
+
+    <NavigationPage x:Name="NavigatorD"
+                    Icon="icon.png"
+                    Title="Post"
+                    BarBackgroundColor="{StaticResource MallColor}">
+        <x:Arguments>
+            <pages:EventosPage BackgroundColor="{StaticResource BackgroundColor}">
+            </pages:EventosPage>
+        </x:Arguments>
+    </NavigationPage>
+
+    <!--<example:CierreVentarPage Title="Eventos" Icon="locatarios1.png" xf:BottomBarPageExtensions.TabColor="#1BASD2"  />-->
+
+    <example:EventosPage  Title="Eventos" Icon="locatarios1.png" xf:BottomBarPageExtensions.TabColor="#1BASD2"  />
+
+
+    <pages:ReportsPage Title="Dashboard" Icon="ic_favorites.png" xf:BottomBarPageExtensions.TabColor="#e10a0a" />
+    <example:DataGridViewPage Title="Lista Roja" Icon="ic_friends.png" xf:BottomBarPageExtensions.TabColor="#5D4037" />
+    <!--<example:ProbaPage
+        Title="Proba" 
+        Icon="ic_friends.png" xf:BottomBarPageExtensions.TabColor="#5D4037" />-->
+    <!--<NavigationPage Title="Post" Icon="icon.png">
+        <x:Arguments>
+            <example:Loginpage NavigationPage.HasNavigationBar="False"/>
+        </x:Arguments>
+    </NavigationPage>-->
+
+    <!--<NavigationPage x:Name="NavigatorL"
+                    Icon="icon.png"
+                    Title="Post"
+                    BarBackgroundColor="{StaticResource MallColor}">
+        <x:Arguments>
+            <pages:ReportsPage>
+            </pages:ReportsPage>
+        </x:Arguments>
+    </NavigationPage>-->
+    <!--<example:ContenPruebaPage Title="Eventos" Icon="locatarios1.png" xf:BottomBarPageExtensions.TabColor="#1BASD2"  />-->
+
+  
+
+
+    <example:TabPage Title="Eventos" Icon="locatarios1.png" xf:BottomBarPageExtensions.TabColor="#1BASD2"  />
+    <example:Loginpage Title="Configuración" Icon="ic_recents.png" xf:BottomBarPageExtensions.TabColor="#FF5252"/>
+    <example:MasterPage Title="Restaurants" Icon="ic_restaurants.png" xf:BottomBarPageExtensions.TabColor="#FF9800" />
+    <!--<example:NewLoginPage Title="locatarios" Icon="locatarios1.png" xf:BottomBarPageExtensions.TabColor="#1BASD2" />-->
+
+    <!--<pages:NewLoginPage Title="locatarios" Icon="locatarios1.png" xf:BottomBarPageExtensions.TabColor="#1BASD2" />--> 
+
+    <pages:TabPage Title="Eventos" Icon="locatarios1.png" />
+    <!--<pages:Loginpage Title="Configuración" Icon="ic_recents.png" />
+    <pages:MasterPage Title="Restaurants" Icon="ic_restaurants.png" />
+    <example:NewLoginPage Title="locatarios" Icon="locatarios1.png" />-->
+
+    <pages:MainTabbedPage 
+        Title="Locatorios" 
+        Icon="icon.png" 
+         />
+
+    <!--<NavigationPage x:Name="NavigatorBar"
+                        BarBackgroundColor="{StaticResource MallColor}">
+        <x:Arguments>
+            <pages:MainPage>
+            </pages:MainPage>
+        </x:Arguments>
+    </NavigationPage>-->
+
+</xf:BottomBarPage>

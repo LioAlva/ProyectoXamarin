@@ -4,10 +4,13 @@
              x:Class="PModelo.Pages.Loginpage"
              Title="Soccer"
              BackgroundColor="{StaticResource MainColor}"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             >
+    
     <ScrollView
-        BindingContext="{Binding Login}">
+        BindingContext="{Binding Main}">
         <StackLayout
+             BindingContext="{Binding Login}"
             Spacing="10"
             Padding="8">
             <Image
@@ -98,7 +101,11 @@
                     BackgroundColor="Orange"
                     TextColor="White"
                     Text="Login">
+
                 </Button>
+                <Button Text="Upcoming Appointments" Clicked="OnUpcomingAppointmentsButtonClicked" VerticalOptions="CenterAndExpand" />
+                <Button Text="retiunrn" Clicked="OnUpcomingAppointmentsRETURNClicked" VerticalOptions="CenterAndExpand" />
+
                 <Button
                     Command="{Binding LoginFacebookCommand}"
                     VerticalOptions="Center"
@@ -128,4 +135,14 @@
             </StackLayout>
         </StackLayout>
     </ScrollView>
+
+    <ContentPage.ToolbarItems>
+      
+        <ToolbarItem Order="Secondary" Text="Third option" />
+        <ToolbarItem Order="Primary"
+                     Icon="icon.png"
+                     Priority="0"
+                     Text="New" />
+    </ContentPage.ToolbarItems>
+
 </ContentPage>
