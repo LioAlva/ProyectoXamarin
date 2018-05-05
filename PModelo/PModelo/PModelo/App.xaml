@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PModelo.App"
              xmlns:infra="clr-namespace:PModelo.Infrastructure;assembly=PModelo"
+             xmlns:local ="clr-namespace:PModelo.Helper;assembly=PModelo"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              >
 	<Application.Resources>
 
@@ -14,11 +16,13 @@
             <Color x:Key="AccentColor1">#cdff00</Color>
             <Color x:Key="AccentColor2">#b8b89f</Color>
             <Color x:Key="AccentColor">#b8b10f</Color>
-            <Color x:Key="BackgroundColor">#ffffff</Color>
+            <Color x:Key="BackgroundColor">#FFFFFF</Color>
             <!-- Menu colors -->
             <Color x:Key="MenuColor">#52656b</Color>
-            <Color x:Key="MenuFontColor">#ffffff</Color>
-
+            <Color x:Key="MenuFontColor">#FFFFFF</Color>
+            <Color x:Key="MallColor">#e10a0a</Color>
+            <Color x:Key="BlackColor">#000000</Color>
+            <Color x:Key="PlatinumColor">#E0E6E8</Color> 
 
             <!-- Locator -->
             <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
@@ -80,6 +84,480 @@
                         </Grid>
                 </ViewCell>
             </DataTemplate>
+
+
+            <DataTemplate x:Key="EventsItemTemplate">
+                    <ViewCell>
+
+                    <Grid  RowSpacing="1" ColumnSpacing="1" >
+                        
+                        
+                            <!--<Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding EventDetailCommand}"/>
+                            </Grid.GestureRecognizers>-->
+
+                        <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <StackLayout VerticalOptions="CenterAndExpand" 
+                                     HorizontalOptions="CenterAndExpand" 
+                                     BackgroundColor="{StaticResource MenuFontColor}">
+                                
+                                <controls:CircleImage Source="ic_recents.png"
+                                            VerticalOptions="CenterAndExpand"
+                                                      HorizontalOptions="CenterAndExpand"
+                                            BorderColor="{StaticResource MenuFontColor}"
+                                            BorderThickness="10"
+                                            Aspect="AspectFill">
+                                    <controls:CircleImage.WidthRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <OnPlatform.iOS>55</OnPlatform.iOS>
+                                            <OnPlatform.Android>55</OnPlatform.Android>
+                                            <OnPlatform.WinPhone>75</OnPlatform.WinPhone>
+                                        </OnPlatform>
+                                    </controls:CircleImage.WidthRequest>
+                                    <controls:CircleImage.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <OnPlatform.iOS>55</OnPlatform.iOS>
+                                            <OnPlatform.Android>55</OnPlatform.Android>
+                                            <OnPlatform.WinPhone>75</OnPlatform.WinPhone>
+                                        </OnPlatform>
+                                    </controls:CircleImage.HeightRequest>
+                                </controls:CircleImage>
+                                <!--<Image
+                            Margin="5"
+                            Source="icon.png"
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            ></Image>-->
+                            </StackLayout>
+                            <StackLayout 
+                                        VerticalOptions="CenterAndExpand" 
+                                        Grid.Column="1" 
+                                        HorizontalOptions="EndAndExpand">
+                                <Grid Padding="4">
+                                <Grid Grid.Row="0" Padding="-5">
+                                    <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="180"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                        Margin="0"
+                                    Grid.Column="0"
+                                    Text="Otto Grill Working Group"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    TextColor="Black">
+                                            <Label.LineBreakMode>
+                                                <OnPlatform x:TypeArguments="LineBreakMode"
+                        Android="NoWrap" iOS="TailTruncation"/>
+                                            </Label.LineBreakMode>
+                                        </Label>
+                                        <Label
+                                        Margin="0"
+                                        Grid.Column="1"
+                                        FontSize="Small"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        TextColor="{StaticResource FontColor}"
+                                        Text="Inscrito"/>
+                                    </Grid>
+
+                                <Grid Grid.Row="1" Padding="-5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="180"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <Grid  Grid.Column="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                               <Label
+                                                            Grid.Column="0"
+                                                            Text="Expositores: "
+                                                            FontSize="Small"
+                                                            Margin="0"
+                                                            TextColor="{StaticResource FontColor}"
+                                                            HorizontalOptions="StartAndExpand"
+                                                            VerticalOptions="CenterAndExpand">
+                                                </Label>
+
+                                                <Label
+                                                            Margin="0"
+                                                            Grid.Column="1"
+                                                            FontSize="Small"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            TextColor="{StaticResource FontColor}"
+                                                            Text="Luis Armando"/>
+                                        </Grid>
+
+                                                <Label
+                                           
+                                                    Grid.Column="1"
+                                                    FontSize="Small"
+                                                    Margin="0"
+                                                    FontAttributes="Bold"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    TextColor="{StaticResource FontColor}"
+                                                    Text="Si"/>
+                                </Grid>
+
+                                <Grid Grid.Row="2" Padding="-5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="180"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+
+                                            <Grid  Grid.Column="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+
+                                                 <Label
+                                                    Grid.Column="0"
+                                                    Text="Fecha: "
+                                                    FontSize="Small"
+                                                    Margin="0"
+                                                    TextColor="{StaticResource FontColor}"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    >
+                                                </Label>
+
+                                                <Label
+                                                    Margin="0"
+                                                    Grid.Column="1"
+                                                    FontSize="Small"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    TextColor="{StaticResource FontColor}"
+                                                    Text="21-02-18"/>
+                                            </Grid>
+                                    
+                                            <Label
+                                                Margin="0"
+                                                Grid.Column="1"
+                                                FontSize="Small"
+                                                TextColor="{StaticResource MallColor}"
+                                                VerticalOptions="CenterAndExpand"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Text="Detalles >"/>
+                                        </Grid>
+                                </Grid>
+                            </StackLayout>
+                        </Grid>
+
+                    <!--</Frame>-->
+
+                    <ViewCell.ContextActions>
+                        <MenuItem
+           						Text="Delete" IsDestructive="True" 
+           						CommandParameter="{Binding .}"/>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+
+            <!---Usuarios-->
+
+            <DataTemplate x:Key="UsuariosItemTemplate">
+                <ViewCell>
+                    <Grid  RowSpacing="1" Padding="0,0,0,0" ColumnSpacing="10" BackgroundColor="White">
+                        <!--<Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding EventDetailCommand}"/>
+                            </Grid.GestureRecognizers>-->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout VerticalOptions="CenterAndExpand" 
+                                     HorizontalOptions="CenterAndExpand" 
+                                     BackgroundColor="{StaticResource MenuFontColor}">
+
+                            <controls:CircleImage Source="icon.png"
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            BorderColor="{StaticResource MenuFontColor}"
+                                            BorderThickness="10"
+                                            Aspect="AspectFill">
+                                <controls:CircleImage.WidthRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <OnPlatform.iOS>55</OnPlatform.iOS>
+                                        <OnPlatform.Android>55</OnPlatform.Android>
+                                        <OnPlatform.WinPhone>75</OnPlatform.WinPhone>
+                                    </OnPlatform>
+                                </controls:CircleImage.WidthRequest>
+                                <controls:CircleImage.HeightRequest>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <OnPlatform.iOS>55</OnPlatform.iOS>
+                                        <OnPlatform.Android>55</OnPlatform.Android>
+                                        <OnPlatform.WinPhone>75</OnPlatform.WinPhone>
+                                    </OnPlatform>
+                                </controls:CircleImage.HeightRequest>
+                            </controls:CircleImage>
+                            <!--<Image
+                            Margin="5"
+                            Source="icon.png"
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            ></Image>-->
+                        </StackLayout>
+                        <StackLayout 
+                                        VerticalOptions="CenterAndExpand" 
+                                        Grid.Column="1" 
+                                        HorizontalOptions="EndAndExpand">
+                            <Grid Padding="4">
+                                <Grid Grid.Row="0" Padding="-5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180"></ColumnDefinition>
+                                        <!--<ColumnDefinition Width="*"></ColumnDefinition>-->
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Margin="0"
+                                    Grid.Column="0"
+                                    Text="{Binding FullName}"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    TextColor="Black">
+                                        <Label.LineBreakMode>
+                                            <OnPlatform x:TypeArguments="LineBreakMode"
+                        Android="NoWrap" iOS="TailTruncation"/>
+                                        </Label.LineBreakMode>
+                                    </Label>
+                                    <!--<Label
+                                        Margin="0"
+                                        Grid.Column="1"
+                                        FontSize="Small"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        TextColor="{StaticResource FontColor}"
+                                        Text="Inscrito"/>-->
+                                </Grid>
+
+                                <Grid Grid.Row="1" Padding="-5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180"></ColumnDefinition>
+                                        <!--<ColumnDefinition Width="*"></ColumnDefinition>-->
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Grid  Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                                            Grid.Column="0"
+                                                            Text="Cargo: "
+                                                            FontSize="Small"
+                                                            Margin="0"
+                                                            TextColor="{StaticResource FontColor}"
+                                                            HorizontalOptions="StartAndExpand"
+                                                            VerticalOptions="CenterAndExpand">
+                                        </Label>
+
+                                        <Label
+                                                            Margin="0"
+                                                            Grid.Column="1"
+                                                            FontSize="Small"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            HorizontalOptions="CenterAndExpand"
+                                                            TextColor="{StaticResource FontColor}"
+                                                            Text="{Binding Cargo}"/>
+                                    </Grid>
+
+                                    <!--<Label
+                                           
+                                                    Grid.Column="1"
+                                                    FontSize="Small"
+                                                    Margin="0"
+                                                    FontAttributes="Bold"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    TextColor="{StaticResource FontColor}"
+                                                    Text="Si"/>-->
+                                </Grid>
+
+                                <!--<Grid Grid.Row="2" Padding="-5">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <Grid  Grid.Column="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                                    Grid.Column="0"
+                                                    Text="Fecha: "
+                                                    FontSize="Small"
+                                                    Margin="0"
+                                                    TextColor="{StaticResource FontColor}"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    >
+                                        </Label>
+
+                                        <Label
+                                                    Margin="0"
+                                                    Grid.Column="1"
+                                                    FontSize="Small"
+                                                    VerticalOptions="CenterAndExpand"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    TextColor="{StaticResource FontColor}"
+                                                    Text="21-02-18"/>
+                                    </Grid>
+
+                                    <Label
+                                                Margin="0"
+                                                Grid.Column="1"
+                                                FontSize="Small"
+                                                TextColor="{StaticResource MallColor}"
+                                                VerticalOptions="CenterAndExpand"
+                                                HorizontalOptions="CenterAndExpand"
+                                                Text="Detalles >"/>
+                                </Grid>-->
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+
+                    <!--</Frame>-->
+
+                    <ViewCell.ContextActions>
+                        <MenuItem
+           						Text="Delete" IsDestructive="True" 
+           						CommandParameter="{Binding .}"/>
+                    </ViewCell.ContextActions>
+                </ViewCell>
+            </DataTemplate>
+
+            <!---End Usuarios-->
+
+            <local:CellStyleConverter x:Key="cellStyleConverter" />
+
+
+            <!--<DataTemplate x:Key="EventoItemTemplate">
+                <ViewCell >
+                    <Grid  RowSpacing="1" ColumnSpacing="1">
+                        <Grid.GestureRecognizers >
+                            <TapGestureRecognizer Command="{Binding AlertDetailCommand}"/>
+                        </Grid.GestureRecognizers>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
+                            <controls:CircleImage
+                            Source="{Binding ImageFullPath}"
+                            Aspect="AspectFill"
+                            HeightRequest="70"
+                            WidthRequest="70"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            ></controls:CircleImage>
+                        </StackLayout>
+                        <StackLayout VerticalOptions="CenterAndExpand" Grid.Column="1" HorizontalOptions="EndAndExpand">
+                            <Grid >
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                    Grid.Column="0"
+                                     Text="Tipo de Evento: "
+                                    FontSize="Small"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Start"
+                                    VerticalOptions="Center"
+                                    TextColor="Black">
+                                    </Label>
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="Small"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        TextColor="{StaticResource FontColor}"
+                                        Text="Paseo"/>
+                                </Grid>
+
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                         Text="Fecha Creación: "
+                                        FontSize="Small"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        TextColor="Black">
+                                    </Label>
+                                    <Label
+                                            Grid.Column="1"
+                                            FontSize="Small"
+                                            FontAttributes="Bold"
+                                            VerticalOptions="CenterAndExpand"
+                                            HorizontalOptions="CenterAndExpand"
+                                            TextColor="{StaticResource FontColor}"
+                                            Text="12/12/05"/>
+                                </Grid>
+
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                         Text="Hora: "
+                                        FontSize="Small"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        TextColor="Black">
+                                    </Label>
+                                    <Label
+                                        Grid.Column="1"
+                                        FontSize="Small"
+                                        FontAttributes="Bold"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        TextColor="{StaticResource FontColor}"
+                                        Text="12:30 am "/>
+                                </Grid>
+                            </Grid>
+
+                        </StackLayout>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>-->
+
         </ResourceDictionary>
 
     </Application.Resources>

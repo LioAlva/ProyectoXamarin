@@ -16,5 +16,12 @@ namespace PModelo.Pages
 		{
 			InitializeComponent ();
 		}
-	}
+
+        async void OnUpcomingAppointmentsRETURNClicked(object sender, EventArgs e)
+        {
+            //await App.Navigator.PushAsync(new MasterPage());
+            await Navigation.PopToRootAsync();
+
+        }
+    }
 }

@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.ReportsPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" 
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             Title="Reportes"
+             BindingContext="{Binding MainBar, Source={StaticResource Locator}}"
+             Icon="icon"
+             >
+
+    <ContentPage.Content 
+        BindingContext="{Binding Main}">
+        <tabView:SfTabView 
+            VisibleHeaderCount="3"
+            DisplayMode="Text">
+            <tabView:SfTabItem Title="Call">
+                <tabView:SfTabItem.HeaderContent>
+                    <Button 
+		                Text="Todas la llamadas" 
+		                BackgroundColor="Yellow"/>
+                    
+                </tabView:SfTabItem.HeaderContent>
+
+                <tabView:SfTabItem.Content>
+                    <Grid BackgroundColor="Red"
+                          HorizontalOptions="FillAndExpand" 
+                          VerticalOptions="FillAndExpand"
+                          x:Name="AllContactsGrid" >
+                        <ListView x:Name="ContactListView" 
+		                    ItemsSource="{Binding ContactList}"
+		                    BackgroundColor="Beige" RowHeight="100">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label 
+					                            Text="{Binding Name}"
+					                            FontSize="24" 
+					                            TextColor="Blue" />
+                                            <Label 
+					                            Text="{Binding Number}" 
+					                            FontSize="20" 
+					                            TextColor="LightSlateGray" />
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem Title="Favorites">
+                <tabView:SfTabItem.Content>
+                    <!--<Grid BackgroundColor="Green" x:Name="FavoritesGrid" />-->
+                    <syncfusion:SfDataGrid x:Name="dataGrid"
+                                           ColumnSizer="Star"
+                                           AutoGenerateColumns="True"
+                                           AllowSorting="True"
+                                           HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                           ItemsSource="{Binding OrderInfoCollection}">
+                        <syncfusion:SfDataGrid.Columns>
+                            <syncfusion:GridTextColumn MappingName="OrderID" Format="C">
+                                <syncfusion:GridTextColumn.CellStyle>
+                                    <!--<Style TargetType="syncfusion:GridCell">
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </Style>-->
+                                    <Style TargetType="syncfusion:GridCell">
+                                        <Setter Property="BackgroundColor" 
+                                            Value="{Binding Freight, 
+                                            Converter={StaticResource cellStyleConverter}}" />
+                                        <Setter Property="Foreground" Value="Red" />
+                                    </Style>
+
+                                </syncfusion:GridTextColumn.CellStyle>
+                            </syncfusion:GridTextColumn>
+                        </syncfusion:SfDataGrid.Columns>
+                    </syncfusion:SfDataGrid>
+
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem Title="Contacts">
+                <tabView:SfTabItem.Content>
+
+                    <chart:SfChart x:Name="Chart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                        <chart:SfChart.Legend>
+                            <chart:ChartLegend />
+                        </chart:SfChart.Legend>
+
+                        <chart:SfChart.Title>
+                            <chart:ChartTitle Text="Chart"/>
+                        </chart:SfChart.Title>
+
+                        <chart:SfChart.PrimaryAxis>
+                            <chart:CategoryAxis>
+                                <chart:CategoryAxis.Title>
+                                    <chart:ChartAxisTitle Text="Name"/>
+                                </chart:CategoryAxis.Title>
+                            </chart:CategoryAxis>
+                        </chart:SfChart.PrimaryAxis>
+
+                        <chart:SfChart.SecondaryAxis>
+                            <chart:NumericalAxis>
+                                <chart:NumericalAxis.Title>
+                                    <chart:ChartAxisTitle Text="Height (in cm)"/>
+                                </chart:NumericalAxis.Title>
+                            </chart:NumericalAxis>
+                        </chart:SfChart.SecondaryAxis>
+
+                        <chart:SfChart.Series>
+                            <chart:SplineSeries  ItemsSource="{Binding Data}" 
+                                                 Label="Heights" 
+                                                 XBindingPath="Name" 
+                                                 YBindingPath="Height"
+                                                 EnableAnimation="True"
+                                                 EnableTooltip="True"
+                                                 LegendIcon="Diamond"
+                                                 StrokeWidth="3"
+                                                 SplineType="Monotonic" >
+
+
+                                <chart:SplineSeries.DataMarker>
+
+                                    <chart:ChartDataMarker ShowLabel="False" 
+						                                   ShowMarker="True"
+						                                   MarkerType="Hexagon"
+						                                   MarkerWidth="20" 
+						                                   MarkerHeight="20"
+						                                   MarkerColor="Aqua" 
+						                                   MarkerBorderColor="Red"
+						                                   MarkerBorderWidth="2"/>
+
+                                </chart:SplineSeries.DataMarker>
+
+                            </chart:SplineSeries>
+
+                            <chart:SplineSeries  ItemsSource="{Binding Data2}" 
+                                                 Label="Heights" 
+                                                 XBindingPath="Name" 
+                                                 YBindingPath="Height" 
+                                                 SplineType="Natural" 
+                                                 EnableAnimation="True"
+                                                 EnableTooltip="True"
+                                                 LegendIcon="Diamond"
+                                                 StrokeWidth="3">
+
+                                <chart:SplineSeries.DataMarker>
+                                    <chart:ChartDataMarker ShowLabel="False" 
+						                   ShowMarker="True"
+						                   MarkerType="Pentagon"
+						                   MarkerWidth="20" 
+						                   MarkerHeight="20"
+						                   MarkerColor="BlueViolet" 
+						                   MarkerBorderColor="Coral"
+						                   MarkerBorderWidth="2"/>
+                                </chart:SplineSeries.DataMarker>
+
+                            </chart:SplineSeries>
+                        </chart:SfChart.Series>
+                    </chart:SfChart>
+
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+        </tabView:SfTabView>
+    </ContentPage.Content>
+</ContentPage>

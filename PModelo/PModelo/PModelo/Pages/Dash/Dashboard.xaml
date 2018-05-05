@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.Dashboard"
+             xmlns:pages="clr-namespace:PModelo.Pages;assembly=PModelo" 
+             BackgroundColor="{StaticResource BackgroundColor}"
+   
+            
+             >
+
+    <MasterDetailPage.Master >
+        <pages:MenuPage  ></pages:MenuPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+
+        <NavigationPage x:Name="Navigator">
+            <x:Arguments>
+                <pages:TabPage>
+                </pages:TabPage>
+            </x:Arguments>
+        </NavigationPage>
+        <!--<TabbedPage>
+                <TabbedPage.Children>
+
+                <NavigationPage Title="その1"  x:Name="Navigator" >
+                        <x:Arguments>
+                            <ContentPage Title="タブその1">
+                                <Label Text="タブその1" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </ContentPage>
+                        </x:Arguments>
+                    </NavigationPage>
+
+                    <NavigationPage Title="その2">
+                        <x:Arguments>
+                            <ContentPage Title="タブその2">
+                                <Label Text="タブその2" VerticalOptions="Center" HorizontalOptions="Center" />
+                            </ContentPage>
+                        </x:Arguments>
+                    </NavigationPage>
+
+                </TabbedPage.Children>
+            </TabbedPage>-->
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

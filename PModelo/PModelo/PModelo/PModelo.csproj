@@ -1,5 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
@@ -9,19 +16,41 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\EventosPage\EventoPopPage.xaml.cs" />
+    <Compile Remove="Pages\EventosPage\LoadingPopupPage.xaml.cs" />
+    <Compile Remove="Pages\NavigationPageM.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Pages\EventosPage\EventoPopPage.xaml" />
+    <EmbeddedResource Remove="Pages\EventosPage\LoadingPopupPage.xaml" />
+    <EmbeddedResource Remove="Pages\NavigationPageM.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
     <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.0.4" />
     <PackageReference Include="SQLite.Net-PCL" Version="3.1.1" />
     <PackageReference Include="SQLiteNetExtensions" Version="1.3.0" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataForm" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.SfSunburstChart" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="16.1.0.24" />
+    <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF.EXT" Version="1.0.3" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.2.0" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.2" />
+    <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="2.5.0.122203" />
   </ItemGroup>
 
@@ -35,10 +64,28 @@
     <Compile Update="Pages\DataGridViewPage.xaml.cs">
       <DependentUpon>DataGridViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Pages\Loginpage.xaml.cs">
+      <DependentUpon>Loginpage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Pages\ContenPruebaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\DashboardPages\DashboardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\Dash\Dashboard.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\DataGridViewPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\EventosPage\EventoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\EventosPage\EventosPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Loginpage.xaml">
@@ -47,10 +94,16 @@
     <EmbeddedResource Update="Pages\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\MainTabbedPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\MasterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\MenuPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\NewLoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\NewOrderPage.xaml">
@@ -59,8 +112,35 @@
     <EmbeddedResource Update="Pages\ProbaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\ReportsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\UsuariosPage\UsersGroupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\UsuariosPage\UsuariosGroupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\UsuariosPage\UsuarioDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\UsuariosPage\UsuariosPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\VentasPage\CierreVentasPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\WelcomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SampleBrowser.Core">
+      <HintPath>C:\Users\Hp\Documents\SampleBrowser.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.DataSource.Portable">
+      <HintPath>..\..\..\..\Xamarin\sample\Forms\DataSource\packages\Syncfusion.Xamarin.DataSource.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.DataSource.Portable.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

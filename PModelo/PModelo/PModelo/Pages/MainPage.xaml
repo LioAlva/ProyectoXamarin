@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="PModelo.Pages.MainPage"
              Title="Mis Pedidos"
-             BackgroundColor="{StaticResource BackgroundColor}"
+             BackgroundColor="{StaticResource MenuFontColor}"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
 

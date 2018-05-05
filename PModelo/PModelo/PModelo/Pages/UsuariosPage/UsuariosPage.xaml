@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.UsuariosPage"
+             Title="Eventos"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundColor="{StaticResource MenuFontColor}"
+             Icon="icon"
+             Padding="0"
+             >
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image
+                    Grid.Row="0"
+				    Source="Evento.png"
+                    Aspect="AspectFill"
+				    HorizontalOptions="FillAndExpand"
+				    VerticalOptions ="FillAndExpand"/>
+            <SearchBar Placeholder="Buscar Usuario ..."
+                       Text="{Binding AlertFilter, Mode=TwoWay}"
+                       Grid.Row="1"
+                       SearchCommand="{Binding SearchAlertCommand}"/>
+            <ListView  
+                            Grid.Row="2"
+                            ItemTemplate="{StaticResource UsuariosItemTemplate}"
+                            SeparatorVisibility="Default"
+                            RefreshCommand="{Binding RefreshEventsCommand}"
+                            IsRefreshing="{Binding IsRefreshingEvents, Mode=TwoWay}"
+                            HasUnevenRows="True"
+                            IsPullToRefreshEnabled="True"
+		                    ItemsSource="{Binding Usuarios}"
+		                    BackgroundColor="{StaticResource MenuFontColor}"
+                            RowHeight="100">
+                
+            </ListView>
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

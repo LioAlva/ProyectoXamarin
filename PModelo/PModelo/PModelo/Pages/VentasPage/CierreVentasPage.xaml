@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.CierreVentasPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             xmlns:dataForm="clr-namespace:Syncfusion.XForms.DataForm;assembly=Syncfusion.SfDataForm.XForms"
+             xmlns:local="clr-namespace:PModelo.ViewModels"
+             Title="Ventas"
+             Icon="icon">
+
+
+    <ScrollView>
+        <StackLayout>
+            <BoxView HeightRequest="5"></BoxView>
+            <Grid Margin="0,0,0,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label 
+                   Grid.Row="0"
+                   Text="Cierre de Fecha" 
+                   HorizontalOptions="CenterAndExpand"
+                   TextColor="{StaticResource BlackColor}"
+                   VerticalOptions="CenterAndExpand" 
+                   FontAttributes="Bold"                     
+                   FontSize="22"/>
+
+                <StackLayout Grid.Row="1" Spacing="20" Padding="20"
+                         VerticalOptions="Center">
+                    <Label Text="Cantidad de Ventas"/>
+                    <Entry Text="{Binding Username}"/>
+                    <Label Text="Cantidad de Transacciones"/>
+                    <Entry Text="{Binding Password}"
+                       IsPassword="true"/>
+                </StackLayout>
+
+                <StackLayout  Grid.Row="2"  Spacing="20" Padding="20"
+                         VerticalOptions="End">
+                    <Button x:Name="Commit" 
+                            BackgroundColor="{StaticResource MallColor}"
+                            WidthRequest="100" 
+                            HeightRequest="50" 
+                            VerticalOptions="StartAndExpand"
+                            Text="Registrar" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+   
+    
+
+
+</ContentPage>

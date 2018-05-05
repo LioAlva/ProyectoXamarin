@@ -66,6 +66,22 @@
                     <Label Text="Dont'Have Account Login? SignUp" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
                 </StackLayout>
             </Grid>
-      
+
+        <Button Text="retiunrn" Clicked="OnUpcomingAppointmentsRETURNClicked" VerticalOptions="CenterAndExpand" />
+
+
     </ScrollView>
+
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="icon.png"
+                     Text="Primero"
+                     Order="Primary"
+                     />
+        <ToolbarItem Icon="icon.png"
+                     Text="Segundo"
+                     Order="Secondary"
+                     />
+    </ContentPage.ToolbarItems>
 </ContentPage>

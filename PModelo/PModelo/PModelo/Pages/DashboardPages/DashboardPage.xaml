@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.DashboardPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" 
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:chart2="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             Title="Dashboard"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Icon="icon"
+             >
+    
+    <ContentPage.Content>
+        <!--<tabView:SfTabView 
+            VisibleHeaderCount="2">
+            <tabView:SfTabItem Title="Ventas" 
+                               TitleFontSize="15"
+                               TitleFontColor="{StaticResource BlackColor}">
+                <tabView:SfTabItem.Content>
+                    <StackLayout Padding="5" BackgroundColor="Bisque">
+                        <StackLayout BackgroundColor="Beige">
+                            <Label Text="gola oj 511512"></Label>
+                        </StackLayout>
+                        <StackLayout BackgroundColor="Bisque">
+                            <Label Text="gola oj 511512"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+            <tabView:SfTabItem Title="Tendencias"
+                               TitleFontSize="15"
+                               
+                               TitleFontColor="{StaticResource BlackColor}">
+                <tabView:SfTabItem.Content>
+               
+
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+
+
+            --><!--<tabView:SfTabItem Title="Ventas por M2"
+                               TitleFontSize="15"
+                               TitleFontColor="{StaticResource BlackColor}" >
+                <tabView:SfTabItem.Content >
+
+                   
+                    <chart:SfChart x:Name="Chart" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                        <chart:SfChart.Legend>
+                            <chart:ChartLegend />
+                        </chart:SfChart.Legend>
+
+                        <chart:SfChart.Title>
+                            <chart:ChartTitle Text="Chart"/>
+                        </chart:SfChart.Title>
+
+                        <chart:SfChart.PrimaryAxis>
+                            <chart:CategoryAxis>
+                                <chart:CategoryAxis.Title>
+                                    <chart:ChartAxisTitle Text="Name"/>
+                                </chart:CategoryAxis.Title>
+                            </chart:CategoryAxis>
+                        </chart:SfChart.PrimaryAxis>
+
+                        <chart:SfChart.SecondaryAxis>
+                            <chart:NumericalAxis>
+                                <chart:NumericalAxis.Title>
+                                    <chart:ChartAxisTitle Text="Height (in cm)"/>
+                                </chart:NumericalAxis.Title>
+                            </chart:NumericalAxis>
+                        </chart:SfChart.SecondaryAxis>
+
+                        <chart:SfChart.Series>
+                            <chart:SplineSeries  ItemsSource="{Binding Data}" 
+                                                 Label="Heights" 
+                                                 XBindingPath="Name" 
+                                                 YBindingPath="Height"
+                                                 EnableAnimation="True"
+                                                 EnableTooltip="True"
+                                                 LegendIcon="Diamond"
+                                                 StrokeWidth="3"
+                                                 SplineType="Monotonic" >
+
+
+                                <chart:SplineSeries.DataMarker>
+
+                                    <chart:ChartDataMarker ShowLabel="False" 
+						                                   ShowMarker="True"
+						                                   MarkerType="Hexagon"
+						                                   MarkerWidth="20" 
+						                                   MarkerHeight="20"
+						                                   MarkerColor="Aqua" 
+						                                   MarkerBorderColor="Red"
+						                                   MarkerBorderWidth="2"/>
+
+                                </chart:SplineSeries.DataMarker>
+
+                            </chart:SplineSeries>
+
+                            <chart:SplineSeries  ItemsSource="{Binding Data2}" 
+                                                 Label="Heights" 
+                                                 XBindingPath="Name" 
+                                                 YBindingPath="Height" 
+                                                 SplineType="Natural" 
+                                                 EnableAnimation="True"
+                                                 EnableTooltip="True"
+                                                 LegendIcon="Diamond"
+                                                 StrokeWidth="3">
+
+                                <chart:SplineSeries.DataMarker>
+                                    <chart:ChartDataMarker ShowLabel="False" 
+						                   ShowMarker="True"
+						                   MarkerType="Pentagon"
+						                   MarkerWidth="20" 
+						                   MarkerHeight="20"
+						                   MarkerColor="BlueViolet" 
+						                   MarkerBorderColor="Coral"
+						                   MarkerBorderWidth="2"/>
+                                </chart:SplineSeries.DataMarker>
+
+                            </chart:SplineSeries>
+                        </chart:SfChart.Series>
+                    </chart:SfChart>
+
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>--><!--
+
+        </tabView:SfTabView>-->
+
+
+        <ScrollView >
+            <StackLayout Padding="0,6,0,6" BackgroundColor="{StaticResource  PlatinumColor}"
+                                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                     >
+                <Frame IsClippedToBounds="True"
+                        HasShadow="True"
+                        BackgroundColor="White">
+                    <Frame.OutlineColor>
+                        <OnPlatform x:TypeArguments="Color"
+                                    Android="Gray"
+                                    iOS="Gray"/>
+                    </Frame.OutlineColor>
+                    <Frame.Margin>
+                        <OnPlatform x:TypeArguments="Thickness"
+                                Android="10,5,10,5" iOS="10"/>
+                    </Frame.Margin>
+                    <Frame.Padding>
+                        <OnPlatform x:TypeArguments="Thickness"
+                      Android="0" iOS="0"/>
+                    </Frame.Padding>
+
+
+                    <Grid BackgroundColor="{StaticResource BackgroundColor}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="3"/>
+                            <RowDefinition Height="35"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="La venta del día 26 de febrero"  
+                                       Grid.Row="0"  
+                                       Grid.Column="0" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center"  
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold"
+                                       FontSize="15"  
+                                       Font="Bold,Medium"/>
+                        <Label Text="$ 1.24 MM"   
+                                       Grid.Row="2" 
+                                       Grid.Column="0" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center"  
+                                       FontSize="15"  
+                                       Font="Bold,Medium" />
+                        <BoxView Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource PlatinumColor}"></BoxView>
+                        <Label Text="*"  
+                                       Grid.Row="0"  
+                                       Grid.Column="1" 
+                                       VerticalOptions="Center"  
+                                       HorizontalOptions="Center" 
+                                       FontSize="15" 
+                                       Font="Bold,Medium"/>
+                        <Label Text="Linea" 
+                                       Grid.Row="2"  
+                                       Grid.Column="1"  
+                                       FontSize="15" 
+                                       VerticalOptions="Center"  
+                                       HorizontalOptions="Center"
+                                       Font="Bold,Medium" />
+                    </Grid>
+
+                </Frame>
+
+
+
+                <Frame IsClippedToBounds="True"
+                        HasShadow="True"
+                        BackgroundColor="White">
+                    <Frame.OutlineColor>
+                        <OnPlatform x:TypeArguments="Color"
+                                        Android="Gray"
+                                        iOS="Gray"/>
+                    </Frame.OutlineColor>
+                    <Frame.Margin>
+                        <OnPlatform x:TypeArguments="Thickness"
+                                    Android="10,5,10,5" iOS="10"/>
+                    </Frame.Margin>
+                    <Frame.Padding>
+                        <OnPlatform x:TypeArguments="Thickness"
+                              Android="0" iOS="0"/>
+                    </Frame.Padding>
+
+                    <Grid BackgroundColor="{StaticResource BackgroundColor}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="3"/>
+                            <RowDefinition Height="35"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Text="La venta por m2 del día 26 de febrero"  
+                                       Grid.Row="0"  
+                                       Grid.Column="0" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center"  
+                                       FontAttributes="Bold"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="15"  
+                                       Font="Bold,Medium" />
+                        <Label Text="$ 40 k"   
+                                       Grid.Row="2" 
+                                       Grid.Column="0" 
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center"  
+                                       FontSize="15"  
+                                       Font="Bold,Medium" />
+                        <BoxView Grid.Row="1" Grid.ColumnSpan="2" BackgroundColor="{StaticResource PlatinumColor}"></BoxView>
+                        <Label Text="*"  
+                                       Grid.Row="0"  
+                                       Grid.Column="1" 
+                                       VerticalOptions="Center"  
+                                       HorizontalOptions="Center" 
+                                       FontSize="15" 
+                                       Font="Bold,Medium"/>
+                        <Label Text="Linea" 
+                                       Grid.Row="2"  
+                                       Grid.Column="1"  
+                                       FontSize="15" 
+                                       VerticalOptions="Center"  
+                                       HorizontalOptions="Center"
+                                       Font="Bold,Medium" />
+                    </Grid>
+
+                </Frame>
+
+
+
+                <Frame IsClippedToBounds="True"
+                                   HasShadow="True"
+                                   BackgroundColor="White">
+                    <Frame.OutlineColor>
+                        <OnPlatform x:TypeArguments="Color"
+                                        Android="Gray"
+                                        iOS="Gray"/>
+                    </Frame.OutlineColor>
+                    <Frame.Margin>
+                        <OnPlatform x:TypeArguments="Thickness"
+                                    Android="10,5,10,10" iOS="10"/>
+                    </Frame.Margin>
+                    <Frame.Padding>
+                        <OnPlatform x:TypeArguments="Thickness"
+                              Android="0" iOS="0"/>
+                    </Frame.Padding>
+
+                    <StackLayout HeightRequest="350" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                        <chart:SfChart x:Name="Chart" 
+                                               HorizontalOptions="FillAndExpand" 
+                                               VerticalOptions="FillAndExpand">
+                            <chart:SfChart.Legend>
+                                <chart:ChartLegend />
+                            </chart:SfChart.Legend>
+                            <chart:SfChart.Title>
+                                <chart:ChartTitle Text="Chart"/>
+                            </chart:SfChart.Title>
+                            <chart:SfChart.PrimaryAxis>
+                                <chart:CategoryAxis>
+                                    <chart:CategoryAxis.Title>
+                                        <chart:ChartAxisTitle Text="Name"/>
+                                    </chart:CategoryAxis.Title>
+                                </chart:CategoryAxis>
+                            </chart:SfChart.PrimaryAxis>
+                            <chart:SfChart.SecondaryAxis>
+                                <chart:NumericalAxis>
+                                    <chart:NumericalAxis.Title>
+                                        <chart:ChartAxisTitle Text="Height (in cm)"/>
+                                    </chart:NumericalAxis.Title>
+                                </chart:NumericalAxis>
+                            </chart:SfChart.SecondaryAxis>
+
+                            <chart:SfChart.Series>
+                                <chart:SplineSeries  ItemsSource="{Binding Data}" 
+                                                 Label="Heights" 
+                                                 XBindingPath="Name" 
+                                                 YBindingPath="Height"
+                                                 EnableAnimation="True"
+                                                 EnableTooltip="True"
+                                                 LegendIcon="Diamond"
+                                                 StrokeWidth="3"
+                                                 SplineType="Monotonic" >
+
+                                    <chart:SplineSeries.DataMarker>
+
+                                        <chart:ChartDataMarker ShowLabel="False" 
+						                                   ShowMarker="True"
+						                                   MarkerType="Hexagon"
+						                                   MarkerWidth="20" 
+						                                   MarkerHeight="20"
+						                                   MarkerColor="Aqua" 
+						                                   MarkerBorderColor="Red"
+						                                   MarkerBorderWidth="2"/>
+
+                                    </chart:SplineSeries.DataMarker>
+
+                                </chart:SplineSeries>
+
+                                <chart:SplineSeries  ItemsSource="{Binding Data2}" 
+                                                 Label="Heights" 
+                                                 XBindingPath="Name" 
+                                                 YBindingPath="Height" 
+                                                 SplineType="Natural" 
+                                                 EnableAnimation="True"
+                                                 EnableTooltip="True"
+                                                 LegendIcon="Diamond"
+                                                 StrokeWidth="3">
+
+                                    <chart:SplineSeries.DataMarker>
+                                        <chart:ChartDataMarker ShowLabel="False" 
+						                   ShowMarker="True"
+						                   MarkerType="Pentagon"
+						                   MarkerWidth="20" 
+						                   MarkerHeight="20"
+						                   MarkerColor="BlueViolet" 
+						                   MarkerBorderColor="Coral"
+						                   MarkerBorderWidth="2"/>
+                                    </chart:SplineSeries.DataMarker>
+
+                                </chart:SplineSeries>
+                            </chart:SfChart.Series>
+                        </chart:SfChart>
+                    </StackLayout>
+
+
+                </Frame>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_favorites.png"
+                     Text="Primero"
+                     Priority="0"
+                     Order="Primary"             
+                     Command="{Binding SaveCommand}"
+                     />
+        
+        <ToolbarItem Icon="icon.png"
+                     Text="Segundo"
+                     Order="Secondary"
+                     />
+        
+        <ToolbarItem Name="Save" 
+                     Priority="-1" 
+                     Order="Default" />
+    </ContentPage.ToolbarItems>
+
+</ContentPage>
+
+
+<!--
+
+izquierdo, superior, derecho e inferior
+
+-->
+
+
