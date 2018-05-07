@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using PModelo.Classes;
 using PModelo.Models;
+using PModelo.Util;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -13,7 +15,53 @@ namespace PModelo.Services
 {
         public class ApiService
         {
-            public async Task<TokenResponse> GetToken(string urlBase, string username, string password)
+
+        public async Task<Response> SetPhoto(int customerId, Stream stream)
+        {
+            try
+            {
+                var array = Utilities.ReadFully(stream);
+
+                var photoRequest = new PhotoRequest
+                {
+                    Id = customerId,
+                    Array = array,
+                };
+
+                var request = JsonConvert.SerializeObject(photoRequest);
+                var body = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient();
+                client.BaseAddress = new Uri("http://zulu-software.com");
+                var url = "/ECommerce/api/Customers/SetPhoto";
+                var response = await client.PostAsync(url, body);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = response.StatusCode.ToString(),
+                    };
+                }
+
+                return new Response
+                {
+                    IsSuccess = true,
+                    Message = "Foto asignada Ok",
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+
+
+        public async Task<TokenResponse> GetToken(string urlBase, string username, string password)
             {
                 try
                 {
@@ -113,7 +161,7 @@ namespace PModelo.Services
                 }
             }
 
-            public async Task<Response> Post<T,U>(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, T model,bool condicion=false)
+            public async Task<Response> Post<T,U>(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, T model,bool condicion=true)
             {
                 try
                 {

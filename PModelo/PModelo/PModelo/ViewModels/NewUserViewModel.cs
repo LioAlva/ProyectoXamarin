@@ -1,6 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Plugin.Connectivity;
+using Plugin.Media;
 using Plugin.Media.Abstractions;
+using PModelo.Classes;
 using PModelo.Classes.NoMapping;
 using PModelo.Models;
 using PModelo.Services;
@@ -9,6 +11,7 @@ using Syncfusion.SfBusyIndicator.XForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -30,8 +33,9 @@ namespace PModelo.ViewModels
         private List<string> _color;
         private List<TypeUser> _typeUsers { get; set; }
         private ImageSource _imageSource;
-        private MediaFile file;
 
+
+        MediaFile file;
         #endregion
 
         #region Properties
@@ -125,6 +129,7 @@ namespace PModelo.ViewModels
         #region Contructor
         public NewUserViewModel()
         {
+            ImageSource = "icon";
             dialogService = new DialogService();
             navigationService = new NavigationService();
             apiService = new ApiService();
@@ -152,13 +157,13 @@ namespace PModelo.ViewModels
                 {
                     Description = "Automovilista",
                     Price = 20,
-                    TypeUserId = 2,
+                    UserTypeId = 2,
                 });
                 TypeUsers.Add(new TypeUser
                 {
                     Description = "Administrador",
                     Price = 20,
-                    TypeUserId = 4,
+                    UserTypeId = 4,
                 });
             //}
         }
@@ -180,6 +185,83 @@ namespace PModelo.ViewModels
         #endregion
 
         #region Commands
+
+        public ICommand ChangeImageCommand { get { return new RelayCommand(ChangeImage); } }
+
+        private async void ChangeImage()
+        {
+            bool hasPermission = false;
+
+            try
+            {
+                await CrossMedia.Current.Initialize();
+                hasPermission = CrossMedia.Current.IsPickPhotoSupported;
+            }
+            catch (Exception genEx)
+            {
+                var Error = genEx;
+            }
+
+            if (!hasPermission)
+            {
+                 await dialogService.ShowMessage("Photos Not Supported", ":( Permission not granted to photos."); 
+                return;
+            }
+           
+           
+            if (CrossMedia.Current.IsCameraAvailable &&
+                CrossMedia.Current.IsTakePhotoSupported)
+            {
+                var source = await dialogService.ShowImageOptions();
+
+                if (source == "Cancelar")
+                {
+                    file = null;
+                    return;
+                }
+
+                if (source == "De la Cámara")
+                {
+
+                    file = await CrossMedia.Current.TakePhotoAsync(
+                        new StoreCameraMediaOptions
+                        {
+                            Directory = "Sample",
+                            Name = "test.jpg",
+                            PhotoSize = PhotoSize.Small,
+                            SaveToAlbum = true,
+                            DefaultCamera = CameraDevice.Front
+                        }
+                    );
+                }
+                else
+                {
+
+                    file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                    {
+                        PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                    });
+                }
+            }
+            else
+            {
+
+                file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                {
+                    PhotoSize = Plugin.Media.Abstractions.PhotoSize.Medium,
+                });
+            }
+
+            if (file != null)
+            {
+                ImageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+            }
+        }
+
         public ICommand SaveCommand { get { return new RelayCommand(Save); } }
 
         private async void Save()
@@ -258,51 +340,55 @@ namespace PModelo.ViewModels
             isBusy = true;
             IsEnabled = !isBusy;
 
-            var user = new User()
+            byte[] array = null;
+            if (ImageSource != null)
             {
-                FirstName = FirstName,
-                LastName = LastName,
-                MotherLastName = MotherLastName,
-                Phone = Phone,
-                DNI = DNI,
-                Email = Email,
-                Password = Password,
-                UserTypeId = UserTypeId,//,
-                //FBToken = string.Empty
-            };
-
+                Stream stream = null;
+                if (file != null)
+                {
+                    stream = file.GetStream() ?? null;
+                    if (stream != null)
+                    {
+                        array = Utilities.ReadFully(stream);
+                    }
+                }
+            }
+            
             var userForm = new UserForm
             {
                 Nombre=FirstName,
                 Apellido_Paterno=LastName,
                 Apellido_Materno=MotherLastName,
-                Contrasenia=Password,
-                DNI=DNI,
-                Telefono=Phone,
-                Usuario_Name=Email,
+                Telefono = Phone,
+                DNI = DNI,
+                Email=Email,
+                Contrasenia = Password,
+                //Photo
+                //Usuario_Name=Email,
                 UserTypeId = UserTypeId,
             };
 
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
-            if (!isReachable)
+            if (isReachable)
             {
-                var response = await apiService.Post<UserForm, User>(Configuration.SERVER,"/api","/account/","","",userForm,true);
+                var response = await apiService.Post<UserForm, Response>(Configuration.SERVER,"/api", "/account/RegisterUser", "","",userForm,false);
 
                 if (response != null)
                 {
+                    var result = (Response)response.Result;
                     isBusy = false;
                     IsEnabled = !isBusy;
 
-                    if (response.IsSuccess)
+                    if (result.IsSuccess)
                     {
-                        await dialogService.ShowMessage("Confirmación", response.Message);
-                    //    navigationService.SetMainPage("LoginPage", user);
-                    //    var mainViewModel = MainViewModel.GetInstance();
-                    //    mainViewModel.LoadNewUserWhite();
+                        await dialogService.ShowMessage("Confirmación", result.Message);
+                        navigationService.SetMainPage("NewLoginPage");
+                        //    var mainViewModel = MainViewModel.GetInstance();
+                        //    mainViewModel.LoadNewUserWhite();
                     }
                     else
                     {
-                        await dialogService.ShowMessage("Mensaje", response.Message);
+                        await dialogService.ShowMessage("Mensaje", result.Message);
                         return;
                     }
                 }

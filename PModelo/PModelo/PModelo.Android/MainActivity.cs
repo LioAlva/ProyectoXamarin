@@ -6,14 +6,14 @@ using Plugin.CurrentActivity;
 using Plugin.Permissions;
 using Debug = System.Diagnostics.Debug;
 
-
+//https://www.youtube.com/watch?v=0Qjx671cgYg
 namespace PModelo.Droid
 {
     // [Activity(Label = "PModelo", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     [Activity(Label = "PModelo", Icon = "@drawable/icon", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        protected override void OnCreate(Bundle bundle)
+        protected override  void OnCreate(Bundle bundle)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
@@ -22,8 +22,9 @@ namespace PModelo.Droid
             //Rg.Plugins.Popup.Popup.Init(this, bundle);
             //Couchbase.Lite.Storage.CustomSQLite.Plugin.Register();
 
+            // CrossCurrentActivity.Current.Init(this, bundle);
+            // await CrossCurrentActivity.Current.Activity;
 
-            //CrossCurrentActivity.Current.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
@@ -40,10 +41,10 @@ namespace PModelo.Droid
             //}
         }
 
-        //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
-        //{
-        //    PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
-        //}
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Android.Content.PM.Permission[] grantResults)
+        {
+            PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
 
     }
 }

@@ -18,6 +18,8 @@ namespace PModelo.Classes.NoMapping
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
         public string DNI { get; set; }
+        public string Email { get; set; }
+        public byte[] Photo { get; set; }
         public DateTime? Fecha_Nacimiento { get; set; }
         public DateTime? Fecha_Caducidad_Password { get; set; }
         public DateTime? Fecha_Creacion { get; set; }

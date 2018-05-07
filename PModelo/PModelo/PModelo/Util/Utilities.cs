@@ -6,6 +6,37 @@ namespace PModelo.Util
 {
     public class Utilities
     {
+        public static DateTime GetFecha()
+        {
+            return DateTime.UtcNow.AddHours(-5);
+        }
+
+        public static TimeZoneInfo GetTimeZonePeru()
+        {
+            string displayName = "(GMT-05:00) Peru Time";
+            string standardName = "Peru Time";
+            TimeSpan offset = new TimeSpan(-5, 0, 0);
+            return TimeZoneInfo.CreateCustomTimeZone(standardName, offset, displayName, standardName);
+        }
+
+        //public static long ObtenerMillisegundos(DateTime fecha)
+        //{
+        //    return (long)(fecha - new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds;
+        //}
+        public static long? ObtenerMillisegundos(DateTime? fecha)
+        {
+            if (fecha != null)
+                return (long)(Convert.ToDateTime(fecha) - new DateTime(1970, 1, 1, 0, 0, 0)).TotalMilliseconds;
+            else
+                return null;
+        }
+
+        public static int GetClaveRandom()
+        {
+            Random r = new Random(DateTime.Now.Millisecond);
+            return r.Next(100000, 999999);
+        }
+
         public static bool IsValidEmail(string email)
         {
             return Regex.Match(email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$").Success;
