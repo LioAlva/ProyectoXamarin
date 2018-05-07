@@ -1,4 +1,6 @@
-﻿using PModelo.Data;
+﻿using PModelo.Classes;
+using PModelo.Data;
+using PModelo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +9,33 @@ namespace PModelo.Services
 {
     public class DataService
     {
+        public Response UpdateUser(User user)
+        {
+            try
+            {
+                using (var da = new DataAccess())
+                {
+                    da.Update(user);
+                }
+
+                return new Response
+                {
+                    IsSuccess = true,
+                    Message = "Usuario Actualizado Ok",
+                    Result = user,
+                };
+            }
+            catch (Exception ex)
+            {
+
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+
         public T DeleteAllAndInsert<T>(T model) where T : class
         {
             try

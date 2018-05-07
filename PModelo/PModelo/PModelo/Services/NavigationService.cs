@@ -1,5 +1,7 @@
 ﻿using PModelo.Pages;
+using PModelo.Pages.Account;
 using PModelo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -10,6 +12,17 @@ namespace PModelo.Services
 {
     public class NavigationService
     {
+        #region Attributes
+        private DataService dataService;
+        #endregion
+
+        #region Constructor
+        public NavigationService()
+        {
+            dataService = new DataService();
+        }
+        #endregion
+
 
         public async Task Navigate(string PageName)
         {
@@ -67,21 +80,32 @@ namespace PModelo.Services
                 case "UsuariosGroupPage":
                     await App.Navigator.PushAsync(new UsuariosGroupPage());
                     break;//UsuariosGroupPage
+                case "LogutPage":
+                    Logout();
+                    ; break;
             }
         }
 
- 
+        private void Logout()
+        {
+            App.CurrentUser.IsRemembered = false; //lo dejamos de recordar por que hicimos un logut ,ahora creamos un servicio que nos ayudaraupdetear uduarios
+            dataService.UpdateUser(App.CurrentUser);
+            App.Current.MainPage = new NewLoginPage();
+        }
 
         public void SetMainPage(string page)
         {
             switch (page)
             {
+                case "RegisterUser":
+                    App.Current.MainPage = new RegisterUser();
+                    break;
+                case "NewLoginPage":
+                    App.Current.MainPage = new NewLoginPage();
+                    break;
                 case "MasterPage":
                     App.Current.MainPage = new MasterPage();
                     break;
-                //case "LoginPage":
-                //    App.Current.MainPage = new LoginPage();
-                //    break;
                 //case "SignInPage":
                 //    App.CurrentUser = user;//esta
                 //    App.Current.MainPage = new SignInPage();

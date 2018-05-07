@@ -2,6 +2,8 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Plugin.CurrentActivity;
+using Plugin.Permissions;
 using Debug = System.Diagnostics.Debug;
 
 
@@ -19,6 +21,9 @@ namespace PModelo.Droid
 
             //Rg.Plugins.Popup.Popup.Init(this, bundle);
             //Couchbase.Lite.Storage.CustomSQLite.Plugin.Register();
+
+
+            //CrossCurrentActivity.Current.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             LoadApplication(new App());
         }
@@ -34,6 +39,11 @@ namespace PModelo.Droid
             //    Debug.WriteLine("Android back button: There are not any pages in the PopupStack");
             //}
         }
+
+        //public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        //{
+        //    PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        //}
 
     }
 }

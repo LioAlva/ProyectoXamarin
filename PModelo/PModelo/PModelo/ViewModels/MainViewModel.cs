@@ -33,7 +33,8 @@ namespace PModelo.ViewModels
 
         public ObservableCollection<ChartDataPoint> DataPoints { get; set; }
 
-        //public CierreVentaItemViewModel CierreVenta { get; set; }
+        public NewUserViewModel NewUser { get; set; }//EditUser
+
 
         SfChart chart { get; set; }
 
@@ -94,6 +95,7 @@ namespace PModelo.ViewModels
             //CierreVenta = new CierreVentaItemViewModel();
             this.cierreVenta = new CierreVentaItemViewModel();
             Usuarios = new ObservableCollection<UsuarioItemViewModel>();
+            NewUser = new NewUserViewModel(); 
 
             Data = new List<Person>();
             Data2 = new List<Person>();
@@ -166,6 +168,19 @@ namespace PModelo.ViewModels
             /***/
 
         }
+
+        //public void LoadNewUserWhite()
+        //{
+        //    NewUser.DNI = string.Empty;
+        //    NewUser.Email = string.Empty;
+        //    NewUser.FirstName = string.Empty;
+        //    NewUser.LastName = string.Empty;
+        //    NewUser.Motherslastname = string.Empty;
+        //    NewUser.Password = string.Empty;
+        //    NewUser.PasswordConfirm = string.Empty;
+        //    NewUser.Phone = string.Empty;
+        //}
+
 
         private void LoadDataPoint()
         {
@@ -457,7 +472,12 @@ namespace PModelo.ViewModels
                 Title = "UsuariosGroupo ",
             });//UsersGroupPage
 
-
+            Menu.Add(new MenuItemViewModel
+            {
+                Icon = "icon.png",
+                PageName = "LogutPage",
+                Title = "Cerrar Sesión"
+            });
 
 
             //UsuariosPage

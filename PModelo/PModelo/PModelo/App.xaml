@@ -11,18 +11,37 @@
 		<!-- Application resource dictionary -->
         <ResourceDictionary>
             <!-- General colors -->
-            <Color x:Key="MainColor">#ff3b77</Color>
+            <!--<Color x:Key="MainColor">#ff3b77</Color>
             <Color x:Key="FontColor">#52656b</Color>
             <Color x:Key="AccentColor1">#cdff00</Color>
-            <Color x:Key="AccentColor2">#b8b89f</Color>
-            <Color x:Key="AccentColor">#b8b10f</Color>
+            <Color x:Key="AccentColor2">#b8b89f</Color>-->
+
+
+            <Color x:Key="AccentColor">#E05545</Color>
             <Color x:Key="BackgroundColor">#FFFFFF</Color>
+            <Color x:Key="AccentColor2">#243781</Color>
+            <Color x:Key="MainColor">#FEFFFF</Color>
+            <Color x:Key="FontColor">#FFFFF6</Color>
+            
+
             <!-- Menu colors -->
             <Color x:Key="MenuColor">#52656b</Color>
             <Color x:Key="MenuFontColor">#FFFFFF</Color>
             <Color x:Key="MallColor">#e10a0a</Color>
             <Color x:Key="BlackColor">#000000</Color>
-            <Color x:Key="PlatinumColor">#E0E6E8</Color> 
+            <Color x:Key="PlatinumColor">#E0E6E8</Color>
+
+            <!--<Color x:Key="LoginTextColor">#FEFEFE</Color>
+            <Color x:Key="BlackTextColor">#000000</Color>
+            <Color x:Key="WhiteColor">#FFFFFF</Color>
+            <Color x:Key="TextColor">#FFDA50</Color>
+            <Color x:Key="TextColor2">#3B3F42</Color>
+            <Color x:Key="BackgroundColor2">#FFDA50</Color> 51651E
+            <Color x:Key="VerduscoColor">#51651E</Color>
+            <Color x:Key="RedColor">#ff0000</Color>
+            <Color x:Key="VerColor">#344804</Color>-->
+
+
 
             <!-- Locator -->
             <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>

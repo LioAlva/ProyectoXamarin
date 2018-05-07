@@ -6,16 +6,11 @@
              Icon="icon.png"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
-    <ScrollView>
+   
 
         <StackLayout Orientation="Vertical">
 
             <Label  FontSize="Medium" HorizontalOptions="Center" TextColor="White"  />
-
-            <!-- 
-         This StackLayout you can use for other
-         data that you want to have in your menu drawer
-    -->
 
             <StackLayout BackgroundColor="#2196F3"
                  HeightRequest="150">
@@ -27,8 +22,8 @@
              HorizontalOptions="Center"/>
             </StackLayout>
             <ListView 
-    ItemsSource="{Binding Menu}"
-    HasUnevenRows="True">
+                    ItemsSource="{Binding Menu}"
+                    HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -56,6 +51,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        
             <!--<ListView 
               RowHeight="60"
               SeparatorVisibility="None"
@@ -91,5 +87,5 @@
             </ListView>-->
         </StackLayout>
 
-    </ScrollView>
+    
 </ContentPage>

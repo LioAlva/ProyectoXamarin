@@ -176,7 +176,6 @@ namespace PModelo.ViewModels
         #endregion
 
         #region Commands
-        //LoginCommand
         public ICommand LoginFacebookCommand { get { return new RelayCommand(LoginFacebook); } }
 
         private  async void LoginFacebook()
@@ -188,12 +187,15 @@ namespace PModelo.ViewModels
 
         private async  void LoginX()
         {
-            //await Navigation.PushAsync(new ProbaPage());
-            //await navigationService.NavigateL("WelcomePage");
             await navigationService.Navigate("WelcomePage");
-
         }
 
+        public ICommand RegisteredCommand { get { return new RelayCommand(Registered); } }
+
+        private  void Registered()
+        {
+            navigationService.SetMainPage("RegisterUser");
+        }
 
         public ICommand NewLoginCommand { get { return new RelayCommand(NewLogin); } }
 
@@ -211,17 +213,11 @@ namespace PModelo.ViewModels
                 return;
             }
 
-//            BusyIndicator.IsBusy = true;
             IsBusy = true;
-            //IsRunning = true;
-            //IsEnabled = false;
 
             if (!CrossConnectivity.Current.IsConnected)
             {
-                //BusyIndicator.IsBusy = false;
                 IsBusy = false;
-                //IsRunning = false;
-                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", "Revise su configuración de Internet.");
                 return;
             }
@@ -230,22 +226,15 @@ namespace PModelo.ViewModels
             if (!isReachable)
             {
                 IsBusy = false;
-                //BusyIndicator.IsBusy = false;
-                //IsRunning = false;
-                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", "Revise su configuración de Internet.");
                 return;
             }
 
             var token = await apiService.GetToken(Configuration.SERVER,Email,Password);
 
-
             if (token == null)
             {
                 IsBusy = false;
-                //BusyIndicator.IsBusy = false;
-                //IsRunning = false;
-                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", "Usuario o password incorrecto.");
                 Password = null;
                 return;
@@ -254,22 +243,16 @@ namespace PModelo.ViewModels
             if (string.IsNullOrEmpty(token.AccessToken))
             {
                 IsBusy = false;
-                //BusyIndicator.IsBusy = false;
-                //IsRunning = false;
-                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", token.ErrorDescription);
                 Password = null;
                 return;
             }
 
-            var response = await apiService.GetUserByEmail(Configuration.SERVER,"/api", "/account/GetUserByEmail", token.TokenType, token.AccessToken, token.UserName);
+            var response = await apiService.GetUserByEmail(Configuration.SERVER,"api", "/account/GetUserByEmail", token.TokenType, token.AccessToken, token.UserName);
 
             if (!response.IsSuccess)
             {
                 IsBusy = false;
-                //BusyIndicator.IsBusy = false;
-                //IsRunning = false;
-                //IsEnabled = true;
                 await dialogService.ShowMessage("Error", "Problem ocurred retrieving user information, try latter.");
                 return;
             }
@@ -283,16 +266,19 @@ namespace PModelo.ViewModels
             dataService.DeleteAllAndInsert(user);
             //dataService.InsertOrUpdate(user.FavoriteTeam);
             //dataService.InsertOrUpdate(user.UserType);
+            //App.CurrentUser
 
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.SetCurrentUser(user);
-
-            Email = null;
-            Password = null;
-
-            IsBusy = false;
-            
+            ClearForm();
             navigationService.SetMainPage("MasterPage");
+        }
+
+        private void ClearForm()
+        {
+            Email = string.Empty;
+            Password = string.Empty;
+            IsBusy = false;
         }
         #endregion
 

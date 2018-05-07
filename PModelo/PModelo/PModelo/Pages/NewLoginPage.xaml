@@ -6,25 +6,27 @@
              BackgroundColor="{StaticResource MainColor}"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
-
+    
     <ScrollView>
         <StackLayout BindingContext="{Binding Login}">
             <Grid BackgroundColor="White">
-                <BoxView HeightRequest="40"/>
+                <!--<BoxView HeightRequest="40"/>-->
                 <Grid.RowDefinitions>
                     <!--<RowDefinition Height="50"/>-->
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="53"/>
                 </Grid.RowDefinitions>
 
-                <Grid Grid.Row="0" Margin="30,0,30,0">
+                <Grid Grid.Row="0" 
+                      Margin="30,0,30,0">
                     <!--<BoxView HeightRequest="10"/>-->
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="37"/>
+                        <RowDefinition Height="37"/>
                         <!--<RowDefinition Height="23"/>-->
 
                         <!--<RowDefinition Height="20"/>-->
@@ -64,19 +66,26 @@
                         Command="{Binding NewLoginCommand}"
                         />
                     </StackLayout>
-
-                    <!--<StackLayout Grid.Row="5">
+                    
+                    <StackLayout Grid.Row="5">
                         <Button 
-                        Text="Ingresar" 
-                        BackgroundColor="#FA9C19" 
+                            Grid.Row="5"
+                        Text="Registrarse" 
+                        BackgroundColor="Blue" 
                         TextColor="White" 
                         HeightRequest="50" 
                         VerticalOptions="Start"
-                        Command="{Binding NewLoginCommand}"
+                        Command="{Binding RegisteredCommand}"
                         />
-                    </StackLayout>-->
-                    <StackLayout  Grid.Row="5" HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
-                        <syncfusion:SfBusyIndicator                 
+                    </StackLayout>
+                    
+                    <StackLayout  Grid.Row="6"
+                                  Padding="-5"
+                                  Margin="-5"
+                                  HorizontalOptions="FillAndExpand" 
+                                  VerticalOptions="EndAndExpand">
+                        <syncfusion:SfBusyIndicator    
+                        Margin="-5"
                         IsBusy="{Binding  IsBusy, Mode=TwoWay}"
                         AnimationType="SingleCircle" 
                         Title="Loading..." 
@@ -84,13 +93,13 @@
                         TextColor="Red"/>
                     </StackLayout>
                     </Grid>
-                <StackLayout Grid.Row="1" BackgroundColor="#ffffff">
-                    <Label HeightRequest="1" BackgroundColor="#e3e3e3"/>
-                    <Label Text="Dont'Have Account Login? SignUp" 
-                           VerticalOptions="FillAndExpand" 
-                           VerticalTextAlignment="Center" 
-                           HorizontalTextAlignment="Center"/>
-                </StackLayout>
+                        <StackLayout Grid.Row="1" BackgroundColor="#ffffff">
+                            <Label HeightRequest="1" BackgroundColor="#e3e3e3"/>
+                            <Label Text="Dont'Have Account Login? SignUp" 
+                                       VerticalOptions="FillAndExpand" 
+                                       VerticalTextAlignment="Center" 
+                                       HorizontalTextAlignment="Center"/>
+                        </StackLayout>  
             </Grid>
         </StackLayout>
     </ScrollView>

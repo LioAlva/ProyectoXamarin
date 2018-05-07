@@ -8,6 +8,11 @@ namespace PModelo.Util
     {
         //Estados
         public const string SERVER = "http://luisac-001-site1.gtempurl.com";
+
+        //public const string SERVER = "http://mallaventurawsqa.azurewebsites.net";
+
+        //http://mallaventurawsqa.azurewebsites.net
+
         //public const string ESTADO_REQUERIMIENTO_ACTIVO = "A";
         //public const string ESTADO_ACTIVO = "A";
         //public const string ESTADO_INACTIVO = "I";

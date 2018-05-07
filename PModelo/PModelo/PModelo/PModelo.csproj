@@ -44,11 +44,14 @@
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="16.1.0.24" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="16.1.0.37" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="16.1.0.37" />
     <PackageReference Include="Syncfusion.Xamarin.SfSunburstChart" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="16.1.0.24" />
     <PackageReference Include="ThriveGmbH.BottomNavigationBar.XF.EXT" Version="1.0.3" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.1.1" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.2.0" />
+    <PackageReference Include="Xam.Plugin.Media" Version="3.1.2" />
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.2" />
     <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="2.5.0.122203" />
@@ -70,6 +73,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Pages\Account\RegisterUser.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\ContenPruebaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

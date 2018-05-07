@@ -44,7 +44,7 @@ namespace PModelo
 
                 var user = dataService.First<User>(false);
 
-                if (user != null && user.IsRemembered)
+                if (user != null && user.IsRemembered && user.TokenExpires>DateTime.Now)
                 {
                     //var mainViewModel = MainViewModel.GetInstance();
                     //if (string.IsNullOrEmpty(user.Phone) && user.UserTipeId == 1)
@@ -67,6 +67,7 @@ namespace PModelo
                     //    //App.CurrentUser = user;
                     //    MainPage = new MasterPage();
                     //}
+                    App.CurrentUser = user;
                     MainPage = new MasterPage();
                 }
                 else

@@ -20,19 +20,19 @@ namespace PModelo.Services
                     var client = new HttpClient();
                     client.BaseAddress = new Uri(urlBase);
                     var response = await client.PostAsync("Token",
-                    new StringContent(string.Format("grant_type=password&username={0}&password={1}", username, password),
-                    Encoding.UTF8, "application/x-www-form-urlencoded"));
+                        new StringContent(string.Format("grant_type=password&username={0}&password={1}",username,password),
+                        Encoding.UTF8, "application/x-www-form-urlencoded"));
                     var resultJSON = await response.Content.ReadAsStringAsync();
                     var result = JsonConvert.DeserializeObject<TokenResponse>(resultJSON);
                     return result;
                 }
-                catch(Exception ex)
+                catch
                 {
                     return null;
                 }
-            }
+        }
 
-            public async Task<Response> GetUserByEmail(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, string email)
+        public async Task<Response> GetUserByEmail(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, string email)
             {
                 try
                 {
@@ -113,14 +113,16 @@ namespace PModelo.Services
                 }
             }
 
-            public async Task<Response> Post<T>(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, T model)
+            public async Task<Response> Post<T,U>(string urlBase, string servicePrefix, string controller, string tokenType, string accessToken, T model,bool condicion=false)
             {
                 try
                 {
                     var request = JsonConvert.SerializeObject(model);
                     var content = new StringContent(request, Encoding.UTF8, "application/json");
                     var client = new HttpClient();
-                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                    if (condicion) {
+                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                    }
                     client.BaseAddress = new Uri(urlBase);
                     var url = string.Format("{0}{1}", servicePrefix, controller);
                     var response = await client.PostAsync(url, content);
@@ -129,13 +131,13 @@ namespace PModelo.Services
                     {
                         return new Response
                         {
-                            IsSuccess = false,
+                            IsSuccess = false,  
                             Message = response.StatusCode.ToString(),
                         };
                     }
 
                     var result = await response.Content.ReadAsStringAsync();
-                    var newRecord = JsonConvert.DeserializeObject<T>(result);
+                    var newRecord = JsonConvert.DeserializeObject<U>(result);
 
                     return new Response
                     {
