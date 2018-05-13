@@ -22,7 +22,9 @@ namespace PModelo.Data
             System.IO.Path.Combine(config.DirectoryDB, "MallAventure.db3"));
 
             connection.CreateTable<Parameter>();
+      
             connection.CreateTable<User>();
+            connection.CreateTable<Persona>();
             //connection.CreateTable<Team>(); 
 
             //connection.CreateTable<UserType>();

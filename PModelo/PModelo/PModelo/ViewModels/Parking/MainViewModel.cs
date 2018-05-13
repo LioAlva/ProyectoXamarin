@@ -49,22 +49,20 @@ namespace PModelo.ViewModels
         }
 
         public ObservableCollection<UsuarioItemViewModel> Usuarios { get; set; }
-
         /*
          * user type monkeys**/
-
         public ObservableCollection<User> Users { get; set; }
         public ObservableCollection<Grouping<string, User>> UsersGrouped { get; set; }
-
         //public ObservableCollection<User> Users { get; set; }
-
         public int UserCount => Users.Count;
-
         /**end User type Monkey**/
+
+        /***TODO EL NEGOCIO**/
+        public SearchItemDetailViewModel SearchParking { get; set; }
+        public ParkItemViewModel ParkingRegister { get; set; }
+
+        /**NEGOCIO*/
         #endregion
-
-
-
 
         #region Singleton
 
@@ -167,6 +165,11 @@ namespace PModelo.ViewModels
         };
             /***/
 
+
+            /**Nuestro negocio**/
+            SearchParking = new SearchItemDetailViewModel();
+            ParkingRegister = new ParkItemViewModel();
+            /***/
         }
 
         //public void LoadNewUserWhite()
@@ -430,10 +433,17 @@ namespace PModelo.ViewModels
 
             Menu.Add(new MenuItemViewModel
             {
-                Icon = "eventos.png",
-                PageName = "EventosPage",
-                Title = "Eventos",
+                Icon = "icon.png",
+                PageName = "ParkingPage",
+                Title = "Registrar Parqueadero",
             });
+
+            //Menu.Add(new MenuItemViewModel
+            //{
+            //    Icon = "eventos.png",
+            //    PageName = "EventosPage",
+            //    Title = "Eventos",
+            //});
 
 
             Menu.Add(new MenuItemViewModel
@@ -475,10 +485,18 @@ namespace PModelo.ViewModels
             Menu.Add(new MenuItemViewModel
             {
                 Icon = "icon.png",
+                PageName = "SearchParkingPage",
+                Title = "Buscar Parqueadero"
+            });
+
+            Menu.Add(new MenuItemViewModel
+            {
+                Icon = "icon.png",
                 PageName = "LogutPage",
                 Title = "Cerrar Sesión"
             });
 
+            
 
             //UsuariosPage
             //Menu.Add(new MenuItemViewModel

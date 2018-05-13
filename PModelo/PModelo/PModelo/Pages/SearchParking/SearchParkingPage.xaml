@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.SearchParkingPage"
+             xmlns:circularButton="clr-namespace:ButtonCircle.FormsPlugin.Abstractions;assembly=ButtonCircle.FormsPlugin.Abstractions"  
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             Title="Emergencia"
+             >
+
+    <StackLayout Padding="30,-25,30,-20" Margin="0,-15,0,-15"  BindingContext="{Binding SearchParking}">
+
+        <StackLayout Padding="0,10,0,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+            <Label Text="Lima Parking"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   VerticalOptions="EndAndExpand"
+                   HorizontalOptions="CenterAndExpand"
+               FontSize="30"></Label>
+            <Label Text="Toca el botón rojo para buscar estacionamientos cercanos"  
+                       IsVisible="{Binding IsEnabled}"
+                       VerticalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                                    TextColor="Red"
+                   HorizontalOptions="CenterAndExpand"
+               FontSize="15"></Label>
+        </StackLayout>
+
+        <StackLayout  HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"  >
+
+            <BoxView IsVisible="{Binding IsRunning}"></BoxView>
+            <StackLayout  IsVisible="{Binding IsRunning}">
+                <ActivityIndicator 
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                IsVisible="{Binding IsRunning}"
+                IsRunning="{Binding IsRunning, Mode=TwoWay}">
+                </ActivityIndicator>
+                <Label Text="Cargando ..."   IsVisible="{Binding IsRunning}" 
+                           HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                <BoxView IsVisible="{Binding IsRunning}"></BoxView>
+
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsEnabled}">
+                <Image  Source="{Binding ImageSource}"  IsEnabled="{Binding IsEnabled}"   
+                            BackgroundColor="{StaticResource BackgroundColor}"
+                            VerticalOptions="End"
+                            HorizontalOptions="CenterAndExpand"
+                           >
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+            Command="{Binding NAlertCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+            </StackLayout>
+
+        </StackLayout>
+        <BoxView  HeightRequest="8"></BoxView>
+
+        <StackLayout Padding="0" HorizontalOptions="CenterAndExpand" Margin="0" VerticalOptions="CenterAndExpand" >
+            <Label Text="Localizaremos tu ubicación y te brindaremos los parqueaderos más"
+               VerticalOptions="Center"
+                                     TextColor="Black"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+               FontSize="15" ></Label>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

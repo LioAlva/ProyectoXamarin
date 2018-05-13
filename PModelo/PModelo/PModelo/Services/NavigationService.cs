@@ -67,11 +67,14 @@ namespace PModelo.Services
                 case "UsersGroupPage":
                     await App.Navigator.PushAsync(new UsersGroupPage());
                     break;
-                //UsuariosPage
-
+                case "SearchParkingPage":
+                    await App.Navigator.PushAsync(new SearchParkingPage());
+                    break;
+                case "ParkingPage":
+                    await App.Navigator.PushAsync(new ParkingPage());
+                    break;
                 default:
                     break;
-
                 case "EventoPopPage":
                     //await App.Navigator.PushAsync(new EventoPopPage());
                     break;//UsuariosGroupPage

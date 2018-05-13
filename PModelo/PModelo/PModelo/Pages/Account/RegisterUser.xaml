@@ -16,7 +16,7 @@
         <StackLayout Spacing="0" 
                      Padding="10,0,10,5"
                      BindingContext="{Binding NewUser}"  >
-            <Grid >
+            <Grid  Padding="15,0,15,0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
@@ -58,22 +58,6 @@
                             </OnPlatform>
                         </controls:CircleImage.HeightRequest>
                     </controls:CircleImage>
-
-
-                    <!--<Image
-                    WidthRequest="70"
-                    HeightRequest="70"
-                    VerticalOptions="Start"
-                    Source="MunSantiagoCusco.png">
-                    </Image>-->
-                    <!--<Label
-                    FontSize="38"
-                    FontAttributes="Bold"
-                    TextColor="{StaticResource AccentColor2}"
-                    VerticalOptions="Center"
-                    HorizontalOptions="CenterAndExpand"
-                    Text="City Park">
-                    </Label>-->
                 </StackLayout>
 
                 <StackLayout Spacing="0" Grid.Row="1">
@@ -336,30 +320,9 @@
                                   HorizontalOptions="FillAndExpand"
                                   />
                         </Grid>
-                        <!--<StackLayout 
-                                VerticalOptions="CenterAndExpand"
-                                HorizontalOptions="FillAndExpand"
-                                Grid.Row="8">
-                            <control:BindablePicker
-                                  Title="Seleccione  tipo usuario"
-                                  DisplayMemberPath="Description"
-                                  SelectedValuePath="TypeUserId"
-                                  ItemsSource="{Binding TypeUsers}"
-                                  SelectedValue ="{Binding Path=TypeUserId, Mode=TwoWay}"
-                                  HorizontalOptions="FillAndExpand"
-                                  VerticalOptions="Center"/>
-                        </StackLayout>-->
                     </Grid>
                 </StackLayout>
-                
-                <!--<StackLayout Grid.Row="2"  IsVisible="{Binding IsRunning}" HorizontalOptions="CenterAndExpand">
-                    
-                    <ActivityIndicator 
-                IsRunning="{Binding IsRunning}">
-                    </ActivityIndicator>
-                </StackLayout>-->
-
-                <StackLayout Grid.Row="2"  
+                <!--<StackLayout Grid.Row="2"  
                               IsVisible="{Binding IsBusy}"
                               HorizontalOptions="FillAndExpand" 
                               VerticalOptions="EndAndExpand">
@@ -370,8 +333,7 @@
                         Title="Loading..." 
                         BackgroundColor="White" 
                         TextColor="Red"/>
-                </StackLayout>
-
+                </StackLayout>-->
                 <StackLayout
                 Grid.Row="3"
                 Orientation="Horizontal" VerticalOptions="EndAndExpand">
@@ -395,66 +357,3 @@
         </StackLayout>
     </ScrollView>
 </ContentPage>
-
-
-<!--<syncfusion:SfPicker
-                        Grid.Row="8"
-                        IsOpen="True"
-                        ShowFooter="True"
-                        PickerMode="Default"
-                        ColumnHeaderText="Color"
-                    
-                        ItemsSource="{Binding Colors}" />-->
-
-<!--<Grid Grid.Row="8">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label
-                        Grid.Column="0"
-                        FontSize="Small"
-                        Text="Confirme su contraseña"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Start"
-                        VerticalOptions="Center"
-                             >
-                        </Label>
-                        <syncfusion:SfPicker
-                        Grid.Column="1"
-                        x:Name="picker"
-                        HeaderText="Select a Color"
-                        ItemsSource="{Binding Colors}" />
-                    </Grid>-->
-
-
-<!--<sfPopup:SfPopupLayout x:Name="popupLayout"
-                                           >
-                <sfPopup:SfPopupLayout.Content>
-                    <StackLayout x:Name="mainLayout">
-                        <Button x:Name="clickToShowPopup" Text="ClickToShowPopup" VerticalOptions="Start"
-          HorizontalOptions="FillAndExpand" />
-                        <Label x:Name="label" Text="This is SfPopupLayout"/>
-                    </StackLayout>
-                </sfPopup:SfPopupLayout.Content>
-            </sfPopup:SfPopupLayout>
-
-
-            <sfPopup:SfPopupLayout x:Name="popUpLayout">
-                <sfPopup:SfPopupLayout.Content>
-                    <StackLayout x:Name="layout">
-                        <Button x:Name="clickToShowPopup" Text="ClickToShowPopup" VerticalOptions="Start" HorizontalOptions="FillAndExpand" />
-                    </StackLayout>
-                </sfPopup:SfPopupLayout.Content>
-            </sfPopup:SfPopupLayout>
-
-            <sfPopup:SfPopupLayout x:Name="popUpLayout">
-                <sfPopup:SfPopupLayout.Content>
-                    <StackLayout x:Name="mainLayout" VerticalOptions="Center" HorizontalOptions="Center">
-                        <StackLayout VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand">
-                            <Button x:Name="clickToShowPopup" Text="ClickToShowPopup" TextColor="Red" HeightRequest="60" VerticalOptions="Center" Margin="100,0,0,0"
-            HorizontalOptions="Center" BackgroundColor="Blue" />
-                        </StackLayout>
-                    </StackLayout>
-                </sfPopup:SfPopupLayout.Content>
-            </sfPopup:SfPopupLayout>-->

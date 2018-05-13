@@ -1,23 +1,19 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using Plugin.Connectivity;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using PModelo.Classes;
-using PModelo.Classes.NoMapping;
 using PModelo.Models;
 using PModelo.Services;
-using PModelo.Util;
 using Syncfusion.SfBusyIndicator.XForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
+using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PModelo.ViewModels
 {
-    public class NewUserViewModel : User, INotifyPropertyChanged
+    public class ParkItemViewModel: INotifyPropertyChanged
     {
         #region Attributes
         //public NetService netService;
@@ -30,8 +26,8 @@ namespace PModelo.ViewModels
         private bool isBusy;
         private bool isEnabled;
         SfBusyIndicator busyIndicator;
-        private List<string> _color;
-        private List<TypeUser> _typeUsers { get; set; }
+        private List<string> _color; 
+        private List<TypeParking> _typeParkings { get; set; }
         private ImageSource _imageSource;
 
 
@@ -59,19 +55,19 @@ namespace PModelo.ViewModels
         }
 
 
-        public List<TypeUser> TypeUsers
+        public List<TypeParking> TypeParkings
         {
             set
             {
-                if (_typeUsers != value)
+                if (_typeParkings != value)
                 {
-                    _typeUsers = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TypeUsers"));
+                    _typeParkings = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TypeParkings"));
                 }
             }
             get
             {
-                return _typeUsers;
+                return _typeParkings;
             }
         }
 
@@ -127,7 +123,7 @@ namespace PModelo.ViewModels
         #endregion
 
         #region Contructor
-        public NewUserViewModel()
+        public ParkItemViewModel()
         {
             ImageSource = "icon";
             dialogService = new DialogService();
@@ -136,7 +132,7 @@ namespace PModelo.ViewModels
             dataService = new DataService();
             //netService = new NetService();
 
-            TypeUsers = new List<TypeUser>();
+            TypeParkings = new List<TypeParking>();
             LoadTypeUsers();
 
 
@@ -148,28 +144,19 @@ namespace PModelo.ViewModels
 
         private void LoadTypeUsers()
         {
-            //var products = dataService.GetAllProducts(false);
-            //Products.Clear();
-            //foreach (var product in products)
-            //{
-                TypeUsers.Clear();
-                TypeUsers.Add(new TypeUser
-                {
-                    Description = "Automovilista",
-                    Price = 20,
-                    UserTypeId = 2,
-                });
-                TypeUsers.Add(new TypeUser
-                {
-                    Description = "Administrador",
-                    Price = 20,
-                    UserTypeId = 4,
-                });
-            //}
+            TypeParkings.Clear();
+            TypeParkings.Add(new TypeParking
+            {
+                Description = "Privado",
+                TypeParkingId = 1,
+            });
+            TypeParkings.Add(new TypeParking
+            {
+                Description = "Público",
+                TypeParkingId = 2,
+            });
         }
-
-
-
+        
         private void LoadColor()
         {
             Colors = new List<string>();
@@ -191,10 +178,10 @@ namespace PModelo.ViewModels
         private async void ChangeImage()
         {
             bool hasPermission = false;
-
+            await CrossMedia.Current.Initialize();
             try
             {
-                await CrossMedia.Current.Initialize();
+
                 hasPermission = CrossMedia.Current.IsPickPhotoSupported;
             }
             catch (Exception genEx)
@@ -204,11 +191,11 @@ namespace PModelo.ViewModels
 
             if (!hasPermission)
             {
-                 await dialogService.ShowMessage("Photos Not Supported", ":( Permission not granted to photos."); 
+                await dialogService.ShowMessage("Photos Not Supported", ":( Permission not granted to photos.");
                 return;
             }
-           
-           
+
+
             if (CrossMedia.Current.IsCameraAvailable &&
                 CrossMedia.Current.IsTakePhotoSupported)
             {
@@ -229,8 +216,7 @@ namespace PModelo.ViewModels
                             Directory = "Sample",
                             Name = "test.jpg",
                             PhotoSize = PhotoSize.Small,
-                            SaveToAlbum = true,
-                            DefaultCamera = CameraDevice.Front
+
                         }
                     );
                 }
@@ -353,16 +339,17 @@ namespace PModelo.ViewModels
                     }
                 }
             }
-            
+
             var userForm = new UserForm
             {
-                Nombre=FirstName,
-                Apellido_Paterno=LastName,
-                Apellido_Materno=MotherLastName,
+                Nombre = FirstName,
+                Apellido_Paterno = LastName,
+                Apellido_Materno = MotherLastName,
                 Telefono = Phone,
                 DNI = DNI,
-                Email=Email,
+                Email = Email,
                 Contrasenia = Password,
+                Fecha_Nacimiento = DateTime.UtcNow.AddHours(-5),
                 //Photo
                 //Usuario_Name=Email,
                 UserTypeId = UserTypeId,
@@ -371,7 +358,7 @@ namespace PModelo.ViewModels
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
             if (isReachable)
             {
-                var response = await apiService.Post<UserForm, Response>(Configuration.SERVER,"/api", "/account/RegisterUser", "","",userForm,false);
+                var response = await apiService.Post<UserForm, Response>(Configuration.SERVER, "/api", "/account/RegisterUser", "", "", userForm, false);
 
                 if (response != null)
                 {
@@ -420,7 +407,5 @@ namespace PModelo.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
 
         #endregion
-
-
     }
 }

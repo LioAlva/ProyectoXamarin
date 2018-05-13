@@ -2,6 +2,7 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Java.Lang;
 using Plugin.CurrentActivity;
 using Plugin.Permissions;
 using Debug = System.Diagnostics.Debug;
@@ -26,8 +27,11 @@ namespace PModelo.Droid
             // await CrossCurrentActivity.Current.Activity;
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            ButtonCircle.FormsPlugin.Droid.ButtonCircleRenderer.Init();//Button circle
             LoadApplication(new App());
         }
+
+
 
         public override void OnBackPressed()
         {

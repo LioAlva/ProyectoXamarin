@@ -8,7 +8,7 @@ namespace PModelo.Models
 {
     public class User
     {
-        [PrimaryKey]
+        [PrimaryKey, Column("UserId")]
         public int UserId { get; set; }
 
         public string FirstName { get; set; }
@@ -36,12 +36,20 @@ namespace PModelo.Models
         public int Points { get; set; }
 
         public string NameSort => FirstName[0].ToString();
+
+        [OneToOne]
+        public Persona Persona { get; set; }
+
+
         //[ManyToOne]
         //public UserType UserType { get; set; }
 
         //[ManyToOne]
         //public Team FavoriteTeam { get; set; }
-
+        //public User()
+        //{
+        //    Persona = new Persona();
+        //}
         public string AccessToken { get; set; }
 
         public string TokenType { get; set; }

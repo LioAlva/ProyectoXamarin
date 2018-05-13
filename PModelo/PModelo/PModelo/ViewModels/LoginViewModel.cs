@@ -222,13 +222,13 @@ namespace PModelo.ViewModels
                 return;
             }
 
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
-            if (!isReachable)
-            {
-                IsBusy = false;
-                await dialogService.ShowMessage("Error", "Revise su configuración de Internet.");
-                return;
-            }
+            //var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+            //if (!isReachable)
+            //{
+            //    IsBusy = false;
+            //    await dialogService.ShowMessage("Error", "Revise su configuración de Internet.");
+            //    return;
+            //}
 
             var token = await apiService.GetToken(Configuration.SERVER,Email,Password);
 
@@ -263,6 +263,11 @@ namespace PModelo.ViewModels
             user.TokenExpires = token.Expires;
             user.IsRemembered = IsRemembered;
             user.Password = Password;
+            if (user.UserTypeId == 4)
+            {
+                dataService.DeleteAllAndInsert(user.Persona);
+            }
+            var data = dataService.Get<Persona>(false);
             dataService.DeleteAllAndInsert(user);
             //dataService.InsertOrUpdate(user.FavoriteTeam);
             //dataService.InsertOrUpdate(user.UserType);

@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.ParkingPage"
+             BackgroundColor="{StaticResource BackgroundColor}"
+             xmlns:control="clr-namespace:PModelo.Controls"
+             xmlns:behaviors="clr-namespace:PModelo.Util;assembly=PModelo"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Registratrar Parqueadero"
+             >
+
+
+    <StackLayout Spacing="0" 
+                     Padding="10,0,10,0"
+                     BindingContext="{Binding ParkingRegister}"  >
+        <Grid  Padding="15,0,15,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0" Padding="5,20,5,15">
+                <Label
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    VerticalOptions="Center"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="{StaticResource AccentColor2}"
+                     Text="Registre Parqueadero">
+                </Label>
+                <!--<controls:CircleImage
+                            Source="{Binding ImageSource}"
+                            Aspect="AspectFill"
+                            HeightRequest="130"
+                            WidthRequest="130"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                            ></controls:CircleImage>-->
+            </StackLayout>
+
+           
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                        Grid.Column="0"
+                        Text="Nombre: "
+                        FontSize="Small"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                       >
+                        </Label>
+                        <Entry
+                        Grid.Column="1"
+                        Text="{Binding Name, Mode=TwoWay}"
+                        Placeholder="Nombre "
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                         >
+                            <Entry.Behaviors>
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="25" />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                        Grid.Column="0"
+                        Text="Dirección: "
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                             >
+                        </Label>
+                        <Entry
+                        Grid.Column="1"
+                        Text="{Binding Address, Mode=TwoWay}"
+                        Placeholder="Ingrese la dirección del local"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        >
+                            <Entry.Behaviors>
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="70" />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Grid>
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                        Grid.Column="0"
+                        FontSize="Small"
+                        Text="Fijo: "
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                             >
+                        </Label>
+                        <Entry
+                        Grid.Column="1"
+                        FontSize="Small"
+                        Keyboard="Numeric"
+                        Text="{Binding PhoneFijo, Mode=TwoWay}"
+                        Placeholder="Ingrese el teléfono fijo del local"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        >
+                            <Entry.Behaviors>
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="12" />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Grid>
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                        Grid.Column="0"
+                        Text="Móvil: "
+                        FontSize="Small"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                             >
+                        </Label>
+                        <Entry
+                        Grid.Column="1"
+                        Text="{Binding PhoneMovil, Mode=TwoWay}"
+                        Placeholder="Ingrese teléfono móvil del local"
+                        Keyboard="Numeric"
+                        FontSize="Small"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                         >
+                            <Entry.Behaviors>
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="12" />
+                            </Entry.Behaviors>
+                        </Entry>
+
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                        Grid.Column="0"
+                        Text="Capacidad"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                             >
+                        </Label>
+                    <!--http://blog.stevex.net/string-formatting-in-csharp/-->
+                    <!--<Label Text="{Binding  Capacity, Capacity, StringFormat='Name = {0}, Description = {1}'}"/>-->
+                    <Entry
+                        Grid.Column="1"
+                        Text="{Binding  Capacity, 'Espacios', StringFormat='Name = {0}, Description = {1}',Mode=TwoWay}"
+                        Placeholder="Ingrese la capacidad del parqueadero"
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Numeric"
+                        FontSize="Small"
+                        VerticalOptions="Center"
+                        >
+                            <Entry.Behaviors>
+                                <behaviors:EntryLengthValidatorBehavior MaxLength="2" />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Grid>
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                        Grid.Column="0"
+                        FontSize="Small"
+                        Text="Tipo Parking"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                             >
+                        </Label>
+                        <control:BindablePicker
+                                  Grid.Column="1"
+                                  VerticalOptions="Center"
+                                  Title="Seleccione "
+                                  DisplayMemberPath="Description"
+                                  SelectedValuePath="TypeParkingId"
+                                  ItemsSource="{Binding TypeParkings}"
+                                  SelectedValue ="{Binding Path=TypeParkingId, Mode=TwoWay}"
+                                  HorizontalOptions="FillAndExpand"
+                                  />
+                    </Grid>
+                </Grid>
+
+
+            <syncfusion:SfBusyIndicator   
+                        WidthRequest="90"
+                        
+                        HeightRequest="90"
+                       Grid.Row="2"
+                        Margin="-15,0,-15,-15"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        IsBusy="{Binding  IsBusy, Mode=TwoWay}"
+                        AnimationType="SingleCircle" 
+                        BackgroundColor="White" 
+                        TextColor="Red"/>
+            <StackLayout
+                Grid.Row="3"
+                Padding="0,12,0,0"
+                Orientation="Horizontal" VerticalOptions="End">
+                <Button
+                        Command="{Binding CancelCommand}"  
+                        BackgroundColor="{StaticResource AccentColor2}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"       
+                        Text="Cancelar">
+                </Button>
+                <Button
+                        Command="{Binding SaveCommand}"
+                        IsEnabled="{Binding IsEnabled}"
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="{StaticResource AccentColor}"
+                        Text="Registrate">
+                </Button>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+</ContentPage>
