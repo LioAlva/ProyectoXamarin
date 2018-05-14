@@ -435,7 +435,9 @@ namespace PModelo.ViewModels
                     Type = PinType.Place,
                     Position = PositionsSearch,
                     Label = ip.Nombre,
-                    Address = ip.Direccion
+                    Address = ip.Direccion,
+                    BindingContext=ip,
+                    
                 };
                 Pins.Add(pin);
             }

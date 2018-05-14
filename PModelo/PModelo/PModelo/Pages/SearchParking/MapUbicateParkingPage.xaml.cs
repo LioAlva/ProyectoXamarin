@@ -1,5 +1,6 @@
 ﻿
 using Plugin.Geolocator;
+using PModelo.Services;
 using PModelo.ViewModels;
 using System;
 using Xamarin.Forms;
@@ -11,21 +12,31 @@ namespace PModelo.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MapUbicateParkingPage : ContentPage
 	{
-		public MapUbicateParkingPage ()
+       
+
+        public MapUbicateParkingPage ()
 		{
                 InitializeComponent();
-
+                NavigationService navigationService = new NavigationService();
                 var mainViewModel = MainViewModel.GetInstance();
                 mainViewModel.SetGeolocationParqueaderos(
                 mainViewModel.Parqueaderos);
 
                 foreach (Pin item in mainViewModel.Pins)
                 {
+                     item.Clicked +=async (sender, args) =>
+                     {
+                         var _pin = sender as Pin;
+                         var _model =(ParqueaderoItemViewModel)_pin.BindingContext;
+                         var anone = _model.Id_Tipo_Parking;
+                         var a=string.Empty;
+                         await navigationService.Navigate("DashboardPage");
+                     };
                     MyMap.Pins.Add(item);
                 }
                 Locator(mainViewModel.PositionsSearch);
 
-
+           
             //MyMap.+= (sender, args) =>
             //{
             //    var pin = args.SelectedItem as Pin;
@@ -36,8 +47,18 @@ namespace PModelo.Pages
 
         }
 
+    //    item.Clicked += (object sender, EventArgs e) =>
+    //                 {
+    //                        var p = sender as Pin;
+    //};
 
-
+    //private void Pin_Clicked(object sender, EventArgs e)
+    //{
+    //    var pin = args.SelectedItem as Pin;
+    //    var details = PinMap[pin];
+    //    var page = new DetailPage<T>(details);
+    //    Navigation.PushAsync(page);
+    //}
 
     private void Locator(Position PositionAlert)
             {
