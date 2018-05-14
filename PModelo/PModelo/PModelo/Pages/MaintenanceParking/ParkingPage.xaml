@@ -12,10 +12,8 @@
              >
 
 
-    <StackLayout Spacing="0" 
-                     Padding="10,0,10,0"
-                     BindingContext="{Binding ParkingRegister}"  >
-        <Grid  Padding="15,0,15,0">
+
+        <Grid  BindingContext="{Binding ParkingRegister}"   Padding="15,0,15,20">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -42,7 +40,7 @@
             </StackLayout>
 
            
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" ColumnSpacing="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -222,7 +220,7 @@
 
             <syncfusion:SfBusyIndicator   
                         WidthRequest="90"
-                        HeightRequest="90"
+                        HeightRequest="70"
                         Grid.Row="2"
                         Margin="-15,0,-15,-15"
                         VerticalOptions="Center"
@@ -233,7 +231,7 @@
                         TextColor="Red"/>
             <StackLayout
                 Grid.Row="3"
-                Padding="0,12,0,0"
+               
                 Orientation="Horizontal" VerticalOptions="End">
                 <Button
                         Command="{Binding CancelCommand}"  
@@ -252,5 +250,5 @@
                 </Button>
             </StackLayout>
         </Grid>
-    </StackLayout>
+
 </ContentPage>

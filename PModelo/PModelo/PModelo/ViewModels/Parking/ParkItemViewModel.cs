@@ -181,8 +181,8 @@ namespace PModelo.ViewModels
 
             LoadColor();
 
-            isBusy = false;
-            isEnabled = true;
+            IsBusy = false;
+            IsEnabled = true;
         }
 
         private void LoadTypeUsers()
@@ -330,8 +330,8 @@ namespace PModelo.ViewModels
                 return;
             }
 
-            isBusy = true;
-            IsEnabled = !isBusy;
+            IsBusy = true;
+            IsEnabled = !IsBusy;
             #region Foto no se usa todavia
             byte[] array = null;
             if (ImageSource != null)
@@ -426,17 +426,11 @@ namespace PModelo.ViewModels
             }
         }
 
-       
-
         public ICommand CancelCommand { get { return new RelayCommand(Cancel); } }
 
-        private void Cancel()
+        private async void Cancel()
         {
-            var user = new User();
-
-            //navigationService.SetMainPage("LoginPage", user);
-            navigationService.SetMainPage("NewLoginPage");
-
+            await navigationService.Navigate("MainPage");
         }
 
         #endregion
@@ -519,6 +513,7 @@ namespace PModelo.ViewModels
                                 {
                                     await dialogService.ShowMessage("Confirmación", result.Message);
                                     await navigationService.Navigate("MainPage");
+                                    ClearFormParqueadero();
                                 }
                                 else
                                 {
@@ -543,38 +538,6 @@ namespace PModelo.ViewModels
                         await dialogService.ShowMessage("Mensaje", response.Message);
                         return;
                      }
-                    //var mainViewModel = MainViewModel.GetInstance();
-                    //response = await apiService.SendAlert(Longitude, Latitud, user.Phone, user.FirstName, user.LastName, user.Motherslastname, user.Email, user.UserId, Thoroughfare);
-                    //if (response != null)
-                    //{
-                    //    if (response.IsSuccess)
-                    //    {
-                    //        if (response.Result != null)
-                    //        {
-                    //            var alert = new Alert
-                    //            {
-                    //                AlertId = ((AlertModelT)response.Result).IdCaso,
-                    //                Latitud = ((AlertModelT)response.Result).PosLatitud,
-                    //                Longitud = ((AlertModelT)response.Result).PosLongitud,
-                    //                FechaCreacion2 = Utilities.dateMilliToDate(((AlertModelT)response.Result).FechaCreacion.ToString()),
-                    //                Emergency = ((AlertModelT)response.Result).TipoCaso.Descripcion,
-                    //                AlertSantiagoId = response.VarAuxiliar,
-                    //                IdItemTabla = ((AlertModelT)response.Result).TipoCaso.IdItemTabla,
-                    //                Address = Thoroughfare
-                    //            };
-
-                    //            await dialogService.ShowMessage("Mensaje", "Alerta enviada exitosamente");
-                    //            mainViewModel.SetCurrentAlertItem(alert);
-                    //            mainViewModel.LoadListAlertsForUser(true);
-                    //            dataService.Insert<Alert>(alert);
-
-                    //            await navigationService.Navigate("AlertOptionPage");
-                    //        }
-                    //        IsRunning = false;
-                    //        IsEnabled = !IsRunning;
-                    //        ImageSource = "icon.png";
-                    //    }
-                    //}
                 }
                 else
                 {
@@ -593,12 +556,20 @@ namespace PModelo.ViewModels
             }
 
         }
+
+        private void ClearFormParqueadero()
+        {
+            Nombre = string.Empty;
+            Direccion = string.Empty;
+            Telefono_Fijo = string.Empty;
+            Telefono_Movil = string.Empty;
+            Capacidad = string.Empty;
+            Id_Tipo_Parking = 0;
+        }
         #endregion
 
         #region Event
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         #endregion
     }
 }
@@ -607,4 +578,45 @@ namespace PModelo.ViewModels
 
 
 
-/*************/
+/******
+ * 
+ * 
+ * PROCEDURE REVISAR
+ 
+    create procedure [usp_my_procedure_name]
+as
+begin
+    set nocount on;
+    declare @trancount int;
+    set @trancount = @@trancount;
+    begin try
+        if @trancount = 0
+            begin transaction
+        else
+            save transaction usp_my_procedure_name;
+
+        -- Do the actual work here
+
+lbexit:
+        if @trancount = 0
+            commit;
+    end try
+    begin catch
+        declare @error int, @message varchar(4000), @xstate int;
+        select @error = ERROR_NUMBER(), @message = ERROR_MESSAGE(), @xstate = XACT_STATE();
+        if @xstate = -1
+            rollback;
+        if @xstate = 1 and @trancount = 0
+            rollback
+        if @xstate = 1 and @trancount > 0
+            rollback transaction usp_my_procedure_name;
+
+        raiserror ('usp_my_procedure_name: %d: %s', 16, 1, @error, @message) ;
+    end catch
+end
+go
+
+
+ * 
+ * 
+ * *******/
