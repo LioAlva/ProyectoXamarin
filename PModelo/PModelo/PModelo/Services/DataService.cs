@@ -22,7 +22,7 @@ namespace PModelo.Services
                 {
                     IsSuccess = true,
                     Message = "Usuario Actualizado Ok",
-                    Result = user,
+                    Resullt = user,
                 };
             }
             catch (Exception ex)

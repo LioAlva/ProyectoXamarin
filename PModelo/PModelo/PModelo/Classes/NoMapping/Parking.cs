@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PModelo.Models
+namespace PModelo.Classes.NoMapping
 {
     public class Parking
     {

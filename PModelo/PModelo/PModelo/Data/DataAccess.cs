@@ -25,6 +25,8 @@ namespace PModelo.Data
       
             connection.CreateTable<User>();
             connection.CreateTable<Persona>();
+            connection.CreateTable<Parqueadero>();
+            connection.CreateTable<Espacio>();
             //connection.CreateTable<Team>(); 
 
             //connection.CreateTable<UserType>();

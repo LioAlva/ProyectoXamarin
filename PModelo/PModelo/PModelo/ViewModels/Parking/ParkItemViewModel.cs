@@ -14,7 +14,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -504,7 +503,7 @@ namespace PModelo.ViewModels
                             {
                                 if (respuesta.IsSuccess)
                                 {
-                                    var result = (Response)respuesta.Result;
+                                    var result = (Response)respuesta.Resullt;
                                     IsBusy = false;
                                     IsEnabled = !IsBusy;
 

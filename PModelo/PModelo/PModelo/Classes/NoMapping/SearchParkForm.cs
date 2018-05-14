@@ -7,7 +7,7 @@ namespace PModelo.Classes.NoMapping
     public class SearchParkForm
     {
         public SearchParkForm(){}
-        public double Longitude { get; set; }
-        public double Latitud { get; set; }
+        public string Longitude { get; set; }
+        public string Latitud { get; set; }
     }
 }

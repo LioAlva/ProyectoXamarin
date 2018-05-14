@@ -109,7 +109,7 @@ namespace PModelo.Services
                 {
                     IsSuccess = true,
                     Message = "Record added OK",
-                    Result = newRecord,
+                    Resullt = newRecord,
                 };
             }
             catch (Exception ex)
@@ -148,7 +148,7 @@ namespace PModelo.Services
                 {
                     IsSuccess = true,
                     Message = "Ok",
-                    Result = list,
+                    Resullt = list,
                 };
             }
             catch (Exception ex)
@@ -192,7 +192,7 @@ namespace PModelo.Services
                 {
                     IsSuccess = true,
                     Message = "Record added OK",
-                    Result = newRecord,
+                    Resullt = newRecord,
                 };
             }
             catch (Exception ex)
@@ -233,7 +233,7 @@ namespace PModelo.Services
                 {
                     IsSuccess = true,
                     Message = "Record updated OK",
-                    Result = newRecord,
+                    Resullt = newRecord,
                 };
             }
             catch (Exception ex)

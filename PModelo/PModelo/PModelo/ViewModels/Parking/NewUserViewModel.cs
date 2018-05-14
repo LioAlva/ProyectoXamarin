@@ -375,7 +375,7 @@ namespace PModelo.ViewModels
 
                 if (response != null)
                 {
-                    var result = (Response)response.Result;
+                    var result = (Response)response.Resullt;
                     isBusy = false;
                     IsEnabled = !isBusy;
 

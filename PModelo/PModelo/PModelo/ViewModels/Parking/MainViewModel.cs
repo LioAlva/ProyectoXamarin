@@ -63,6 +63,7 @@ namespace PModelo.ViewModels
         public ParkItemViewModel ParkingRegister { get; set; }
         public ObservableCollection<Pin> Pins { get; set; }
         public Position PositionsSearch { get; set; }
+        public ObservableCollection<ParqueaderoItemViewModel> Parqueaderos { get; set; }
         /**NEGOCIO*/
         #endregion
 
@@ -172,8 +173,13 @@ namespace PModelo.ViewModels
             ParkingRegister = new ParkItemViewModel();
             Pins = new ObservableCollection<Pin>();
             PositionsSearch = new Position();
+            Parqueaderos = new ObservableCollection<ParqueaderoItemViewModel>();
+
+//            LoadParqueaderosBuscados();
             /***/
         }
+
+     
 
         //public void LoadNewUserWhite()
         //{
@@ -418,6 +424,23 @@ namespace PModelo.ViewModels
         #region Methods
 
         /***METHODS PARKING**/
+        public void SetGeolocationParqueaderos(ObservableCollection<ParqueaderoItemViewModel> parqueaderos)
+        {
+            Pins.Clear();
+            foreach (var ip in parqueaderos)
+            {
+                PositionsSearch = new Position(ip.Latitud??0, ip.Longitud??0);
+                var pin = new Pin
+                {
+                    Type = PinType.Place,
+                    Position = PositionsSearch,
+                    Label = ip.Nombre,
+                    Address = ip.Direccion
+                };
+                Pins.Add(pin);
+            }
+        }
+
         public void SetGeolocation(double latitud, double longitud, string name, string address)
         {
             Pins.Clear();
@@ -500,12 +523,12 @@ namespace PModelo.ViewModels
                 Title = "Mapas",
             });
 
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "icon.png",
-                PageName = "UsersGroupPage",
-                Title = "UsuariosGroupo ",
-            });
+            //Menu.Add(new MenuItemViewModel
+            //{
+            //    Icon = "icon.png",
+            //    PageName = "UsersGroupPage",
+            //    Title = "UsuariosGroupo ",
+            //});
 
             Menu.Add(new MenuItemViewModel
             {

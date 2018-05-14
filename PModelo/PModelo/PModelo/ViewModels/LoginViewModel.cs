@@ -257,7 +257,7 @@ namespace PModelo.ViewModels
                 return;
             }
 
-            var user = (User)response.Result;
+            var user = (User)response.Resullt;
             user.AccessToken = token.AccessToken;
             user.TokenType = token.TokenType;
             user.TokenExpires = token.Expires;

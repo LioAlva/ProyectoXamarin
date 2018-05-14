@@ -6,6 +6,8 @@ using PModelo.Classes.NoMapping;
 using PModelo.Models;
 using PModelo.Services;
 using PModelo.Util;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
@@ -108,30 +110,41 @@ namespace PModelo.ViewModels
 
                 if (Longitude != 0 && Latitud != 0)
                 {
-                    searchParkForm.Longitude = Longitude;
-                    searchParkForm.Latitud = Latitud;
+                    searchParkForm.Longitude = Longitude.ToString();
+                    searchParkForm.Latitud = Latitud.ToString();
 
                     var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
                     if (isReachable)
                     {
 
-                        var respuesta = await apiService.Post<SearchParkForm, Response>(Configuration.SERVER, "/api", "/Parking/SearchParking", user.TokenType, user.AccessToken, searchParkForm);
+                        var respuesta = await apiService.Post<SearchParkForm, ResponseT<List<Parqueadero>>>(Configuration.SERVER, "/api", "/Parking/SearchParking", user.TokenType, user.AccessToken, searchParkForm);
                         if (respuesta != null)
                         {
                             if (respuesta.IsSuccess)
                             {
-                                var result = (Response)respuesta.Result;
-                                IsBusy = false;
-                                IsEnabled = !IsBusy;
+                                var result = (ResponseT<List<Parqueadero>>)respuesta.Resullt;
+                                var parqExits=dataService.Get<Parqueadero>(false).ToList();
 
                                 if (result.IsSuccess)
                                 {
-                                    await dialogService.ShowMessage("Confirmación", result.Message);
-                                    await navigationService.Navigate("MainPage");
-
+                                    var listParqueaderos = (List<Parqueadero>)result.Result;
+                                    ReloadParqueaderos(listParqueaderos);
+                                    await navigationService.Navigate("MapUbicateParkingPage");
+                                    //foreach (var iParq in parqExits)
+                                    //{
+                                    //    dataService.Delete<Parqueadero>(iParq);
+                                    //}
+                                    //foreach (var iParqueadero in listParqueaderos)
+                                    //{
+                                    //    dataService.DeleteAllAndInsert<Parqueadero>(iParqueadero);
+                                    //}
+                                    IsBusy = false;
+                                    IsEnabled = !IsBusy;
                                 }
                                 else
                                 {
+                                    IsBusy = false;
+                                    IsEnabled = !IsBusy;
                                     await dialogService.ShowMessage("Mensaje", result.Message);
                                     return;
                                 }
@@ -167,6 +180,32 @@ namespace PModelo.ViewModels
                 IsEnabled = !IsBusy;
                 await dialogService.ShowMessage("Mensaje", "Active su Wifi o su paquete de datos.");
                 return;
+            }
+        }
+
+        private void ReloadParqueaderos(List<Parqueadero> listParqueaderos)
+        {
+            if (listParqueaderos!=null) {
+                var mainViewModel = MainViewModel.GetInstance();
+
+                mainViewModel.Parqueaderos.Clear();
+                foreach (var itemP in listParqueaderos)
+                {
+                    mainViewModel.Parqueaderos.Add(new ParqueaderoItemViewModel
+                    {
+                        Capacidad = itemP.Capacidad,
+                        Direccion = itemP.Direccion,
+                        Fecha_Creacion = itemP.Fecha_Creacion,
+                        Id_Parqueadero = itemP.Id_Parqueadero,
+                        Latitud = itemP.Latitud,
+                        Longitud = itemP.Longitud,
+                        Nombre = itemP.Nombre,
+                        Telefono_Fijo = itemP.Telefono_Fijo,
+                        Telefono_Movil = itemP.Telefono_Movil,
+                        Id_Tipo_Parking = itemP.Id_Tipo_Parking,
+                        Estado = itemP.Estado
+                    });
+                }
             }
         }
 
