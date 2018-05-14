@@ -7,11 +7,15 @@
 		<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 	</provider>-->
 	<application android:icon="@drawable/icon" android:label="Lima Parkig">
+       <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBc8jBaWTBTkc4U0zOl9HCridjyZ4H2hzY"/> 
 		<provider android:name="android.support.v4.content.FileProvider" android:authorities="com.plugin.mediatest.fileprovider" android:exported="false" android:grantUriPermissions="true">
 			<meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"></meta-data>
 		</provider>
 	</application>
-	<uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_GPS" />
+  <uses-permission android:name="android.permission.ACCESS_ASSISTED_GPS" />
+  <uses-permission android:name="android.permission.ACCESS_LOCATION" />
+  <uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
@@ -21,5 +25,26 @@
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<application android:label="PModelo.Android"></application>
+
+
+  <!--<application android:label="LimaParking">
+    <meta-data android:name="com.google.android.maps.v2.API_KEY" 
+               android:value="AIzaSyBc8jBaWTBTkc4U0zOl9HCridjyZ4H2hzY" />
+  </application>-->
+
+  <!--<application android:label="PModelo.Android">
+    <meta-data android:name="com.google.android.maps.v2.API_KEY"
+               android:value="AIzaSyCpXLbnpwUR3zJxfQlSswEwzh6qSuFv4MM" />
+  </application>-->
+  
+    
+  <!--<application android:label="LimaParking">
+    --><!--<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCpXLbnpwUR3zJxfQlSswEwzh6qSuFv4MM" />--><!--
+    --><!--<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyA7rugYqgXZ3IU28VMRFKzKaxvpmRvnMqc" />--><!--
+    <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBc8jBaWTBTkc4U0zOl9HCridjyZ4H2hzY"/> 
+
+    </application>-->
+
+  
+  
 </manifest>

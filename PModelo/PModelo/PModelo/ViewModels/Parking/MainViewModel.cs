@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Forms.Maps;
 
 namespace PModelo.ViewModels
 {
@@ -60,7 +61,8 @@ namespace PModelo.ViewModels
         /***TODO EL NEGOCIO**/
         public SearchItemDetailViewModel SearchParking { get; set; }
         public ParkItemViewModel ParkingRegister { get; set; }
-
+        public ObservableCollection<Pin> Pins { get; set; }
+        public Position PositionsSearch { get; set; }
         /**NEGOCIO*/
         #endregion
 
@@ -79,7 +81,6 @@ namespace PModelo.ViewModels
         }
 
         #endregion
-
 
         public MainViewModel()
         {
@@ -169,6 +170,8 @@ namespace PModelo.ViewModels
             /**Nuestro negocio**/
             SearchParking = new SearchItemDetailViewModel();
             ParkingRegister = new ParkItemViewModel();
+            Pins = new ObservableCollection<Pin>();
+            PositionsSearch = new Position();
             /***/
         }
 
@@ -413,6 +416,58 @@ namespace PModelo.ViewModels
         }
 
         #region Methods
+
+        /***METHODS PARKING**/
+        public void SetGeolocation(double latitud, double longitud, string name, string address)
+        {
+            Pins.Clear();
+            PositionsSearch = new Position(latitud, longitud);
+            var pin = new Pin
+            {
+                Type = PinType.Place,
+                Position = PositionsSearch,
+                Label = name,
+                Address = address
+            };
+            Pins.Add(pin);
+
+        }
+
+        public void GetGeolotation()
+        {
+            var position1 = new Position(6.2652880, -75.5098530);
+            var pin1 = new Pin
+            {
+                Type = PinType.Place,
+                Position = position1,
+                Label = "Pin1",
+                Address = "prueba pin1"
+            };
+            Pins.Add(pin1);
+
+            var position2 = new Position(6.2652880, -75.4598530);
+            var pin2 = new Pin
+            {
+                Type = PinType.Place,
+                Position = position2,
+                Label = "Pin2",
+                Address = "prueba pin2"
+            };
+            Pins.Add(pin2);
+
+            var position3 = new Position(6.2652880, -75.4898530);
+            var pin3 = new Pin
+            {
+                Type = PinType.Place,
+                Position = position3,
+                Label = "Pin3",
+                Address = "prueba pin3"
+            };
+            Pins.Add(pin3);
+        }
+
+        /****/
+
         private void LoadMenu()
         {
             Menu = new ObservableCollection<MenuItemViewModel>();
@@ -438,49 +493,19 @@ namespace PModelo.ViewModels
                 Title = "Registrar Parqueadero",
             });
 
-            //Menu.Add(new MenuItemViewModel
-            //{
-            //    Icon = "eventos.png",
-            //    PageName = "EventosPage",
-            //    Title = "Eventos",
-            //});
-
-
             Menu.Add(new MenuItemViewModel
             {
                 Icon = "icon.png",
-                PageName = "LocatorioPage",
-                Title = "Usuarios",
+                PageName = "MapUbicateParkingPage",
+                Title = "Mapas",
             });
-
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "eventos.png",
-                PageName = "EventoPage",
-                Title = "Evento",
-            });
-
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "icon.png",
-                PageName = "UsuariosPage",
-                Title = "Usuarios",
-            });//UsuariosGroupPage
-
-
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "icon.png",
-                PageName = "UsuariosGroupPage",
-                Title = "UsuariosGroup",
-            });//UsersGroupPage
 
             Menu.Add(new MenuItemViewModel
             {
                 Icon = "icon.png",
                 PageName = "UsersGroupPage",
                 Title = "UsuariosGroupo ",
-            });//UsersGroupPage
+            });
 
             Menu.Add(new MenuItemViewModel
             {
@@ -496,7 +521,44 @@ namespace PModelo.ViewModels
                 Title = "Cerrar Sesión"
             });
 
-            
+            //MapUbicateParkingPage
+
+            //Menu.Add(new MenuItemViewModel
+            //{
+            //    Icon = "eventos.png",
+            //    PageName = "EventosPage",
+            //    Title = "Eventos",
+            //});
+
+
+            //Menu.Add(new MenuItemViewModel
+            //{
+            //    Icon = "icon.png",
+            //    PageName = "LocatorioPage",
+            //    Title = "Usuarios",
+            //});
+
+            //Menu.Add(new MenuItemViewModel
+            //{
+            //    Icon = "eventos.png",
+            //    PageName = "EventoPage",
+            //    Title = "Evento",
+            //});
+
+            //Menu.Add(new MenuItemViewModel
+            //{
+            //    Icon = "icon.png",
+            //    PageName = "UsuariosPage",
+            //    Title = "Usuarios",
+            //});//UsuariosGroupPage
+
+
+            //Menu.Add(new MenuItemViewModel
+            //{
+            //    Icon = "icon.png",
+            //    PageName = "UsuariosGroupPage",
+            //    Title = "UsuariosGroup",
+            //});//UsersGroupPage
 
             //UsuariosPage
             //Menu.Add(new MenuItemViewModel
@@ -537,14 +599,10 @@ namespace PModelo.ViewModels
         /************** MONKEYS ********/
         public ObservableCollection<Monkey> Monkeys { get; set; }
         public ObservableCollection<Grouping<string, Monkey>> MonkeysGrouped { get; set; }
-
         public ObservableCollection<Zoo> Zoos { get; set; }
-
         public int MonkeyCount => Monkeys.Count;
-
         //public MonkeysViewModel()
         //{
-
         //    Monkeys = MonkeyHelper.Monkeys;
         //    MonkeysGrouped = MonkeyHelper.MonkeysGrouped;
         //    Zoos = new ObservableCollection<Zoo>
@@ -566,11 +624,7 @@ namespace PModelo.ViewModels
         //        }
         //    };
         //}
-
-
-
         /*********************/
-
     }
 }
 

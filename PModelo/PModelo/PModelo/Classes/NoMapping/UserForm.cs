@@ -11,7 +11,7 @@ namespace PModelo.Classes.NoMapping
         public string Perfil_Creacion { get; set; }
         public string Perfil_Modificacion { get; set; }
         public string Estado { get; set; }
-        public Persona Persona { get; set; }
+        public PersonaForm Persona { get; set; }
         public int Id_Cliente { get; set; }
         public string Nombre { get; set; }
         public string Telefono { get; set; }

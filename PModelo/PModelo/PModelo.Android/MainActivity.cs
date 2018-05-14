@@ -28,6 +28,7 @@ namespace PModelo.Droid
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
             ButtonCircle.FormsPlugin.Droid.ButtonCircleRenderer.Init();//Button circle
+            Xamarin.FormsMaps.Init(this, bundle);
             LoadApplication(new App());
         }
 

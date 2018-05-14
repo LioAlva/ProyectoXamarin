@@ -40,6 +40,9 @@ namespace PModelo.Services
                 case "CierreVentasPage":
                     await App.Navigator.PushAsync(new CierreVentasPage());
                     break;
+                case "MapUbicateParkingPage":
+                    await App.Navigator.PushAsync(new MapUbicateParkingPage());
+                    break;
                 case "ListaRojaPage":
                     await App.Navigator.PushAsync(new ProbaPage());
                     break;

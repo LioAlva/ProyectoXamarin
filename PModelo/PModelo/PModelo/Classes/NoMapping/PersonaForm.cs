@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PModelo.Classes.NoMapping
 {
-    public class Persona
+    public class PersonaForm
     {
         public  int Id_Persona { get; set; }
         public  string Nombre { get; set; }

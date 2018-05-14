@@ -457,8 +457,6 @@ namespace PModelo.ViewModels
                 Response response = null;
                 if (parkForm != null)
                 {
-                    //if (polynomial.PoitnInsideArea(Latitud, Longitude))
-                    //{
                     if (Longitude != 0 && Latitud != 0)
                     {
                         parkForm.Longitud = Longitude;
@@ -499,33 +497,42 @@ namespace PModelo.ViewModels
 
                         var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
                         if (isReachable)
-                        {
-                           
+                        {          
                             var respuesta = await apiService.Post<ParkForm, Response>(Configuration.SERVER, "/api", "/Parking/RegisterParking", currentUser.TokenType, currentUser.AccessToken, parkForm);
 
                             if (respuesta != null)
                             {
-                                var result = (Response)respuesta.Result;
-                                isBusy = false;
-                                IsEnabled = !isBusy;
-
-                                if (result.IsSuccess)
+                                if (respuesta.IsSuccess)
                                 {
-                                    await dialogService.ShowMessage("Confirmación", result.Message);
-                                    await navigationService.Navigate("MainPage");
-                                    ClearFormParqueadero();
+                                    var result = (Response)respuesta.Result;
+                                    IsBusy = false;
+                                    IsEnabled = !IsBusy;
+
+                                    if (result.IsSuccess)
+                                    {
+                                        await dialogService.ShowMessage("Confirmación", result.Message);
+                                        await navigationService.Navigate("MainPage");
+                                        ClearFormParqueadero();
+                                    }
+                                    else
+                                    {
+                                        await dialogService.ShowMessage("Mensaje", result.Message);
+                                        return;
+                                    }
                                 }
                                 else
                                 {
-                                    await dialogService.ShowMessage("Mensaje", result.Message);
+                                    IsBusy = false;
+                                    IsEnabled = !IsBusy;
+                                    await dialogService.ShowMessage("Mensaje", "Servicio no encontrado");
                                     return;
                                 }
                             }
                         }
                         else
                         {
-                            isBusy = false;
-                            IsEnabled = !isBusy;
+                            IsBusy = false;
+                            IsEnabled = !IsBusy;
                             await dialogService.ShowMessage("Mensaje", "Es necesario tener conexión a internet para poder registrarse");
                             return;
                         }
