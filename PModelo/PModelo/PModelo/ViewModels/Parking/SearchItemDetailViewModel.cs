@@ -254,6 +254,13 @@ namespace PModelo.ViewModels
                                 }
                             }
                         }
+
+
+
+
+
+
+
                         //var mainViewModel = MainViewModel.GetInstance();
                         //response = await apiService.SendAlert(Longitude, Latitud, user.Phone, user.FirstName, user.LastName, user.Motherslastname, user.Email, user.UserId, Thoroughfare);
                         //if (response != null)

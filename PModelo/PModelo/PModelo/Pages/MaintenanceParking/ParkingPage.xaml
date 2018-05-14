@@ -68,11 +68,11 @@
                         </Label>
                         <Entry
                         Grid.Column="1"
-                        Text="{Binding Name, Mode=TwoWay}"
+                        Text="{Binding Nombre, Mode=TwoWay}"
                         Placeholder="Nombre "
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center"
-                        FontSize="Small"
+                        FontSize="Medium"
                          >
                             <Entry.Behaviors>
                                 <behaviors:EntryLengthValidatorBehavior MaxLength="25" />
@@ -95,11 +95,11 @@
                         </Label>
                         <Entry
                         Grid.Column="1"
-                        Text="{Binding Address, Mode=TwoWay}"
-                        Placeholder="Ingrese la dirección del local"
+                        Text="{Binding Direccion, Mode=TwoWay}"
+                        Placeholder="Dirección del local"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center"
-                        FontSize="Small"
+                        FontSize="Medium"
                         >
                             <Entry.Behaviors>
                                 <behaviors:EntryLengthValidatorBehavior MaxLength="70" />
@@ -122,10 +122,10 @@
                         </Label>
                         <Entry
                         Grid.Column="1"
-                        FontSize="Small"
+                        FontSize="Medium"
                         Keyboard="Numeric"
-                        Text="{Binding PhoneFijo, Mode=TwoWay}"
-                        Placeholder="Ingrese el teléfono fijo del local"
+                        Text="{Binding Telefono_Fijo, Mode=TwoWay}"
+                        Placeholder="Teléfono fijo del local"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center"
                         >
@@ -150,10 +150,10 @@
                         </Label>
                         <Entry
                         Grid.Column="1"
-                        Text="{Binding PhoneMovil, Mode=TwoWay}"
-                        Placeholder="Ingrese teléfono móvil del local"
+                        Text="{Binding Telefono_Movil, Mode=TwoWay}"
+                        Placeholder="Teléfono móvil del local"
                         Keyboard="Numeric"
-                        FontSize="Small"
+                        FontSize="Medium"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Center"
                          >
@@ -180,11 +180,11 @@
                     <!--<Label Text="{Binding  Capacity, Capacity, StringFormat='Name = {0}, Description = {1}'}"/>-->
                     <Entry
                         Grid.Column="1"
-                        Text="{Binding  Capacity, 'Espacios', StringFormat='Name = {0}, Description = {1}',Mode=TwoWay}"
-                        Placeholder="Ingrese la capacidad del parqueadero"
+                        Text="{Binding Capacidad, Mode=TwoWay}"
+                        Placeholder="Capacidad del parqueadero"
                         HorizontalOptions="FillAndExpand"
                         Keyboard="Numeric"
-                        FontSize="Small"
+                        FontSize="Medium"
                         VerticalOptions="Center"
                         >
                             <Entry.Behaviors>
@@ -210,10 +210,10 @@
                                   Grid.Column="1"
                                   VerticalOptions="Center"
                                   Title="Seleccione "
-                                  DisplayMemberPath="Description"
-                                  SelectedValuePath="TypeParkingId"
+                                  DisplayMemberPath="Descripcion"
+                                  SelectedValuePath="Id_Tipo_Parking"
                                   ItemsSource="{Binding TypeParkings}"
-                                  SelectedValue ="{Binding Path=TypeParkingId, Mode=TwoWay}"
+                                  SelectedValue ="{Binding Path=Id_Tipo_Parking, Mode=TwoWay}"
                                   HorizontalOptions="FillAndExpand"
                                   />
                     </Grid>
@@ -222,9 +222,8 @@
 
             <syncfusion:SfBusyIndicator   
                         WidthRequest="90"
-                        
                         HeightRequest="90"
-                       Grid.Row="2"
+                        Grid.Row="2"
                         Margin="-15,0,-15,-15"
                         VerticalOptions="Center"
                         HorizontalOptions="Center"

@@ -14,7 +14,7 @@
                 <Grid.RowDefinitions>
                     <!--<RowDefinition Height="50"/>-->
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="38"/>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0" 
@@ -25,11 +25,8 @@
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="50"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="37"/>
-                        <RowDefinition Height="37"/>
-                        <!--<RowDefinition Height="23"/>-->
-
-                        <!--<RowDefinition Height="20"/>-->
+                        <RowDefinition Height="43"/>
+                        <RowDefinition Height="43"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Image Source="Mall.png" 
@@ -68,7 +65,7 @@
                         />
                     </StackLayout>
                     <StackLayout 
-                        Padding="0,20,0,0"
+                        Padding="0,13,0,0"
                         Grid.Row="5">
                         <Button 
                             Grid.Row="5"
@@ -91,8 +88,8 @@
 
                 </Grid>
                 <StackLayout Grid.Row="1" 
-                                     Padding="0,-10,0,-10"
-                                     Margin="0,-15,0,-15"
+                                     Padding="0,0,0,20"
+                                     Margin="0,0,0,5"
                                      BackgroundColor="#ffffff">
                     <Label HeightRequest="1" BackgroundColor="#e3e3e3"/>
                     <Label Text="Dont'Have Account Login? SignUp" 

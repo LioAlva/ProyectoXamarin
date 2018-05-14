@@ -25,8 +25,6 @@ namespace PModelo.Services
         {
             try
             {
-
-
                 string mm = string.Empty;
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 50;

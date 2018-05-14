@@ -77,12 +77,13 @@ namespace PModelo.Services
                     break;
                 case "EventoPopPage":
                     //await App.Navigator.PushAsync(new EventoPopPage());
-                    break;//UsuariosGroupPage
-
-
+                    break;
                 case "UsuariosGroupPage":
                     await App.Navigator.PushAsync(new UsuariosGroupPage());
-                    break;//UsuariosGroupPage
+                    break;
+                case "MainPage":
+                    App.Current.MainPage = new MasterPage();
+                    break;
                 case "LogutPage":
                     Logout();
                     ; break;

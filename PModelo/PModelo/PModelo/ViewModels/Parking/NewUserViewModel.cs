@@ -383,8 +383,6 @@ namespace PModelo.ViewModels
                     {
                         await dialogService.ShowMessage("Confirmación", result.Message);
                         navigationService.SetMainPage("NewLoginPage");
-                        //    var mainViewModel = MainViewModel.GetInstance();
-                        //    mainViewModel.LoadNewUserWhite();
                     }
                     else
                     {

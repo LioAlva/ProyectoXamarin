@@ -8,7 +8,7 @@ namespace PModelo.Models
     public class TypeParking
     {
         [PrimaryKey]
-        public int TypeParkingId { get; set; }
-        public string Description{ get; set; }
+        public int Id_Tipo_Parking { get; set; }
+        public string Descripcion { get; set; }
     }
 }

@@ -1,19 +1,26 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Plugin.Connectivity;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using PModelo.Classes;
+using PModelo.Classes.ApiGoogle;
+using PModelo.Classes.NoMapping;
 using PModelo.Models;
 using PModelo.Services;
+using PModelo.Util;
 using Syncfusion.SfBusyIndicator.XForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PModelo.ViewModels
 {
-    public class ParkItemViewModel: INotifyPropertyChanged
+    public class ParkItemViewModel:Parking, INotifyPropertyChanged
     {
         #region Attributes
         //public NetService netService;
@@ -22,6 +29,7 @@ namespace PModelo.ViewModels
         public DialogService dialogService;
         public NavigationService navigationService;
         public GeolocatorService geolocatorService;
+        public SettingsService settingsService;
         //private bool isRunning;
         private bool isBusy;
         private bool isEnabled;
@@ -31,10 +39,40 @@ namespace PModelo.ViewModels
         private ImageSource _imageSource;
 
 
+
         MediaFile file;
         #endregion
 
         #region Properties
+        public double Longitude;
+        public double Latitud;
+
+        public string AdminArea { get; set; }
+        private string Thoroughfare { get; set; }
+        private string Locality { get; set; }
+        private string CountryCode { get; set; }
+        private string CountryName { get; set; }
+        private string PostalCode { get; set; }
+        private string SubLocality { get; set; }
+        private string SubThoroughfare { get; set; }
+        private string SubAdminArea { get; set; }
+        private string[] ArrayPostalCodes { get; set; }
+
+        public bool IsBusy
+        {
+            set
+            {
+                if (isBusy != value)
+                {
+                    isBusy = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsBusy"));
+                }
+            }
+            get
+            {
+                return isBusy;
+            }
+        }
 
         public ImageSource ImageSource
         {
@@ -120,16 +158,21 @@ namespace PModelo.ViewModels
             }
         }
 
+
+
         #endregion
 
         #region Contructor
         public ParkItemViewModel()
         {
+            busyIndicator = new SfBusyIndicator();
             ImageSource = "icon";
             dialogService = new DialogService();
             navigationService = new NavigationService();
+            geolocatorService = new GeolocatorService();
             apiService = new ApiService();
             dataService = new DataService();
+            settingsService = new SettingsService();
             //netService = new NetService();
 
             TypeParkings = new List<TypeParking>();
@@ -147,13 +190,13 @@ namespace PModelo.ViewModels
             TypeParkings.Clear();
             TypeParkings.Add(new TypeParking
             {
-                Description = "Privado",
-                TypeParkingId = 1,
+                Descripcion = "Privado",
+                Id_Tipo_Parking = 1,
             });
             TypeParkings.Add(new TypeParking
             {
-                Description = "Público",
-                TypeParkingId = 2,
+                Descripcion = "Público",
+                Id_Tipo_Parking = 2,
             });
         }
         
@@ -252,80 +295,44 @@ namespace PModelo.ViewModels
 
         private async void Save()
         {
-            if (string.IsNullOrEmpty(FirstName))
+            if (string.IsNullOrEmpty(Nombre))
             {
-                await dialogService.ShowMessage("Mensaje", "Debe ingresar su nombre.");
+                await dialogService.ShowMessage("Mensaje", "Debe ingresar el nombre del parqueadero.");
                 return;
             }
-            if (string.IsNullOrEmpty(LastName))
+            //if (string.IsNullOrEmpty(Direccion))
+            //{
+            //    await dialogService.ShowMessage("Mensaje", "Debe ingresar la dirección del parqueadero.");
+            //    return;
+            //}
+            if (string.IsNullOrEmpty(Telefono_Fijo))
             {
-                await dialogService.ShowMessage("Mensaje", "Debe ingresar su apellido paterno.");
+                await dialogService.ShowMessage("Mensaje", "Debe ingresar el teléfono fijo del parqueadero.");
                 return;
             }
-            if (string.IsNullOrEmpty(MotherLastName))
+            if (!string.IsNullOrEmpty(Telefono_Movil)) {
+                var digito = Telefono_Movil.Substring(0, 1);
+                if (Convert.ToInt32(digito) != 9)
+                {
+                    await dialogService.ShowMessage("Mensaje", "Debe empezar el primero dígito del número móvil con el número 9");
+                    return;
+                }
+            }
+            
+            if (string.IsNullOrEmpty(Capacidad))
             {
-                await dialogService.ShowMessage("Mensaje", "Debe ingresar su apellido materno.");
+                await dialogService.ShowMessage("Mensaje", "Debe ingresar la cantidad de espacios del parqueadero.");
                 return;
             }
-            if (string.IsNullOrEmpty(Phone))
+            if (Id_Tipo_Parking == 0)
             {
-                await dialogService.ShowMessage("Mensaje", "Debe ingresar su número de teléfono.");
-                return;
-            }
-            var digito = Phone.Substring(0, 1);
-            if (Convert.ToInt32(digito) != 9)
-            {
-                await dialogService.ShowMessage("Mensaje", "Debe empezar el primero dígito del número telefónico con el número 9");
-                return;
-            }
-            if (string.IsNullOrEmpty(DNI))
-            {
-                await dialogService.ShowMessage("Mensaje", "Debe ingresar su número de DNI.");
-                return;
-            }
-            if (string.IsNullOrEmpty(Email))
-            {
-                await dialogService.ShowMessage("Mensaje", "Debe ingresar su email.");
-                return;
-            }
-            if (!Utilities.IsValidEmail(Email))
-            {
-                await dialogService.ShowMessage("Mensaje", "Debe ingresar un Email  válido");
-                return;
-            }
-            if (string.IsNullOrEmpty(Password))
-            {
-                await dialogService.ShowMessage("Mensaje", "Debes ingresar una Contraseña");
-                return;
-            }
-
-            int numberCharter = Password.Length;
-            if (numberCharter < 5)
-            {
-                await dialogService.ShowMessage("Mensaje", "Su contarseña debe tener como mínimo 5 caracteres.");
-                return;
-            }
-
-            if (string.IsNullOrEmpty(PasswordConfirm))
-            {
-                await dialogService.ShowMessage("Mensaje", "Debes ingresar la confirmación de la contraseña");
-                return;
-            }
-            if (!PasswordConfirm.Equals(Password))
-            {
-                await dialogService.ShowMessage("Mensaje", "Las contraseñas no coinciden");
-                return;
-            }
-
-            if (UserTypeId == 0)
-            {
-                await dialogService.ShowMessage("Mensaje", "Seleccione un tipo de usuario");
+                await dialogService.ShowMessage("Mensaje", "Seleccione un tipo de parqueadero");
                 return;
             }
 
             isBusy = true;
             IsEnabled = !isBusy;
-
+            #region Foto no se usa todavia
             byte[] array = null;
             if (ImageSource != null)
             {
@@ -340,54 +347,86 @@ namespace PModelo.ViewModels
                 }
             }
 
-            var userForm = new UserForm
+            #endregion
+
+            var parkForm = new ParkForm
             {
-                Nombre = FirstName,
-                Apellido_Paterno = LastName,
-                Apellido_Materno = MotherLastName,
-                Telefono = Phone,
-                DNI = DNI,
-                Email = Email,
-                Contrasenia = Password,
-                Fecha_Nacimiento = DateTime.UtcNow.AddHours(-5),
-                //Photo
-                //Usuario_Name=Email,
-                UserTypeId = UserTypeId,
+                Nombre = Nombre,
+                Direccion = Direccion,
+                Telefono_Fijo = Telefono_Fijo,
+                Telefono_Movil = Telefono_Movil,
+                Capacidad =int.Parse(Capacidad),
+                Id_Tipo_Parking = Id_Tipo_Parking ?? 0,
             };
 
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
-            if (isReachable)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                var response = await apiService.Post<UserForm, Response>(Configuration.SERVER, "/api", "/account/RegisterUser", "", "", userForm, false);
+                var response = settingsService.IsPermited();
 
-                if (response != null)
+                if (!response)
                 {
-                    var result = (Response)response.Result;
-                    isBusy = false;
-                    IsEnabled = !isBusy;
-
-                    if (result.IsSuccess)
+                    var respuesta = await dialogService.ShowMessageYesAndNot("Mensaje", "¿Desea activar el Gps para poder registrar el establecimiento de parqueo?");
+                    if (!respuesta)
                     {
-                        await dialogService.ShowMessage("Confirmación", result.Message);
-                        navigationService.SetMainPage("NewLoginPage");
-                        //    var mainViewModel = MainViewModel.GetInstance();
-                        //    mainViewModel.LoadNewUserWhite();
+                        return;
                     }
                     else
                     {
-                        await dialogService.ShowMessage("Mensaje", result.Message);
+                        IsBusy = true;
+                        IsEnabled = !IsBusy;
+                        var resp = settingsService.IsConnected();
+                        if (!resp)
+                        {
+                            IsBusy = false;
+                            IsEnabled = !IsBusy;
+                            ImageSource = "icon.png";
+                        }
+                        else
+                        {
+                            var result = await dialogService.ShowMessageYesAndNot("Confimación", "Estas seguro de enviar la Alerta");
+                            if (result)
+                            {
+                                Conectarse(parkForm);
+                            }
+                            else
+                            {
+                                IsBusy= false;
+                                IsEnabled = !IsBusy;
+                                ImageSource = "icon.png";
+                                return;
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var result = await dialogService.ShowMessageYesAndNot("Confimación", "¿Estás seguro de agregar este establecimiento de parqueo?");
+                    if (result)
+                    {
+                        IsBusy= true;
+                        IsEnabled = !IsBusy;
+                        Conectarse(parkForm);
+                    }
+                    else
+                    {
+                        IsBusy= false;
+                        IsEnabled = !IsBusy;
+                        ImageSource = "icon.png";
                         return;
                     }
                 }
             }
             else
             {
-                isBusy = false;
-                IsEnabled = !isBusy;
-                await dialogService.ShowMessage("Mensaje", "Es necesario tener conexión a internet para poder registrarse");
+                IsBusy = false;
+                IsEnabled = !IsBusy;
+                ImageSource = "icon.png";
+                await dialogService.ShowMessage("Confimación", "Es necesario tener acceso a Internet, active el Wifi o su paquete de Datos por favor.");
                 return;
             }
         }
+
+       
 
         public ICommand CancelCommand { get { return new RelayCommand(Cancel); } }
 
@@ -402,6 +441,160 @@ namespace PModelo.ViewModels
 
         #endregion
 
+        #region Methods
+        private async void Conectarse(ParkForm parkForm)
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                await geolocatorService.GetLocation();
+                Longitude = geolocatorService.Longitude;
+                Latitud = geolocatorService.Latitud;
+
+                AdminArea = geolocatorService.AdminArea;
+                Thoroughfare = geolocatorService.Thoroughfare;
+                Locality = geolocatorService.Locality;
+                CountryCode = geolocatorService.CountryCode;
+                CountryName = geolocatorService.CountryName;
+                PostalCode = geolocatorService.PostalCode;
+                SubLocality = geolocatorService.SubLocality;
+                SubThoroughfare = geolocatorService.SubThoroughfare;
+                SubAdminArea = geolocatorService.SubAdminArea;
+
+                Response response = null;
+                if (parkForm != null)
+                {
+                    //if (polynomial.PoitnInsideArea(Latitud, Longitude))
+                    //{
+                    if (Longitude != 0 && Latitud != 0)
+                    {
+                        parkForm.Longitud = Longitude;
+                        parkForm.Latitud = Latitud;
+
+                        if (string.IsNullOrEmpty(Direccion)) {
+                            var cadena = "https://maps.googleapis.com/maps/api/geocode/";
+                            var UrlServerMethod = "json?latlng=" + Latitud + "," + Longitude;
+                            var request = await apiService.GetGoogleService<ResponseGoogle>(cadena, UrlServerMethod);
+
+                            if (request != null)
+                            {
+                                if (request.status.Equals("OK"))
+                                {
+                                    if (request.results.Count() > 0)
+                                    {
+                                        string[] caracteres = request.results.FirstOrDefault().formatted_address.Split(',');
+                                        Thoroughfare = caracteres[0];
+                                    }
+                                }
+                            }
+                            Direccion = Thoroughfare;
+                        }
+
+                        var currentUser = dataService.First<User>(false);
+                        if (currentUser != null && currentUser.UserId > 0)
+                        {
+                            parkForm.UserTypeId = currentUser.UserTypeId;
+                            parkForm.UserId = currentUser.UserId;
+                            parkForm.Direccion = Direccion;
+                        }
+                        else {
+                            isBusy = false;
+                            IsEnabled = !isBusy;
+                            await dialogService.ShowMessage("Mensaje", "Usuario no identifiacado, revise su configuración");
+                            return;
+                        }
+
+                        var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+                        if (isReachable)
+                        {
+                           
+                            var respuesta = await apiService.Post<ParkForm, Response>(Configuration.SERVER, "/api", "/Parking/RegisterParking", currentUser.TokenType, currentUser.AccessToken, parkForm);
+
+                            if (respuesta != null)
+                            {
+                                var result = (Response)respuesta.Result;
+                                isBusy = false;
+                                IsEnabled = !isBusy;
+
+                                if (result.IsSuccess)
+                                {
+                                    await dialogService.ShowMessage("Confirmación", result.Message);
+                                    await navigationService.Navigate("MainPage");
+                                }
+                                else
+                                {
+                                    await dialogService.ShowMessage("Mensaje", result.Message);
+                                    return;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            isBusy = false;
+                            IsEnabled = !isBusy;
+                            await dialogService.ShowMessage("Mensaje", "Es necesario tener conexión a internet para poder registrarse");
+                            return;
+                        }
+                     }
+                     else
+                     {
+                        IsBusy = false;
+                        IsEnabled = !IsBusy;
+                        ImageSource = "icon.png";
+                        await dialogService.ShowMessage("Mensaje", response.Message);
+                        return;
+                     }
+                    //var mainViewModel = MainViewModel.GetInstance();
+                    //response = await apiService.SendAlert(Longitude, Latitud, user.Phone, user.FirstName, user.LastName, user.Motherslastname, user.Email, user.UserId, Thoroughfare);
+                    //if (response != null)
+                    //{
+                    //    if (response.IsSuccess)
+                    //    {
+                    //        if (response.Result != null)
+                    //        {
+                    //            var alert = new Alert
+                    //            {
+                    //                AlertId = ((AlertModelT)response.Result).IdCaso,
+                    //                Latitud = ((AlertModelT)response.Result).PosLatitud,
+                    //                Longitud = ((AlertModelT)response.Result).PosLongitud,
+                    //                FechaCreacion2 = Utilities.dateMilliToDate(((AlertModelT)response.Result).FechaCreacion.ToString()),
+                    //                Emergency = ((AlertModelT)response.Result).TipoCaso.Descripcion,
+                    //                AlertSantiagoId = response.VarAuxiliar,
+                    //                IdItemTabla = ((AlertModelT)response.Result).TipoCaso.IdItemTabla,
+                    //                Address = Thoroughfare
+                    //            };
+
+                    //            await dialogService.ShowMessage("Mensaje", "Alerta enviada exitosamente");
+                    //            mainViewModel.SetCurrentAlertItem(alert);
+                    //            mainViewModel.LoadListAlertsForUser(true);
+                    //            dataService.Insert<Alert>(alert);
+
+                    //            await navigationService.Navigate("AlertOptionPage");
+                    //        }
+                    //        IsRunning = false;
+                    //        IsEnabled = !IsRunning;
+                    //        ImageSource = "icon.png";
+                    //    }
+                    //}
+                }
+                else
+                {
+                    IsBusy = false;
+                    IsEnabled = !IsBusy;
+                    ImageSource = "icon.png";
+                    await dialogService.ShowMessage("Mensaje", "No se pudo crear el parqueadero verifique la información agregada");
+                    return;
+                }
+            }
+            else
+            {
+                ImageSource = "icon.png";
+                await dialogService.ShowMessage("Confimación", "Es necesario tener acceso a Internet, active el Wifi o su paquete de datos por favor.");
+                return;
+            }
+
+        }
+        #endregion
+
         #region Event
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -409,3 +602,9 @@ namespace PModelo.ViewModels
         #endregion
     }
 }
+
+
+
+
+
+/*************/
