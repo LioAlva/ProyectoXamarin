@@ -19,7 +19,7 @@ namespace PModelo.Data
         {
             var config = DependencyService.Get<IConfig>();
             connection = new SQLiteConnection(config.Platform,
-            System.IO.Path.Combine(config.DirectoryDB, "MallAventure.db3"));
+            System.IO.Path.Combine(config.DirectoryDB, "Park.db3"));
 
             connection.CreateTable<Parameter>();
       

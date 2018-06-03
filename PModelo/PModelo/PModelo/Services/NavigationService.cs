@@ -43,21 +43,32 @@ namespace PModelo.Services
                 case "MapUbicateParkingPage":
                     await App.Navigator.PushAsync(new MapUbicateParkingPage());
                     break;
-                case "ListaRojaPage":
-                    await App.Navigator.PushAsync(new ProbaPage());
+                    //case "ListaRojaPage":
+                    //    await App.Navigator.PushAsync(new ProbaPage());
+                    //    break;
+                    //case "LocatorioPage":
+                    //    await App.Navigator.PushAsync(new ProbaPage());
+                    //    break;
+                    //case "EventosPage":
+                    //    await App.Navigator.PushAsync(new EventosPage());
+                    //    break;
+                    //case "EventoPage":
+                    //    await App.Navigator.PushAsync(new EventoPage());
+                    //    break;
+                    //case "ConfiguracionPage":
+                    //    await App.Navigator.PushAsync(new NewOrderPage());
+                    //    break;
+
+                    //UsuariosPage
+                    //case "UsuariosPage":
+                    //    await App.Navigator.PushAsync(new UsuariosPage());
+                    //    break;
+                    //UsuariosPage
+
+                case "ParqueaderoDetailPage":
+                    await App.Navigator.PushAsync(new ParqueaderoDetailPage());
                     break;
-                case "LocatorioPage":
-                    await App.Navigator.PushAsync(new ProbaPage());
-                    break;
-                case "EventosPage":
-                    await App.Navigator.PushAsync(new EventosPage());
-                    break;
-                case "EventoPage":
-                    await App.Navigator.PushAsync(new EventoPage());
-                    break;
-                case "ConfiguracionPage":
-                    await App.Navigator.PushAsync(new NewOrderPage());
-                    break;
+                //ParkingDetailPage
                 case "ListViewPage":
                     await App.Navigator.PushAsync(new DataGridViewPage());
                     break;

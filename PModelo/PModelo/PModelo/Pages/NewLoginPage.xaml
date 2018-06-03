@@ -29,7 +29,7 @@
                         <RowDefinition Height="43"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Source="Mall.png" 
+                    <Image Source="pinnnn.png" 
                            Grid.Row="0" 
                            HeightRequest="170"   
                            VerticalOptions="EndAndExpand"/>

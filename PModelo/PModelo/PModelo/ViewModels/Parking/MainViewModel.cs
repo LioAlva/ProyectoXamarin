@@ -36,6 +36,9 @@ namespace PModelo.ViewModels
 
         public NewUserViewModel NewUser { get; set; }//EditUser
 
+        public UserSistemViewModel UserLoged { get; set; }
+        //UserLoged
+
 
         SfChart chart { get; set; }
 
@@ -62,8 +65,29 @@ namespace PModelo.ViewModels
         public SearchItemDetailViewModel SearchParking { get; set; }
         public ParkItemViewModel ParkingRegister { get; set; }
         public ObservableCollection<Pin> Pins { get; set; }
+        public ObservableCollection<Pin> Pins2 { get; set; }
         public Position PositionsSearch { get; set; }
+
+        public Position PositionsState { get; set; }
+
         public ObservableCollection<ParqueaderoItemViewModel> Parqueaderos { get; set; }
+        public ParqueaderoItemViewModel ParqueaderoSelected { get; set; }
+
+        public void LoadUser(User user)
+        {
+            user.Picture = user.Picture;
+
+            if (user.UserTypeId==4)
+            {
+                UserLoged.FirstName = user.Persona.Apellido_Paterno;
+                UserLoged.LastName = user.Persona.Apellido_Materno;
+            }
+            else {
+                UserLoged.FirstName = user.FirstName;
+                UserLoged.LastName = user.LastName;
+            }
+        }
+
         /**NEGOCIO*/
         #endregion
 
@@ -100,7 +124,7 @@ namespace PModelo.ViewModels
             Data = new List<Person>();
             Data2 = new List<Person>();
 
-            LoadMenu();
+            //LoadMenu();
             LoadData();
             LoadContact();
             LoadOrderInfo();
@@ -162,8 +186,6 @@ namespace PModelo.ViewModels
            new User { FirstName = "Zaroastro", LastName = "Alvarez", MotherLastName = "Bartra", DNI = "11200033", Cargo = "Rol1", Email = "AronAlvarez@hotmail.com" ,Picture = "http://content.screencast.com/users/JamesMontemagno/folders/Jing/media/6b60d27e-c1ec-4fe6-bebe-7386d545bb62/2016-06-02_1051.png"},
            new User { FirstName = "Jhon Lenon", LastName = "Alvarez", MotherLastName = "Bartra", DNI = "11200033", Cargo = "Rol2", Email = "AronAlvarez@hotmail.com" },
            new User { FirstName = "Jose Maria", LastName = "Euguren", MotherLastName = "Bartra", DNI = "11200033", Cargo = "Rol3", Email = "AronAlvarez@hotmail.com" ,Picture = "http://content.screencast.com/users/JamesMontemagno/folders/Jing/media/6b60d27e-c1ec-4fe6-bebe-7386d545bb62/2016-06-02_1051.png"},
-
-
         };
             /***/
 
@@ -173,14 +195,22 @@ namespace PModelo.ViewModels
             ParkingRegister = new ParkItemViewModel();
             Pins = new ObservableCollection<Pin>();
             PositionsSearch = new Position();
+            PositionsState = new Position();
             Parqueaderos = new ObservableCollection<ParqueaderoItemViewModel>();
-
-//            LoadParqueaderosBuscados();
+            UserLoged = new UserSistemViewModel();
+            ParqueaderoSelected = new ParqueaderoItemViewModel();
+            Pins2 = new ObservableCollection<Pin>();
+            //LoadparqueaderoSeleccionado();
+            // LoadParqueaderosBuscados();
             /***/
         }
 
-     
-
+        public void LoadparqueaderoSeleccionado(ParqueaderoItemViewModel parqueaderoSelected)
+        {
+            ParqueaderoSelected = parqueaderoSelected;
+            parqueaderoSelected.NombreTipoParqueadero =parqueaderoSelected.Id_Parqueadero==1 ? "Privado" : "Público";
+        }
+        
         //public void LoadNewUserWhite()
         //{
         //    NewUser.DNI = string.Empty;
@@ -437,7 +467,6 @@ namespace PModelo.ViewModels
                     Label = ip.Nombre,
                     Address = ip.Direccion,
                     BindingContext=ip,
-                    
                 };
                 Pins.Add(pin);
             }
@@ -445,8 +474,8 @@ namespace PModelo.ViewModels
 
         public void SetGeolocation(double latitud, double longitud, string name, string address)
         {
-            Pins.Clear();
-            PositionsSearch = new Position(latitud, longitud);
+            Pins2.Clear();
+            PositionsState = new Position(latitud, longitud);
             var pin = new Pin
             {
                 Type = PinType.Place,
@@ -454,8 +483,7 @@ namespace PModelo.ViewModels
                 Label = name,
                 Address = address
             };
-            Pins.Add(pin);
-
+            Pins2.Add(pin);
         }
 
         public void GetGeolotation()
@@ -492,39 +520,80 @@ namespace PModelo.ViewModels
         }
 
         /****/
-
-        private void LoadMenu()
+        public void LoadMenu(User currentUser)
         {
+            //var currentUser = dataService.First<User>(false);
             Menu = new ObservableCollection<MenuItemViewModel>();
 
-            Menu.Add(new MenuItemViewModel
+            if (currentUser != null) { }
+            switch (currentUser.UserTypeId)
             {
-                Icon = "home.png",
-                PageName = "DashboardPage",
-                Title = "Dashboard",
-            });
+                case 2:
 
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "icon.png",
-                PageName = "CierreVentasPage",
-                Title = "Cierre de Ventas",
-            });
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "home.png",
+                        PageName = "DashboardPage",
+                        Title = "Dashboard",
+                    });
 
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "icon.png",
-                PageName = "ParkingPage",
-                Title = "Registrar Parqueadero",
-            });
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "CierreVentasPage",
+                        Title = "Cierre de Ventas",
+                    });
 
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "icon.png",
-                PageName = "MapUbicateParkingPage",
-                Title = "Mapas",
-            });
+                    //Menu.Add(new MenuItemViewModel
+                    //{
+                    //    Icon = "icon.png",
+                    //    PageName = "MapUbicateParkingPage",
+                    //    Title = "Mapas",
+                    //});
 
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "SearchParkingPage",
+                        Title = "Buscar Parqueadero"
+                    });
+
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "LogutPage",
+                        Title = "Cerrar Sesión"
+                    });
+
+
+                    ; break;
+                case 4:
+
+
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "home.png",
+                        PageName = "DashboardPage",
+                        Title = "Dashboard",
+                    });
+
+
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "ParkingPage",
+                        Title = "Registrar Parqueadero",
+                    });
+
+
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "LogutPage",
+                        Title = "Cerrar Sesión"
+                    });
+                    ; break;
+            }
             //Menu.Add(new MenuItemViewModel
             //{
             //    Icon = "icon.png",
@@ -532,19 +601,6 @@ namespace PModelo.ViewModels
             //    Title = "UsuariosGroupo ",
             //});
 
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "icon.png",
-                PageName = "SearchParkingPage",
-                Title = "Buscar Parqueadero"
-            });
-
-            Menu.Add(new MenuItemViewModel
-            {
-                Icon = "icon.png",
-                PageName = "LogutPage",
-                Title = "Cerrar Sesión"
-            });
 
             //MapUbicateParkingPage
 

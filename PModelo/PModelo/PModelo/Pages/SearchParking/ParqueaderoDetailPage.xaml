@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.ParqueaderoDetailPage"
+             Title="Información de Parqueadero"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfDataGrid.XForms;assembly=Syncfusion.SfDataGrid.XForms" 
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:chart2="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             >
+
+    <tabView:SfTabView 
+            VisibleHeaderCount="2">
+        <tabView:SfTabItem Title="Detalle" 
+                               TitleFontSize="15"
+                               TitleFontColor="{StaticResource BlackColor}">
+            <tabView:SfTabItem.Content>
+                <StackLayout Padding="5">
+                    <Image Margin="5,-1,11,0" 
+                    HeightRequest="150"
+                    HorizontalOptions="FillAndExpand"
+                    Source="ecoparking.png"
+                ></Image>
+                    
+                    
+                <ScrollView
+        BindingContext="{Binding ParqueaderoSelected}" Padding="15"  >
+                    <StackLayout Spacing="0">
+                        <StackLayout>
+                            <Label 
+                                Margin="15"
+                                HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="CenterAndExpand"
+                       Text="Gracias por elegirnos"
+                       FontAttributes="Bold"
+                       FontSize="25" />
+                        </StackLayout>
+                        <StackLayout Spacing="10">
+                           
+                            <Grid>
+                                <Grid Grid.Row="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="140"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                        Grid.Column="0"
+                        Text="Nombre: "
+                        FontSize="Small"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                                        </Label>
+                                        <Label
+                        Grid.Column="1"
+                         Text="{Binding Nombre}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        BackgroundColor="White">
+                                        </Label>
+                                    </Grid>
+                                <Grid Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                        Grid.Column="0"
+                        Text="Telefono Fijo  :"
+                        FontSize="Small"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                                    </Label>
+                                    <Label
+                        Grid.Column="1"
+                         Text="{Binding Telefono_Fijo}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        BackgroundColor="White">
+                                    </Label>
+                                </Grid>
+                                <Grid Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                        Grid.Column="0"
+                        Text="Telefono Movil :"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        TextColor="Black">
+                                    </Label>
+                                    <Label
+                        Grid.Column="1"
+                        Text="{Binding Telefono_Movil}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        BackgroundColor="White"/>
+                                </Grid>
+                                <Grid Grid.Row="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                        Grid.Column="0"
+                        Text="Fecha creación:"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        TextColor="Black">
+                                    </Label>
+                                    <Label
+                        Grid.Column="1"
+                        Text="{Binding Fecha_Creacion}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        BackgroundColor="White"/>
+                                </Grid>
+                                <Grid Grid.Row="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="140"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                        Grid.Column="0"
+                        Text="Tipo Parqueadero :"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        TextColor="Black">
+                                    </Label>
+                                    <Label
+                        Grid.Column="1"
+                        Text="{Binding NombreTipoParqueadero}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        BackgroundColor="White"/>
+                                </Grid>
+
+                                    <Grid Grid.Row="5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="140"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                        Grid.Column="0"
+                        Text="Capacidad :"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        TextColor="Black">
+                                        </Label>
+                                        <Label
+                        Grid.Column="1"
+                        Text="{Binding Capacidad,Mode=Default}"
+                            HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        BackgroundColor="White">
+                                        </Label>
+                                    </Grid>
+                                    <Grid Grid.Row="6">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="140"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                        Grid.Column="0"
+                        Text="Plazas Disponibles :"
+                        FontSize="Small"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                                        </Label>
+                                        <Label
+                                    Text="{Binding Plazas_Disponibles,Mode=Default}" 
+                                    Grid.Column="1"
+                                     HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Center"
+                                    FontSize="Small"
+                                    BackgroundColor="White"
+                                ></Label>
+
+                                    </Grid>
+                                    <Grid Grid.Row="7">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="140"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                        Grid.Column="0"
+                        Text="Plazas Ocupadas:"
+                        FontSize="Small"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                        TextColor="Black">
+                                        </Label>
+                                        <Label
+                            Text="{Binding Plazas_Ocupadas,Mode=Default}" 
+                            Grid.Column="1"
+                             HorizontalOptions="FillAndExpand"
+                        VerticalOptions="Center"
+                        FontSize="Small"
+                        BackgroundColor="White"
+                        ></Label>
+
+                                    </Grid>
+                                </Grid>
+
+                                <StackLayout
+                                    Padding="0,12,0,0"
+                                    Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                                    <Button
+                                            Command="{Binding SaveCommand}"
+                                            IsEnabled="{Binding IsEnabled}"
+                                            VerticalOptions="FillAndExpand"
+                                            HorizontalOptions="FillAndExpand"
+                                            BackgroundColor="{StaticResource AccentColor}"
+                                            Text="Reservar">
+                                    </Button>
+                                </StackLayout>
+                            </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+                </StackLayout>
+
+            </tabView:SfTabItem.Content>
+        </tabView:SfTabItem>
+
+        <!--<tabView:SfTabItem Title="Tendencias"
+                               TitleFontSize="15"       
+                               TitleFontColor="{StaticResource BlackColor}">
+            <tabView:SfTabItem.Content>
+
+
+            </tabView:SfTabItem.Content>
+        </tabView:SfTabItem>-->
+
+
+
+        <tabView:SfTabItem Title="Ubicacion del parqueadero"
+                               TitleFontSize="15"
+                               TitleFontColor="{StaticResource BlackColor}" >
+            <tabView:SfTabItem.Content >
+                <StackLayout>
+                    <StackLayout>
+                        <maps:Map 
+                WidthRequest="145" 
+                HeightRequest="350"
+                x:Name="MyMapa"
+                IsShowingUser="true"
+                MapType="Hybrid">
+                        </maps:Map>
+                    </StackLayout>
+                </StackLayout>
+            </tabView:SfTabItem.Content>
+        </tabView:SfTabItem>
+    </tabView:SfTabView>
+</ContentPage>

@@ -14,8 +14,8 @@
                         BarBackgroundColor="{StaticResource MallColor}">
             
             <x:Arguments>
-                <pages:MainPage>
-                </pages:MainPage>
+                <pages:UserPage>
+                </pages:UserPage>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

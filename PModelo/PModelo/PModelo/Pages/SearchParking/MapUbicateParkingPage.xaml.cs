@@ -14,7 +14,7 @@ namespace PModelo.Pages
 	{
        
 
-        public MapUbicateParkingPage ()
+        public  MapUbicateParkingPage ()
 		{
                 InitializeComponent();
                 NavigationService navigationService = new NavigationService();
@@ -28,49 +28,27 @@ namespace PModelo.Pages
                      {
                          var _pin = sender as Pin;
                          var _model =(ParqueaderoItemViewModel)_pin.BindingContext;
-                         var anone = _model.Id_Tipo_Parking;
-                         var a=string.Empty;
-                         await navigationService.Navigate("DashboardPage");
+                         mainViewModel.LoadparqueaderoSeleccionado(_model);
+                         mainViewModel.SetGeolocation(_model.Latitud??0,_model.Longitud??0,_model.Nombre,_model.Direccion);
+                         await navigationService.Navigate("ParqueaderoDetailPage");
                      };
                     MyMap.Pins.Add(item);
                 }
-                Locator(mainViewModel.PositionsSearch);
-
-           
-            //MyMap.+= (sender, args) =>
-            //{
-            //    var pin = args.SelectedItem as Pin;
-            //    var details = PinMap[pin];
-            //    var page = new DetailPage<T>(details);
-            //    Navigation.PushAsync(page);
-            //};
-
+            Locator();
         }
 
-    //    item.Clicked += (object sender, EventArgs e) =>
-    //                 {
-    //                        var p = sender as Pin;
-    //};
-
-    //private void Pin_Clicked(object sender, EventArgs e)
-    //{
-    //    var pin = args.SelectedItem as Pin;
-    //    var details = PinMap[pin];
-    //    var page = new DetailPage<T>(details);
-    //    Navigation.PushAsync(page);
-    //}
-
-    private void Locator(Position PositionAlert)
-            {
+        private async void Locator()
+        {
                 try
                 {
-                    var locator = CrossGeolocator.Current;
-                    locator.DesiredAccuracy = 50;
-                    var position = new Position(PositionAlert.Latitude, PositionAlert.Longitude);
-                    MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.05)));
+                var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 50;
 
-                }
-                catch (Exception ex)
+                var location = await locator.GetPositionAsync();
+                var position = new Position(location.Latitude, location.Longitude);
+                MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.1)));
+            }
+            catch (Exception ex)
                 {
                     ex.ToString();
                 }
@@ -79,6 +57,14 @@ namespace PModelo.Pages
     }
 
 
+
+//MyMap.+= (sender, args) =>
+//{
+//    var pin = args.SelectedItem as Pin;
+//    var details = PinMap[pin];
+//    var page = new DetailPage<T>(details);
+//    Navigation.PushAsync(page);
+//};
 
 
 

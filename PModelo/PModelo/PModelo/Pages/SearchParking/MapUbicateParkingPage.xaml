@@ -14,7 +14,7 @@
                         HeightRequest="450"
                         x:Name="MyMap"
                         IsShowingUser="true"
-                        MapType="Hybrid">
+                        MapType="Satellite" >
                 </maps:Map>
             </StackLayout>
   

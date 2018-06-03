@@ -41,7 +41,7 @@ namespace PModelo.Models
         public Persona Persona { get; set; }
 
 
-        //[ManyToOne]
+        ////[ManyToOne]
         //public UserType UserType { get; set; }
 
         //[ManyToOne]

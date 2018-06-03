@@ -25,9 +25,9 @@ namespace PModelo.Models
 
         //[ManyToOne]
         //public Persona Persona { get; set; }
-        
-        //[OneToOne]
-        //public User User { get; set; }
+        //OPTIONAL
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<User> User { get; set; }
 
 
 

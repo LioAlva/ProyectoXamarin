@@ -7,12 +7,12 @@
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              BackgroundColor="{StaticResource BackgroundColor}"
-             Title="Emergencia"
+             Title="Buscar Parqueaderos"
              >
 
     <StackLayout Padding="30,-25,30,-20" Margin="0,-15,0,-15"  BindingContext="{Binding SearchParking}">
 
-        <StackLayout Padding="0,10,0,10" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
+        <StackLayout Padding="0,10,0,-20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" >
             <Label Text="Lima Parking"
                    VerticalTextAlignment="Center"
                    HorizontalTextAlignment="Center"

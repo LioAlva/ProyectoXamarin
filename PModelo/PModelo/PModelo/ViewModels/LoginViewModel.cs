@@ -267,14 +267,19 @@ namespace PModelo.ViewModels
             {
                 dataService.DeleteAllAndInsert(user.Persona);
             }
-            var data = dataService.Get<Persona>(false);
+            //var data = dataService.Get<Persona>(false);
             dataService.DeleteAllAndInsert(user);
+         
             //dataService.InsertOrUpdate(user.FavoriteTeam);
             //dataService.InsertOrUpdate(user.UserType);
             //App.CurrentUser
 
+            //var dataas = dataService.Get<User>(false);
+
             var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.LoadUser(user);
             mainViewModel.SetCurrentUser(user);
+            mainViewModel.LoadMenu(user);
             ClearForm();
             navigationService.SetMainPage("MasterPage");
         }

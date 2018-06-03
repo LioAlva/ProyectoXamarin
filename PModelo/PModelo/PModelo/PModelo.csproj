@@ -19,12 +19,16 @@
     <Compile Remove="Pages\EventosPage\EventoPopPage.xaml.cs" />
     <Compile Remove="Pages\EventosPage\LoadingPopupPage.xaml.cs" />
     <Compile Remove="Pages\NavigationPageM.xaml.cs" />
+    <Compile Remove="Pages\SearchParking\ParqueaderoPage.xaml.cs" />
+    <Compile Remove="Pages\WelcomePage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="Pages\EventosPage\EventoPopPage.xaml" />
     <EmbeddedResource Remove="Pages\EventosPage\LoadingPopupPage.xaml" />
     <EmbeddedResource Remove="Pages\NavigationPageM.xaml" />
+    <EmbeddedResource Remove="Pages\SearchParking\ParqueaderoPage.xaml" />
+    <EmbeddedResource Remove="Pages\WelcomePage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -119,6 +123,9 @@
     <EmbeddedResource Update="Pages\NewOrderPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SearchParking\ParqueaderoDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\ProbaPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -129,6 +136,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\SearchParking\SearchParkingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\UserAplicationPage\UserPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\UsuariosPage\UsersGroupPage.xaml">
@@ -144,9 +154,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\VentasPage\CierreVentasPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\WelcomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

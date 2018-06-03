@@ -22,6 +22,8 @@
             <Color x:Key="AccentColor2">#243781</Color>
             <Color x:Key="MainColor">#FEFFFF</Color>
             <Color x:Key="FontColor">#FFFFF6</Color>
+            <Color x:Key="PColor">#271E6A</Color>
+
             
 
             <!-- Menu colors -->

@@ -4,10 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PModelo.Android", "PModelo\PModelo.Android\PModelo.Android.csproj", "{F37F64DA-DAC9-4F5C-AA2E-A7AD8C7942B2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{990D3A17-C29E-459C-BF24-970A7765D05C} = {990D3A17-C29E-459C-BF24-970A7765D05C}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PModelo.iOS", "PModelo\PModelo.iOS\PModelo.iOS.csproj", "{990D3A17-C29E-459C-BF24-970A7765D05C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PModelo", "PModelo\PModelo\PModelo.csproj", "{2DAFBE26-E554-4666-B14E-B13F8957EB92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PModelo", "PModelo\PModelo\PModelo.csproj", "{2DAFBE26-E554-4666-B14E-B13F8957EB92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

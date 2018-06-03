@@ -93,7 +93,7 @@ namespace PModelo.ViewModels
             IsBusy = false;
             IsEnabled = !IsBusy;
             searchParkForm = new SearchParkForm();
-            ImageSource = "icon.png";
+            ImageSource = "search.png";
         }
 
         #endregion
@@ -203,7 +203,9 @@ namespace PModelo.ViewModels
                         Telefono_Fijo = itemP.Telefono_Fijo,
                         Telefono_Movil = itemP.Telefono_Movil,
                         Id_Tipo_Parking = itemP.Id_Tipo_Parking,
-                        Estado = itemP.Estado
+                        Estado = itemP.Estado,
+                        Plazas_Disponibles=itemP.Plazas_Disponibles,
+                        Plazas_Ocupadas=itemP.Plazas_Ocupadas
                     });
                 }
             }
@@ -217,7 +219,7 @@ namespace PModelo.ViewModels
 
         private async void NewSeachParking()
         {
-            ImageSource = "icon.png";
+            ImageSource = "search.png";
             var user = dataService.First<User>(false);
             user.Persona = dataService.First<Persona>(false);
 
@@ -243,7 +245,7 @@ namespace PModelo.ViewModels
                             {
                                 IsBusy = false;
                                 IsEnabled = !IsBusy;
-                                ImageSource = "icon.png";
+                                ImageSource = "search.png";
                             }
                             else
                             {
@@ -256,7 +258,7 @@ namespace PModelo.ViewModels
                                 {
                                     IsBusy = false;
                                     IsEnabled = !IsBusy;
-                                    ImageSource = "icon.png";
+                                    ImageSource = "search.png";
                                     return;
                                 }
                             }
@@ -275,7 +277,7 @@ namespace PModelo.ViewModels
                         {
                             IsBusy = false;
                             IsEnabled = !IsBusy;
-                            ImageSource = "icon.png";
+                            ImageSource = "search.png";
                             return;
                         }
                     }
@@ -284,7 +286,7 @@ namespace PModelo.ViewModels
                 {
                     IsBusy = false;
                     IsEnabled = !IsBusy;
-                    ImageSource = "icon.png";
+                    ImageSource = "search.png";
                     await dialogService.ShowMessage("Confimación", "Es necesario tener acceso a Internet, active el Wifi o su paquete de Datos por favor.");
                     return;
                 }
@@ -293,7 +295,7 @@ namespace PModelo.ViewModels
             {
                 IsBusy = false;
                 IsEnabled = !IsBusy;
-                ImageSource = "icon.png";
+                ImageSource = "search.png";
                 await dialogService.ShowMessage("Mensaje", "Llamada inválida.");
                 return;
             }

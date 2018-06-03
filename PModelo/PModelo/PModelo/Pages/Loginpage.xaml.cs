@@ -27,7 +27,7 @@ namespace PModelo.Pages
         async void OnUpcomingAppointmentsButtonClicked(object sender, EventArgs e)
         {
             //await App.Navigator.PushAsync(new MasterPage());
-            await Navigation.PushAsync(new WelcomePage());
+           // await Navigation.PushAsync(new WelcomePage());
 
         }
 

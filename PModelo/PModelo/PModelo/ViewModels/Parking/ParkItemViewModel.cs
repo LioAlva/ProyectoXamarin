@@ -329,8 +329,6 @@ namespace PModelo.ViewModels
                 return;
             }
 
-            IsBusy = true;
-            IsEnabled = !IsBusy;
             #region Foto no se usa todavia
             byte[] array = null;
             if (ImageSource != null)

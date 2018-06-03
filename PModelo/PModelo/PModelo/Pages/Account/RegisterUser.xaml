@@ -350,7 +350,7 @@
                         VerticalOptions="FillAndExpand"
                         HorizontalOptions="FillAndExpand"
                         BackgroundColor="{StaticResource AccentColor}"
-                        Text="Registrate">
+                        Text="Registrarse">
                     </Button>
                 </StackLayout>
             </Grid>

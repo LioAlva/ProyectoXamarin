@@ -43,10 +43,29 @@ namespace PModelo
                 dialogService = new DialogService();
 
                 var user = dataService.First<User>(false);
-
+                
                 if (user != null && user.IsRemembered && user.TokenExpires>DateTime.Now)
                 {
-                    //var mainViewModel = MainViewModel.GetInstance();
+                    var persona = dataService.First<Persona>(false);
+                    user.Persona = new Persona
+                    {
+                        Apellido_Paterno = persona.Apellido_Paterno,
+                        Apellido_Materno = persona.Apellido_Materno,
+                        Direccion = persona.Direccion,
+                        DNI = persona.DNI,
+                        Email_Institucional = persona.Email_Institucional,
+                        Email_Persona = persona.Email_Persona,
+                        Estado = persona.Estado,
+                        Fecha_Nacimiento = persona.Fecha_Nacimiento,
+                        Id_Persona = persona.Id_Persona,
+                        Nombre = persona.Nombre,
+                        Picture = persona.Picture,
+                        Telefono = persona.Telefono
+                    };
+
+                    var mainViewModel = MainViewModel.GetInstance();
+                    mainViewModel.LoadMenu(user);
+
                     //if (string.IsNullOrEmpty(user.Phone) && user.UserTipeId == 1)
                     //{
                     //    var profile = new FacebookResponse
@@ -60,13 +79,14 @@ namespace PModelo
                     //}
                     //else
                     //{
-                    //    //mainViewModel.ReloadUser(user);
+                    //mainViewModel.ReloadUser(user);
                     //    //mainViewModel.LoadNewUserWhite();
                     //    //mainViewModel.LoadListAlertsForUser(true);
 
                     //    //App.CurrentUser = user;
                     //    MainPage = new MasterPage();
                     //}
+                    mainViewModel.LoadUser(user);
                     App.CurrentUser = user;
                     MainPage = new MasterPage();
                 }
