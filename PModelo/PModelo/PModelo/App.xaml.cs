@@ -46,23 +46,31 @@ namespace PModelo
                 
                 if (user != null && user.IsRemembered && user.TokenExpires>DateTime.Now)
                 {
-                    var persona = dataService.First<Persona>(false);
-                    user.Persona = new Persona
+                    if (user.UserTypeId == 4)
                     {
-                        Apellido_Paterno = persona.Apellido_Paterno,
-                        Apellido_Materno = persona.Apellido_Materno,
-                        Direccion = persona.Direccion,
-                        DNI = persona.DNI,
-                        Email_Institucional = persona.Email_Institucional,
-                        Email_Persona = persona.Email_Persona,
-                        Estado = persona.Estado,
-                        Fecha_Nacimiento = persona.Fecha_Nacimiento,
-                        Id_Persona = persona.Id_Persona,
-                        Nombre = persona.Nombre,
-                        Picture = persona.Picture,
-                        Telefono = persona.Telefono
-                    };
+                        var persona = dataService.First<Persona>(false);
+                        if (persona!=null) {
+                            user.Persona = new Persona
+                            {
+                                Apellido_Paterno = persona.Apellido_Paterno,
+                                Apellido_Materno = persona.Apellido_Materno,
+                                Direccion = persona.Direccion,
+                                DNI = persona.DNI,
+                                Email_Institucional = persona.Email_Institucional,
+                                Email_Persona = persona.Email_Persona,
+                                Estado = persona.Estado,
+                                Fecha_Nacimiento = persona.Fecha_Nacimiento,
+                                Id_Persona = persona.Id_Persona,
+                                Nombre = persona.Nombre,
+                                Picture = persona.Picture,
+                                Telefono = persona.Telefono
+                            };
+                        }
+                    }
+                    //else if(user.UserTypeId==4){
 
+                    //}
+                    
                     var mainViewModel = MainViewModel.GetInstance();
                     mainViewModel.LoadMenu(user);
 

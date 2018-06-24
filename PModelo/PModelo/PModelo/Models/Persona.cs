@@ -7,7 +7,9 @@ namespace PModelo.Models
 {
     public class Persona
     {
-        public Persona() { }
+        public Persona() {
+            User = new List<User>();
+        }
         [PrimaryKey, Column("Id_Persona")]
         public  int Id_Persona { get; set; }
         public  string Nombre { get; set; }
