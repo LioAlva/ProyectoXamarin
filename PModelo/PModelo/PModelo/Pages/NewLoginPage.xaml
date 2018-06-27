@@ -34,7 +34,9 @@
                            HeightRequest="170"   
                            VerticalOptions="EndAndExpand"/>
                     <Entry Grid.Row="1"   Text="{Binding Email}" Placeholder="Ingrese su email" PlaceholderColor="#bababa" FontSize="16"/>
-                    <Entry Grid.Row="2"   Text="{Binding Password}"  Placeholder="Ingrese su contraseña" PlaceholderColor="#bababa" FontSize="16"/>
+                    <Entry Grid.Row="2"   Text="{Binding Password}"  Placeholder="Ingrese su contraseña"
+                           IsPassword="True"
+                           PlaceholderColor="#bababa" FontSize="16"/>
 
                     <StackLayout Grid.Row="3" 
                         Padding="30,0,30,0"
@@ -92,7 +94,7 @@
                                      Margin="0,0,0,5"
                                      BackgroundColor="#ffffff">
                     <Label HeightRequest="1" BackgroundColor="#e3e3e3"/>
-                    <Label Text="Dont'Have Account Login? SignUp" 
+                    <Label Text="¿No tienes cuenta? Regístrate" 
                                        VerticalOptions="FillAndExpand" 
                                        VerticalTextAlignment="Center" 
                                        HorizontalTextAlignment="Center"/>

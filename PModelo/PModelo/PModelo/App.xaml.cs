@@ -10,7 +10,7 @@ using PModelo.Services;
 
 namespace PModelo
 {
-    [Preserve(AllMembers = true)]
+    //[Preserve(AllMembers = true)]
     public partial class App : Application
     {
         //public static MasterPage Master { get; internal set; }
@@ -31,12 +31,9 @@ namespace PModelo
         public static User CurrentUser { get; internal set; }
         #endregion
 
-
         public App ()
 		{
-
 			InitializeComponent();
-
             try
             {
                 dataService = new DataService();
@@ -52,6 +49,7 @@ namespace PModelo
                         if (persona!=null) {
                             user.Persona = new Persona
                             {
+                                Id_Persona = persona.Id_Persona,
                                 Apellido_Paterno = persona.Apellido_Paterno,
                                 Apellido_Materno = persona.Apellido_Materno,
                                 Direccion = persona.Direccion,
@@ -60,20 +58,15 @@ namespace PModelo
                                 Email_Persona = persona.Email_Persona,
                                 Estado = persona.Estado,
                                 Fecha_Nacimiento = persona.Fecha_Nacimiento,
-                                Id_Persona = persona.Id_Persona,
                                 Nombre = persona.Nombre,
                                 Picture = persona.Picture,
                                 Telefono = persona.Telefono
                             };
                         }
                     }
-                    //else if(user.UserTypeId==4){
-
-                    //}
                     
                     var mainViewModel = MainViewModel.GetInstance();
                     mainViewModel.LoadMenu(user);
-
                     //if (string.IsNullOrEmpty(user.Phone) && user.UserTipeId == 1)
                     //{
                     //    var profile = new FacebookResponse
@@ -102,18 +95,14 @@ namespace PModelo
                 {
                     MainPage = new NewLoginPage();
                 }
-
                 //MainPage = new MasterPage();
                 //MainPage = new Loginpage();
-
             }
             catch (Exception ex)
             {
-
                 throw;
             }  
         }
-
 
         protected override void OnStart ()
 		{
@@ -129,7 +118,6 @@ namespace PModelo
 		{
 			// Handle when your app resumes
 		}
-
     }
 }
 

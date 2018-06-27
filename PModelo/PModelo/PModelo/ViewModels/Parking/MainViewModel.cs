@@ -537,12 +537,12 @@ namespace PModelo.ViewModels
                         Title = "Dashboard",
                     });
 
-                    Menu.Add(new MenuItemViewModel
-                    {
-                        Icon = "icon.png",
-                        PageName = "CierreVentasPage",
-                        Title = "Cierre de Ventas",
-                    });
+                    //Menu.Add(new MenuItemViewModel
+                    //{
+                    //    Icon = "icon.png",
+                    //    PageName = "CierreVentasPage",
+                    //    Title = "Cierre de Ventas",
+                    //});
 
                     //Menu.Add(new MenuItemViewModel
                     //{
