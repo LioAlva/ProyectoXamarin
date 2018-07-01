@@ -3,6 +3,7 @@ using Plugin.Geolocator;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
+using System;
 
 namespace PModelo.Pages
 {
@@ -12,21 +13,23 @@ namespace PModelo.Pages
 		public ParqueaderoDetailPage ()
 		{
 			InitializeComponent ();
+            
 
-            var mainViewModel = MainViewModel.GetInstance();
-            foreach (Pin item in mainViewModel.Pins2)
-            {
-                MyMapa.Pins.Add(item);
-            }
-            Locator(mainViewModel.PositionsState);
+            //this.BindingContext = new ParqueaderoItemViewModel();
+            //var mainViewModel = MainViewModel.GetInstance();
+            //foreach (Pin item in mainViewModel.Pins2)
+            //{
+            //    //MyMapa.Pins.Add(item);
+            //}
+            //Locator(mainViewModel.PositionsState);
         }
 
         private void Locator(Position PositionsState)
         {
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 50;
+            //var locator = CrossGeolocator.Current;
+            //locator.DesiredAccuracy = 50;
             var position = new Position(PositionsState.Latitude, PositionsState.Longitude);
-            MyMapa.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.06)));
+            //MyMapa.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.5)));
 
         }
     }

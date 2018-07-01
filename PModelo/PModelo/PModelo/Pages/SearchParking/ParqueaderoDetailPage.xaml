@@ -8,16 +8,23 @@
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:chart2="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" 
+             xmlns:localT="clr-namespace:PModelo.Pages.Template;assembly=PModelo"
+                
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
 
     <tabView:SfTabView 
+            
             VisibleHeaderCount="2">
         <tabView:SfTabItem Title="Detalle" 
                                TitleFontSize="15"
                                TitleFontColor="{StaticResource BlackColor}">
             <tabView:SfTabItem.Content>
-                <StackLayout Padding="5">
+                <StackLayout Padding="5" HorizontalOptions="FillAndExpand"
+                             BindingContext="{Binding ParqueaderoSelected}"
+                             VerticalOptions="FillAndExpand"
+                             >
                     <Image Margin="5,-1,11,0" 
                     HeightRequest="150"
                     HorizontalOptions="FillAndExpand"
@@ -26,16 +33,16 @@
                     
                     
                 <ScrollView
-        BindingContext="{Binding ParqueaderoSelected}" Padding="15"  >
+        Padding="15"  >
                     <StackLayout Spacing="0">
                         <StackLayout>
                             <Label 
-                                Margin="15"
+                                Margin="10"
                                 HorizontalOptions="CenterAndExpand"
                        VerticalOptions="CenterAndExpand"
                        Text="Gracias por elegirnos"
                        FontAttributes="Bold"
-                       FontSize="25" />
+                       FontSize="20" />
                         </StackLayout>
                         <StackLayout Spacing="10">
                            
@@ -230,12 +237,12 @@
                                     Padding="0,12,0,0"
                                     Orientation="Horizontal" VerticalOptions="EndAndExpand">
                                     <Button
-                                            Command="{Binding SaveCommand}"
+                                            Command="{Binding SeePlacesCommand}"
                                             IsEnabled="{Binding IsEnabled}"
                                             VerticalOptions="FillAndExpand"
                                             HorizontalOptions="FillAndExpand"
                                             BackgroundColor="{StaticResource AccentColor}"
-                                            Text="Reservar">
+                                            Text="Ver Espacios">
                                     </Button>
                                 </StackLayout>
                             </StackLayout>
@@ -257,22 +264,200 @@
 
 
 
-        <tabView:SfTabItem Title="Ubicacion del parqueadero"
+        <tabView:SfTabItem     Title="Haga su reserva"
                                TitleFontSize="15"
+                               
                                TitleFontColor="{StaticResource BlackColor}" >
             <tabView:SfTabItem.Content >
-                <StackLayout>
-                    <StackLayout>
+               
+                    <!--<StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
                         <maps:Map 
                 WidthRequest="145" 
-                HeightRequest="350"
+                HeightRequest="490"
                 x:Name="MyMapa"
                 IsShowingUser="true"
-                MapType="Hybrid">
+                MapType="Street">
                         </maps:Map>
-                    </StackLayout>
-                </StackLayout>
+                    </StackLayout>-->
+
+                <!--CachingStrategy="RecycleElement"
+                  ItemsSource="{Binding UsuariosLocatarios}" 
+                  SeparatorVisibility="None"
+                  SeparatorColor="Transparent"
+                  ItemTapped="OnItemTapped"
+                  HasUnevenRows="False"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshDocumentTimeListCommand}"
+                  IsRefreshing="{Binding IsRefreshingDocument, Mode=TwoWay}"-->
+
+
+
+                <!--<Grid VerticalOptions="Fill" HorizontalOptions="Fill"
+              BindingContext="{Binding ParqueaderoSelected}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ContentView Grid.Row="0" HeightRequest="60" Padding="0">
+                        <Label Text="Haga su reserva" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center" TextColor="DarkBlue" FontSize="Medium"/>
+                    </ContentView>
+
+                    <ScrollView Grid.Row="1">
+                        <flv:FlowListView 
+                                  IsPullToRefreshEnabled="True"
+                                  RefreshCommand="{Binding RefreshPlaceListCommand}"
+                                  IsRefreshing="{Binding IsRefreshingPlaces, Mode=TwoWay}"
+                                 
+                    
+                                  FlowItemsSource="{Binding BreakfastMenuList}"
+                                  FlowLastTappedItem = "{Binding SelectedBreakfastMenu}" 
+                                  FlowItemTappedCommand ="{Binding MenuTappedCommand}" 
+                                  FlowColumnCount="4"
+                                  SeparatorVisibility="None" 
+                                  Margin="5,0,5,5" 
+                                  
+                                  HasUnevenRows="True">
+                            <flv:FlowListView.FlowColumnTemplate>
+                                <DataTemplate>
+                                    <Frame Margin="10,10,10,10" CornerRadius="5" HeightRequest="55" >
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-20">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Image Grid.Row="1" Source="{Binding ImageSource}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <ContentView Grid.Row="2" BackgroundColor="DarkBlue" HeightRequest="40">
+                                                <Label Text="{Binding MenuTitle}" TextColor="White" FontSize="Small" FontAttributes="Bold" 
+                                               HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                            </ContentView>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </flv:FlowListView.FlowColumnTemplate>
+                        </flv:FlowListView>
+                    </ScrollView>
+
+                </Grid>-->
+
+                    
+
+                    <!--IsVisible="{Binding !IsRewelcome}"
+                    IsRunning="{Binding !IsRewelcome}">-->
+
+                    <!--<flv:FlowListView IsVisible="{Binding IsRewelcome}" 
+                                  IsPullToRefreshEnabled="True"
+                                  RefreshCommand="{Binding RefreshPlaceListCommand}"
+                                  IsRefreshing="{Binding IsRefreshingPlaces, Mode=TwoWay}"
+                                  BindingContext="{Binding ParqueaderoSelected}"
+                    
+                                  FlowItemsSource="{Binding BreakfastMenuList}"
+                                  FlowLastTappedItem = "{Binding SelectedBreakfastMenu}" 
+                                  FlowItemTappedCommand ="{Binding MenuTappedCommand}" 
+                                  FlowColumnCount="4"
+                                 
+                                  Margin="5,0,5,5" 
+                                  
+                                  HasUnevenRows="True">
+                        <flv:FlowListView.FlowColumnTemplate>
+                            <DataTemplate>
+                                <Frame Margin="10,10,10,10" CornerRadius="5" HeightRequest="55" >
+                                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-20">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image Grid.Row="1" Source="{Binding ImageSource}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <ContentView Grid.Row="2" BackgroundColor="DarkBlue" HeightRequest="40">
+                                            <Label Text="{Binding MenuTitle}" TextColor="White" FontSize="Small" FontAttributes="Bold" 
+                                               HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                                        </ContentView>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </flv:FlowListView.FlowColumnTemplate>
+                    </flv:FlowListView>-->
+                
+                
+                
+                <!--<localT:ParkingPlacesView/>-->
+
+                <StackLayout BindingContext="{Binding ParqueaderoSelected}">
+    <flv:FlowListView 
+                                  IsPullToRefreshEnabled="True"
+                                  RefreshCommand="{Binding RefreshPlaceListCommand}"
+                                  IsRefreshing="{Binding IsRefreshingPlaces, Mode=TwoWay}"
+                                 
+                    
+                                  FlowItemsSource="{Binding BreakfastMenuList}"
+                                  FlowLastTappedItem = "{Binding SelectedBreakfastMenu}" 
+                                  FlowItemTappedCommand ="{Binding MenuTappedCommand}" 
+                                  FlowColumnCount="4"
+                                  SeparatorVisibility="None" 
+                                  Margin="5,0,5,5" 
+                                  
+                                  HasUnevenRows="True">
+        <flv:FlowListView.FlowColumnTemplate>
+            <DataTemplate>
+                <Frame Margin="10,10,10,10" CornerRadius="5" HeightRequest="55" >
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="1" Source="{Binding ImageSource}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <ContentView Grid.Row="2" BackgroundColor="DarkBlue" HeightRequest="40">
+                            <Label Text="{Binding MenuTitle}" TextColor="White" FontSize="Small" FontAttributes="Bold" 
+                                               HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                        </ContentView>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </flv:FlowListView.FlowColumnTemplate>
+    </flv:FlowListView>
+</StackLayout>
+
             </tabView:SfTabItem.Content>
         </tabView:SfTabItem>
     </tabView:SfTabView>
 </ContentPage>
+
+
+<!--<StackLayout BindingContext="{Binding ParqueaderoSelected}">
+    <flv:FlowListView 
+                                  IsPullToRefreshEnabled="True"
+                                  RefreshCommand="{Binding RefreshPlaceListCommand}"
+                                  IsRefreshing="{Binding IsRefreshingPlaces, Mode=TwoWay}"
+                                 
+                    
+                                  FlowItemsSource="{Binding BreakfastMenuList}"
+                                  FlowLastTappedItem = "{Binding SelectedBreakfastMenu}" 
+                                  FlowItemTappedCommand ="{Binding MenuTappedCommand}" 
+                                  FlowColumnCount="4"
+                                  SeparatorVisibility="None" 
+                                  Margin="5,0,5,5" 
+                                  
+                                  HasUnevenRows="True">
+        <flv:FlowListView.FlowColumnTemplate>
+            <DataTemplate>
+                <Frame Margin="10,10,10,10" CornerRadius="5" HeightRequest="55" >
+                    <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Margin="-20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image Grid.Row="1" Source="{Binding ImageSource}" HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <ContentView Grid.Row="2" BackgroundColor="DarkBlue" HeightRequest="40">
+                            <Label Text="{Binding MenuTitle}" TextColor="White" FontSize="Small" FontAttributes="Bold" 
+                                               HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
+                        </ContentView>
+                    </Grid>
+                </Frame>
+            </DataTemplate>
+        </flv:FlowListView.FlowColumnTemplate>
+    </flv:FlowListView>
+</StackLayout>-->

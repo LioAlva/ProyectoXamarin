@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace PModelo.ViewModels
@@ -38,6 +39,7 @@ namespace PModelo.ViewModels
 
         public UserSistemViewModel UserLoged { get; set; }
         //UserLoged
+        public PlacesViewModel Places { get; set; }
 
 
         SfChart chart { get; set; }
@@ -123,6 +125,8 @@ namespace PModelo.ViewModels
 
             Data = new List<Person>();
             Data2 = new List<Person>();
+            //INavigation navigation=new INavigation();
+            Places = new PlacesViewModel();
 
             //LoadMenu();
             LoadData();
@@ -207,8 +211,8 @@ namespace PModelo.ViewModels
 
         public void LoadparqueaderoSeleccionado(ParqueaderoItemViewModel parqueaderoSelected)
         {
-            ParqueaderoSelected = parqueaderoSelected;
-            parqueaderoSelected.NombreTipoParqueadero =parqueaderoSelected.Id_Parqueadero==1 ? "Privado" : "Público";
+            ParqueaderoSelected = parqueaderoSelected;//modificacion
+            parqueaderoSelected.NombreTipoParqueadero =parqueaderoSelected.Id_Tipo_Parking==1 ? "Privado" : "Público";
         }
         
         //public void LoadNewUserWhite()
@@ -543,13 +547,19 @@ namespace PModelo.ViewModels
                     //    PageName = "CierreVentasPage",
                     //    Title = "Cierre de Ventas",
                     //});
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "Page2",
+                        Title = "VER2",
+                    });
 
-                    //Menu.Add(new MenuItemViewModel
-                    //{
-                    //    Icon = "icon.png",
-                    //    PageName = "MapUbicateParkingPage",
-                    //    Title = "Mapas",
-                    //});
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "Page",
+                        Title = "VER",
+                    });
 
                     Menu.Add(new MenuItemViewModel
                     {
@@ -569,7 +579,13 @@ namespace PModelo.ViewModels
                     ; break;
                 case 4:
 
-
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "Page",
+                        Title = "VER",
+                    });
+                    
                     Menu.Add(new MenuItemViewModel
                     {
                         Icon = "home.png",

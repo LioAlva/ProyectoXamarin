@@ -18,6 +18,8 @@
   <ItemGroup>
     <Compile Remove="Pages\EventosPage\EventoPopPage.xaml.cs" />
     <Compile Remove="Pages\EventosPage\LoadingPopupPage.xaml.cs" />
+    <Compile Remove="Pages\GridP\Page.xaml.cs" />
+    <Compile Remove="Pages\GridP\Page2.xaml.cs" />
     <Compile Remove="Pages\NavigationPageM.xaml.cs" />
     <Compile Remove="Pages\SearchParking\ParqueaderoPage.xaml.cs" />
     <Compile Remove="Pages\WelcomePage.xaml.cs" />
@@ -26,12 +28,15 @@
   <ItemGroup>
     <EmbeddedResource Remove="Pages\EventosPage\EventoPopPage.xaml" />
     <EmbeddedResource Remove="Pages\EventosPage\LoadingPopupPage.xaml" />
+    <EmbeddedResource Remove="Pages\GridP\Page.xaml" />
+    <EmbeddedResource Remove="Pages\GridP\Page2.xaml" />
     <EmbeddedResource Remove="Pages\NavigationPageM.xaml" />
     <EmbeddedResource Remove="Pages\SearchParking\ParqueaderoPage.xaml" />
     <EmbeddedResource Remove="Pages\WelcomePage.xaml" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
     <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
     <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.21" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1" />
@@ -60,6 +65,7 @@
     <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.2" />
     <PackageReference Include="Xamarin.Forms.CarouselView" Version="2.3.0-pre2" />
     <PackageReference Include="Xamarin.Forms.Maps" Version="2.5.0.122203" />
+    <PackageReference Include="XLabs.Forms" Version="2.3.0-pre05" />
   </ItemGroup>
 
   <ItemGroup>
@@ -93,10 +99,16 @@
     <EmbeddedResource Update="Pages\DataGridViewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\EspacesPage\PlacesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\EventosPage\EventoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\EventosPage\EventosPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\GridP\BreakfastPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Loginpage.xaml">
@@ -136,6 +148,18 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\SearchParking\SearchParkingPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SearchParking\TABX\ParkDetailTapPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SearchParking\TABX\ParkEspaceTapPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SearchParking\TABX\TabbedCenterPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SearchParking\Template\ParkingPlacesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\UserAplicationPage\UserPage.xaml">

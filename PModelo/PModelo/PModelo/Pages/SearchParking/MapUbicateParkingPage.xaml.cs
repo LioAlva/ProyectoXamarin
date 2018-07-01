@@ -3,6 +3,7 @@ using Plugin.Geolocator;
 using PModelo.Services;
 using PModelo.ViewModels;
 using System;
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
@@ -29,8 +30,16 @@ namespace PModelo.Pages
                          var _pin = sender as Pin;
                          var _model =(ParqueaderoItemViewModel)_pin.BindingContext;
                          mainViewModel.LoadparqueaderoSeleccionado(_model);
-                         mainViewModel.SetGeolocation(_model.Latitud??0,_model.Longitud??0,_model.Nombre,_model.Direccion);
-                         await navigationService.Navigate("ParqueaderoDetailPage");
+                         
+                         //mainViewModel.ParqueaderoSelected.IsRewelcome=false;
+                         mainViewModel.ParqueaderoSelected.SeePlaces();
+                         //mainViewModel.ParqueaderoSelected.IsRewelcome = true;
+                         //Thread.Sleep(1000);
+                         
+                         await navigationService.Navigate("TabbedCenterPage");
+
+                         //mainViewModel.SetGeolocation(_model.Latitud??0,_model.Longitud??0,_model.Nombre,_model.Direccion);
+                         //await navigationService.Navigate("ParqueaderoDetailPage");
                      };
                     MyMap.Pins.Add(item);
                 }

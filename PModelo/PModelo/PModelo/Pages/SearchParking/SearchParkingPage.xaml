@@ -26,7 +26,9 @@
                    HorizontalOptions="CenterAndExpand"
                FontSize="30"></Label>
 
-            <StackLayout Padding="0" HorizontalOptions="FillAndExpand" Margin="0" VerticalOptions="CenterAndExpand" >
+            <StackLayout Padding="0" HorizontalOptions="FillAndExpand" Margin="0" 
+                         IsVisible="{Binding IsEnabled}"
+                         VerticalOptions="CenterAndExpand" >
                 <Label Text="Toca el botón para buscar estacionamientos cercanos"  
                    VerticalOptions="Center"
                    TextColor="Red"
