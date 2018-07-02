@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PModelo.Pages.GridP
+namespace PModelo.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Page2 : ContentPage
+	public partial class ReservaControlPage : ContentPage
 	{
-		public Page2 ()
+		public ReservaControlPage ()
 		{
 			InitializeComponent ();
 		}

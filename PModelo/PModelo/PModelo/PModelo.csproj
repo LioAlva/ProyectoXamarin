@@ -54,7 +54,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="16.1.0.24" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="16.1.0.37" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="16.2.0.42" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="16.1.0.37" />
     <PackageReference Include="Syncfusion.Xamarin.SfSunburstChart" Version="16.1.0.24" />
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="16.1.0.24" />
@@ -84,6 +84,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Controls\PopupPicker\PopupPicker.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\Account\RegisterUser.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -147,6 +150,15 @@
     <EmbeddedResource Update="Pages\SearchParking\MapUbicateParkingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SearchParking\Reserva\ReservaControlPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SearchParking\Reserva\ReservaPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\SearchParking\Reserva\ReservaTimePickerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Pages\SearchParking\SearchParkingPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -184,7 +196,7 @@
 
   <ItemGroup>
     <Reference Include="SampleBrowser.Core">
-      <HintPath>C:\Users\Hp\Documents\SampleBrowser.Core.dll</HintPath>
+      <HintPath>E:\Forms EXAMPLES\SfPicker\packages\SampleBrowser.Core.16.1.0.24\lib\portable-win+net45+wp80+win81+wpa81\SampleBrowser.Core.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.DataSource.Portable">
       <HintPath>..\..\..\..\Xamarin\sample\Forms\DataSource\packages\Syncfusion.Xamarin.DataSource.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.DataSource.Portable.dll</HintPath>

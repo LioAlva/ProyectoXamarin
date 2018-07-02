@@ -29,16 +29,13 @@ namespace PModelo.Pages
                      {
                          var _pin = sender as Pin;
                          var _model =(ParqueaderoItemViewModel)_pin.BindingContext;
-                         mainViewModel.LoadparqueaderoSeleccionado(_model);
-                         
-                         //mainViewModel.ParqueaderoSelected.IsRewelcome=false;
-                         mainViewModel.ParqueaderoSelected.SeePlaces();
-                         //mainViewModel.ParqueaderoSelected.IsRewelcome = true;
-                         //Thread.Sleep(1000);
-                         
-                         await navigationService.Navigate("TabbedCenterPage");
+                         mainViewModel.LoadparqueaderoSeleccionado(_model);                        
+                         mainViewModel.ParqueaderoSelected.SeePlaces();                      
+                         mainViewModel.SetGeolocation(_model.Latitud??0,_model.Longitud??0,_model.Nombre,_model.Direccion);
 
-                         //mainViewModel.SetGeolocation(_model.Latitud??0,_model.Longitud??0,_model.Nombre,_model.Direccion);
+                         await navigationService.Navigate("TabbedCenterPage");
+                         //mainViewModel.ParqueaderoSelected.IsRewelcome = true;
+                         //mainViewModel.ParqueaderoSelected.IsRewelcome=false;
                          //await navigationService.Navigate("ParqueaderoDetailPage");
                      };
                     MyMap.Pins.Add(item);

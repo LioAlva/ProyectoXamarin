@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:PModelo.Pages;assembly=PModelo"
+             xmlns:local="clr-namespace:PModelo.Controls;assembly=PModelo"
+             Title="Detalle de Reserva"
+             x:Class="PModelo.Pages.ReservaTimePickerPage">
+    
+    <ScrollView Margin="15,15,15,5"
+                    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+                >
+        <StackLayout   BindingContext="{Binding ReservaIdentity}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid ColumnSpacing="0"
+                  Grid.Row="0" 
+                  Padding="0" Margin="0"
+                  HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Parqueadero" FontAttributes="Bold" TextColor="Black"/>
+                    <Entry Grid.Row="1" FontSize="Medium" Text="{Binding Nombre_Parqueadero,Mode=TwoWay}"  TextColor="Black" IsEnabled="False"/>
+                </Grid>
+
+                <Grid ColumnSpacing="0"
+                  Grid.Row="1" 
+                  Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Espacio"  FontAttributes="Bold"/>
+                    <Entry Grid.Row="1" FontSize="Medium" Text="{Binding Nombre_Espacio,Mode=TwoWay}"  TextColor="Black"  IsEnabled="False"/>
+                </Grid>
+
+                <Grid HorizontalOptions="FillAndExpand"
+                  Grid.Row="2" 
+                  ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Text="Tipo"  FontAttributes="Bold"/>
+                    <Entry Grid.Row="1" Text="{Binding Nombre_Tipo_Parqueadero,Mode=TwoWay}" FontSize="Medium"  IsEnabled="False"/>
+                </Grid>
+
+
+                <Grid ColumnSpacing="0"
+                  Grid.Row="3" 
+                  HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label Text="Fecha Desde "   
+                           FontAttributes="Bold"
+                           Grid.Row="0" Grid.Column="0"/>
+                    <local:CustomDatePicker3
+                         Date="{Binding FechaInicio}"
+                         Format="dd/MM/yyyy" 
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"
+                         TextColor="Gray"
+                         x:Name="dtpFechaInicio"
+                         Grid.Row="1"
+                        Grid.Column="0" 
+                        >
+                        <DatePicker.Behaviors>
+                            <local:CompareDatesValidatorBehavior BindingContext="{x:Reference dtpFechaFin}" Date="{Binding Date}"
+                                                                 Order="1" DatePick="{x:Reference dtpFechaFin}" />
+                        </DatePicker.Behaviors>
+                    </local:CustomDatePicker3>
+
+                    <Label Grid.Column="1"  Grid.Row="0" Text="Hora Inicio " FontAttributes="Bold"/>
+                    <custom:CustomTimePicker24H Grid.Column="1"  Grid.Row="1"
+                                                Time="{Binding HoraInicio}"
+                                                TextColor="Gray" Format="HH:mm" 
+                                                HeightRequest="40" 
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"/>
+
+                </Grid>
+
+
+                <Grid ColumnSpacing="0"
+                  Grid.Row="4" 
+                  HorizontalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Fecha Hasta: "
+                           FontAttributes="Bold"
+                           Grid.Row="0" Grid.Column="0"/>
+                    <local:CustomDatePicker3  
+                        Date="{Binding FechaFin}"
+                        Format="dd/MM/yyyy"         
+                        x:Name="dtpFechaFin"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center"
+                         TextColor="Gray"
+                         Grid.Row="1"
+                         Grid.Column="0"
+                        >
+                        <DatePicker.Behaviors>
+                            <local:CompareDatesValidatorBehavior BindingContext="{x:Reference dtpFechaInicio}"
+                                                                 Date="{Binding Date}" Order="2" DatePick="{x:Reference dtpFechaInicio}" />
+                        </DatePicker.Behaviors>
+                    </local:CustomDatePicker3>
+
+
+                    <Label Grid.Row="0"  Grid.Column="1" Text="Hora Fin: "  FontAttributes="Bold"/>
+                    <custom:CustomTimePicker24H Grid.Column="1"
+                                                Grid.Row="1"
+                                                Time="{Binding HoraFin}"
+                                                TextColor="Gray" Format="HH:mm" HeightRequest="40" 
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                                />
+
+                    <!--</StackLayout>-->
+                    <!--<Entry Grid.Row="1" Text="{Binding Phone,Mode=TwoWay}" IsEnabled="{Binding IsEnabled,Mode=TwoWay}"/>-->
+                </Grid>
+
+                <Button 
+                Grid.Row="5" 
+                        Margin="0,0,0,0"
+                        Text="Reservar" 
+                        BackgroundColor="#FF2B28" 
+                        TextColor="White" 
+                        VerticalOptions="End"
+                        Command="{Binding NewLoginCommand}"
+                        />
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+
+
+<!--<Grid ColumnSpacing="0"
+                  Grid.Row="4" 
+                  HorizontalOptions="FillAndExpand" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Correo" FontAttributes="Bold"/>
+                    <local:CustomDatePicker2
+                        x:Name="date"
+                        Grid.Row="1" 
+                        ColumnHeaderHeight="40"
+                        HorizontalOptions="Center"
+                        PickerHeight="400"
+                        PickerMode="Dialog"
+                        PickerWidth="300"
+                        SelectedItem="{Binding StartDate}"
+                        VerticalOptions="Center" /> 
+
+
+
+                </Grid>-->
+
+<!--<Grid ColumnSpacing="0"
+                  Grid.Row="4" 
+                  HorizontalOptions="FillAndExpand" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Row="0" Text="Correo" FontAttributes="Bold"/>
+                    <local:CustomDatePicker2
+                        x:Name="date"
+                        Grid.Row="1" 
+                        ColumnHeaderHeight="40"
+                        HorizontalOptions="Center"
+                        PickerHeight="400"
+                        PickerMode="Dialog"
+                        PickerWidth="300"
+                        SelectedItem="{Binding StartDate}"
+                        VerticalOptions="Center" /> 
+
+
+
+                </Grid>-->
+

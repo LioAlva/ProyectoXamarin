@@ -1,15 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using PModelo.Helpers;
 using PModelo.Models;
-using PModelo.Pages;
 using PModelo.Services;
 using Syncfusion.SfChart.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Windows.Input;
-using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
 namespace PModelo.ViewModels
@@ -41,6 +38,7 @@ namespace PModelo.ViewModels
         //UserLoged
         public PlacesViewModel Places { get; set; }
 
+        public ReservaViewModel ReservaIdentity { get; set; }
 
         SfChart chart { get; set; }
 
@@ -127,7 +125,7 @@ namespace PModelo.ViewModels
             Data2 = new List<Person>();
             //INavigation navigation=new INavigation();
             Places = new PlacesViewModel();
-
+            ReservaIdentity = new ReservaViewModel();
             //LoadMenu();
             LoadData();
             LoadContact();

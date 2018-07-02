@@ -51,6 +51,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
+    <Reference Include="SampleBrowser.Core">
+      <HintPath>E:\Forms EXAMPLES\SfPicker\packages\SampleBrowser.Core.16.1.0.24\lib\MonoAndroid10\SampleBrowser.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SampleBrowser.Core.Android">
+      <HintPath>E:\Forms EXAMPLES\SfPicker\packages\SampleBrowser.Core.16.1.0.24\lib\MonoAndroid10\SampleBrowser.Core.Android.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -106,7 +112,7 @@
       <Version>16.1.0.24</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPicker">
-      <Version>16.1.0.37</Version>
+      <Version>16.2.0.42</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">
       <Version>16.1.0.37</Version>

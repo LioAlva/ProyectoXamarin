@@ -7,20 +7,18 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace PModelo.Pages.GridP
+namespace PModelo.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class Page : ContentPage
+	public partial class ReservaTimePickerPage : ContentPage
 	{
-		public Page ()
+		public ReservaTimePickerPage ()
 		{
 			InitializeComponent ();
-
 		}
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await GrdView.BuildTiles();
-        }
+        //private void Button_Clicked(object sender, EventArgs e)
+        //{
+        //    date.IsOpen = !date.IsOpen;
+        //}
     }
 }

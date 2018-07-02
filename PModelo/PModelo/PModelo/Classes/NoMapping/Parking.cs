@@ -1,7 +1,4 @@
 ﻿using SQLite.Net.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace PModelo.Classes.NoMapping
 {

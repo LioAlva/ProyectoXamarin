@@ -18,8 +18,8 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace PModelo.ViewModels
-{
-    public class ParkItemViewModel:Parking, INotifyPropertyChanged
+{//Parking
+    public class ParkItemViewModel: Parking, INotifyPropertyChanged
     {
         #region Attributes
         //public NetService netService;

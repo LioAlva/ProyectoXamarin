@@ -316,22 +316,32 @@ namespace PModelo.ViewModels
 
         private async Task MenuSelectedAsync()
         {
-            switch (SelectedBreakfastMenu.MenuTitle)
-            {
-                case "BURGER":
-                    //await navigation.PushModalAsync(new ProbaPage());
-                    break;
-                case "PIZZA":
-                    //await navigation.PushModalAsync(new ProbaPage());
-                    break;
-                case "BACON":
-                    //await navigation.PushModalAsync(new ProbaPage());
-                    break;
-                case "SANDWICH":
-                    //await navigation.PushModalAsync(new ProbaPage());
-                    break;
-            }
+            //Reserva
+            var mainViewModel = MainViewModel.GetInstance();
+            var reserva = new Reserva {
+                Nombre_Espacio= SelectedBreakfastMenu.MenuTitle,
+                Nombre_Parqueadero=Nombre,
+                Nombre_Tipo_Parqueadero=NombreTipoParqueadero
+            };
 
+            mainViewModel.ReservaIdentity.ReloadReservaIdentity(reserva);
+
+            await navigationService.Navigate("ReservaTimePickerPage");
+            //switch (SelectedBreakfastMenu.MenuTitle)
+            //{
+            //    case "BURGER":
+            //        await navigation.PushModalAsync(new ProbaPage());
+            //        break;
+            //    case "PIZZA":
+            //        //await navigation.PushModalAsync(new ProbaPage());
+            //        break;
+            //    case "BACON":
+            //        //await navigation.PushModalAsync(new ProbaPage());
+            //        break;
+            //    case "SANDWICH":
+            //        //await navigation.PushModalAsync(new ProbaPage());
+            //        break;
+            //}
         }
 
         protected void SetObservableProperty<T>(ref T field, T value,

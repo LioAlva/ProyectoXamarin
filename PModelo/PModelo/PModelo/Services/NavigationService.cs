@@ -55,6 +55,10 @@ namespace PModelo.Services
                 case "TabbedCenterPage":
                     await App.Navigator.PushAsync(new TabbedCenterPage());
                     break;
+                case "ReservaTimePickerPage":
+                    await App.Navigator.PushAsync(new ReservaTimePickerPage());
+                    break;
+                    
                 //case "ListaRojaPage":
                 //    await App.Navigator.PushAsync(new ProbaPage());
                 //    break;

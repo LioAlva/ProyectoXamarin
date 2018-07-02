@@ -5,10 +5,12 @@
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" 
              xmlns:localT="clr-namespace:PModelo.Pages.Template;assembly=PModelo"
                 Title="Haga su reserva"
+             
+             BackgroundColor="{Binding PlatinumColor}"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
     <StackLayout  BindingContext="{Binding ParqueaderoSelected}">
-
+        <!--https://xamarinexplorer.com/tag/flowlistview/-->
         <flv:FlowListView 
                                   IsPullToRefreshEnabled="True"
                                   RefreshCommand="{Binding RefreshPlaceListCommand}"
@@ -32,7 +34,7 @@
                             </Grid.RowDefinitions>
 
                             <Image Grid.Row="1" Source="{Binding ImageSource}" HorizontalOptions="Center" VerticalOptions="Center"/>
-                            <ContentView Grid.Row="2" BackgroundColor="DarkBlue" HeightRequest="40">
+                            <ContentView Grid.Row="2" BackgroundColor="{StaticResource MallColor}" HeightRequest="40">
                                 <Label Text="{Binding MenuTitle}" TextColor="White" FontSize="Small" FontAttributes="Bold" 
                                                HorizontalOptions="CenterAndExpand" VerticalOptions="Center"/>
                             </ContentView>

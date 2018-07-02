@@ -10,7 +10,7 @@
              xmlns:chart2="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" 
              xmlns:localT="clr-namespace:PModelo.Pages.Template;assembly=PModelo"
-                
+             BackgroundColor="{Binding PlatinumColor}"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
     <ContentPage.Content>
@@ -226,7 +226,7 @@
                             </Grid>
                         </Grid>
 
-                        <StackLayout
+                        <!--<StackLayout
                                     Padding="0,12,0,0"
                                     Orientation="Horizontal" VerticalOptions="EndAndExpand">
                             <Button
@@ -237,7 +237,7 @@
                                             BackgroundColor="{StaticResource AccentColor}"
                                             Text="Ver Espacios">
                             </Button>
-                        </StackLayout>
+                        </StackLayout>-->
                     </StackLayout>
                 </StackLayout>
             </ScrollView>
