@@ -224,7 +224,8 @@ namespace PModelo.ViewModels
                                     PlacesMenuList.Add(new BreakfastMenu
                                     {
                                         ImageSource = item.Descripcion,
-                                        MenuTitle = item.Descripcion
+                                        MenuTitle = item.Descripcion,
+                                        Id_Espacio=item.Id_Espacio
                                     });
                                 }
                                BreakfastMenuList = PlacesMenuList;
@@ -321,7 +322,9 @@ namespace PModelo.ViewModels
             var reserva = new Reserva {
                 Nombre_Espacio= SelectedBreakfastMenu.MenuTitle,
                 Nombre_Parqueadero=Nombre,
-                Nombre_Tipo_Parqueadero=NombreTipoParqueadero
+                Nombre_Tipo_Parqueadero=NombreTipoParqueadero,
+                Id_Parqueadero=Id_Parqueadero,
+                Id_Espacio= SelectedBreakfastMenu.Id_Espacio
             };
 
             mainViewModel.ReservaIdentity.ReloadReservaIdentity(reserva);

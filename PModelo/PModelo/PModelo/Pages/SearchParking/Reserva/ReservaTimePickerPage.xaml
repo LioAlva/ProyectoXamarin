@@ -78,7 +78,7 @@
                          TextColor="Gray"
                          x:Name="dtpFechaInicio"
                          Grid.Row="1"
-                        Grid.Column="0" 
+                         Grid.Column="0" 
                         >
                         <DatePicker.Behaviors>
                             <local:CompareDatesValidatorBehavior BindingContext="{x:Reference dtpFechaFin}" Date="{Binding Date}"
@@ -90,7 +90,7 @@
                     <custom:CustomTimePicker24H Grid.Column="1"  Grid.Row="1"
                                                 Time="{Binding HoraInicio}"
                                                 TextColor="Gray" Format="HH:mm" 
-                                                HeightRequest="40" 
+                                               
                                                 HorizontalOptions="Start"
                                                 VerticalOptions="Center"/>
 
@@ -148,8 +148,8 @@
                         Text="Reservar" 
                         BackgroundColor="#FF2B28" 
                         TextColor="White" 
-                        VerticalOptions="End"
-                        Command="{Binding NewLoginCommand}"
+                        VerticalOptions="Start"
+                        Command="{Binding ReservePlaceCommand}"
                         />
             </Grid>
         </StackLayout>
