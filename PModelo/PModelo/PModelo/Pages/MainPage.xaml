@@ -7,11 +7,11 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
 
-    <ListView
+    <!--<ListView
     ItemTemplate="{StaticResource OrderItemTemplate}"
     ItemsSource="{Binding Orders}"
     HasUnevenRows="True">
-    </ListView>
+    </ListView>-->
     
     <!--<ListView
     ItemsSource="{Binding Orders}"

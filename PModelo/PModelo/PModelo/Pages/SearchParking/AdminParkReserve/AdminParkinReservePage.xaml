@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.AdminParkinReservePage"
+             Title="Mis Parqueaderos"
+             BackgroundColor="{StaticResource MenuFontColor}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             >
+
+    <StackLayout BindingContext="{Binding ReservaIdentity}">
+
+        <ListView
+    ItemTemplate="{StaticResource ParqueaderoItemTemplate}"
+    ItemsSource="{Binding Parqueaderos}"
+    HasUnevenRows="True">
+        </ListView>
+
+    </StackLayout>
+
+
+</ContentPage>

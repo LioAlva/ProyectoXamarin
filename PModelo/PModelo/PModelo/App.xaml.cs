@@ -38,7 +38,7 @@ namespace PModelo
             {
                 dataService = new DataService();
                 dialogService = new DialogService();
-
+                Navigator = new NavigationPage();
                 var user = dataService.First<User>(false);
                 
                 if (user != null && user.IsRemembered && user.TokenExpires>DateTime.Now)

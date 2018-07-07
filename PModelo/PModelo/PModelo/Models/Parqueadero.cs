@@ -1,5 +1,7 @@
 ﻿using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
 using System;
+using System.Collections.Generic;
 
 namespace PModelo.Models
 {
@@ -19,5 +21,10 @@ namespace PModelo.Models
         public  int? Id_Tipo_Parking { get; set; }
         public  DateTime? Fecha_Creacion { get; set; }
         public  string Estado { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Espacio> Espacios { get; set; }
+
+
     }
 }

@@ -12,10 +12,10 @@
     <MasterDetailPage.Detail>
         <NavigationPage x:Name="Navigator"
                         BarBackgroundColor="{StaticResource MallColor}">
-            
+
             <x:Arguments>
-                <pages:UserPage>
-                </pages:UserPage>
+                <pages:MainPage>
+                </pages:MainPage>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

@@ -538,26 +538,26 @@ namespace PModelo.ViewModels
                         PageName = "DashboardPage",
                         Title = "Dashboard",
                     });
-
+                    
                     //Menu.Add(new MenuItemViewModel
                     //{
                     //    Icon = "icon.png",
                     //    PageName = "CierreVentasPage",
                     //    Title = "Cierre de Ventas",
                     //});
-                    Menu.Add(new MenuItemViewModel
-                    {
-                        Icon = "icon.png",
-                        PageName = "Page2",
-                        Title = "VER2",
-                    });
+                    //Menu.Add(new MenuItemViewModel
+                    //{
+                    //    Icon = "icon.png",
+                    //    PageName = "Page2",
+                    //    Title = "VER2",
+                    //});
 
-                    Menu.Add(new MenuItemViewModel
-                    {
-                        Icon = "icon.png",
-                        PageName = "Page",
-                        Title = "VER",
-                    });
+                    //Menu.Add(new MenuItemViewModel
+                    //{
+                    //    Icon = "icon.png",
+                    //    PageName = "Page",
+                    //    Title = "VER",
+                    //});
 
                     Menu.Add(new MenuItemViewModel
                     {
@@ -573,23 +573,37 @@ namespace PModelo.ViewModels
                         Title = "Cerrar Sesión"
                     });
 
+                    //Menu.Add(new MenuItemViewModel
+                    //{
+                    //    Icon = "home.png",
+                    //    PageName = "MainPage2",
+                    //    Title = "MainPage2",
+                    //});
 
                     ; break;
                 case 4:
-
                     Menu.Add(new MenuItemViewModel
                     {
                         Icon = "icon.png",
-                        PageName = "Page",
-                        Title = "VER",
+                        PageName = "AdminParkinReservePage",
+                        Title = "Mis Parqueaderos",
                     });
+
+                    //Menu.Add(new MenuItemViewModel
+                    //{
+                    //    Icon = "home.png",
+                    //    PageName = "Parqueaderos",
+                    //    Title = "Menu",
+                    //});
+
+                    //Menu.Add(new MenuItemViewModel
+                    //{
+                    //    Icon = "icon.png",
+                    //    PageName = "Page",
+                    //    Title = "VER",
+                    //});
+
                     
-                    Menu.Add(new MenuItemViewModel
-                    {
-                        Icon = "home.png",
-                        PageName = "DashboardPage",
-                        Title = "Dashboard",
-                    });
 
 
                     Menu.Add(new MenuItemViewModel
@@ -598,7 +612,12 @@ namespace PModelo.ViewModels
                         PageName = "ParkingPage",
                         Title = "Registrar Parqueadero",
                     });
-
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "home.png",
+                        PageName = "DashboardPage",
+                        Title = "Dashboard",
+                    });
 
                     Menu.Add(new MenuItemViewModel
                     {
@@ -606,6 +625,8 @@ namespace PModelo.ViewModels
                         PageName = "LogutPage",
                         Title = "Cerrar Sesión"
                     });
+
+
                     ; break;
             }
             //Menu.Add(new MenuItemViewModel

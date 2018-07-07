@@ -1,4 +1,5 @@
 ﻿using SQLite.Net.Attributes;
+using SQLiteNetExtensions.Attributes;
 using System;
 
 namespace PModelo.Models
@@ -13,6 +14,9 @@ namespace PModelo.Models
         public  DateTime? Hora_Salida { get; set; }
         public  string Estado { get; set; }
         public  string Ocupado { get; set; }
-        public  int Tipo_Espacio { get; set; }
+        public  int? Tipo_Espacio { get; set; }
+        [ManyToOne]
+        public Parqueadero Parqueadero { get; set; }
+
     }
 }
