@@ -116,8 +116,12 @@ namespace PModelo.ViewModels
                     var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
                     if (isReachable)
                     {
+                        var sear = new SearchParkForm {
+                            Latitud= searchParkForm.Latitud,
+                            Longitude= searchParkForm.Longitude
+                        };
 
-                        var respuesta = await apiService.Post<SearchParkForm, ResponseT<List<Parqueadero>>>(Configuration.SERVER, "/api", "/Parking/SearchParking", user.TokenType, user.AccessToken, searchParkForm);
+                        var respuesta = await apiService.Post<SearchParkForm, ResponseT<List<Parqueadero>>>(Configuration.SERVER, "/api", "/Parking/SearchParking", user.TokenType, user.AccessToken, sear);
                         if (respuesta != null)
                         {
                             if (respuesta.IsSuccess)
