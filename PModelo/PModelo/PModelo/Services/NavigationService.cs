@@ -1,4 +1,5 @@
-﻿using PModelo.Pages;
+﻿using PModelo.Models;
+using PModelo.Pages;
 using PModelo.Pages.Account;
 using PModelo.Pages.GridP;
 using PModelo.ViewModels;
@@ -27,10 +28,18 @@ namespace PModelo.Services
 
         public async Task Navigate(string PageName)
         {
-
-            //var m = MasterPage.GetInstance();
-            //App.Master=m;
-            App.Master.IsPresented = false;
+            var userCurrent = dataService.First<User>(false);
+            switch (userCurrent.UserTypeId)
+            {
+                case 2:
+                    App.Master.IsPresented = false;
+                    ; break;
+                case 4:
+                    App.MasterAdmin.IsPresented = false;
+                    ; break;
+            }
+          
+            
             //App.MasterBar.Master.IsPresented=false;
 
             switch (PageName)
@@ -44,7 +53,7 @@ namespace PModelo.Services
                 case "MapUbicateParkingPage":
                     await App.Navigator.PushAsync(new MapUbicateParkingPage());
                     break;
-
+                    
                 //PlacesPage
                 case "PlacesPage":
                     await App.Navigator.PushAsync(new PlacesPage());
@@ -58,28 +67,7 @@ namespace PModelo.Services
                 case "ReservaTimePickerPage":
                     await App.Navigator.PushAsync(new ReservaTimePickerPage());
                     break;
-                    
-                //case "ListaRojaPage":
-                //    await App.Navigator.PushAsync(new ProbaPage());
-                //    break;
-                //case "LocatorioPage":
-                //    await App.Navigator.PushAsync(new ProbaPage());
-                //    break;
-                //case "EventosPage":
-                //    await App.Navigator.PushAsync(new EventosPage());
-                //    break;
-                //case "EventoPage":
-                //    await App.Navigator.PushAsync(new EventoPage());
-                //    break;
-                //case "ConfiguracionPage":
-                //    await App.Navigator.PushAsync(new NewOrderPage());
-                //    break;
-
-                //UsuariosPage
-                //case "UsuariosPage":
-                //    await App.Navigator.PushAsync(new UsuariosPage());
-                //    break;
-                //UsuariosPage
+               
 
                 case "ParqueaderoDetailPage":
                     await App.Navigator.PushAsync(new ParqueaderoDetailPage());
@@ -97,13 +85,11 @@ namespace PModelo.Services
                 case "UsersGroupPage":
                     await App.Navigator.PushAsync(new UsersGroupPage());
                     break;
-                case "SearchParkingPage":
-                    await App.Navigator.PushAsync(new SearchParkingPage());
-                    break;
+                //case "SearchParkingPage":
+                //    await App.Navigator.PushAsync(new SearchParkingPage());
+                //    break;
                 case "ParkingPage":
                     await App.Navigator.PushAsync(new ParkingPage());
-                    break;
-                default:
                     break;
                 case "EventoPopPage":
                     //await App.Navigator.PushAsync(new EventoPopPage());
@@ -117,6 +103,7 @@ namespace PModelo.Services
                 case "LogutPage":
                     Logout();
                     ; break;
+                default:; break;
             }
         }
 
@@ -140,6 +127,9 @@ namespace PModelo.Services
                 case "MasterPage":
                     App.Current.MainPage = new MasterPage();
                     break;
+                case "MasterAdminPage":
+                    App.Current.MainPage = new MasterAdminPage();
+                    break;
                 //case "SignInPage":
                 //    App.CurrentUser = user;//esta
                 //    App.Current.MainPage = new SignInPage();
@@ -158,3 +148,26 @@ namespace PModelo.Services
     }
 
 }
+
+
+//case "ListaRojaPage":
+//    await App.Navigator.PushAsync(new ProbaPage());
+//    break;
+//case "LocatorioPage":
+//    await App.Navigator.PushAsync(new ProbaPage());
+//    break;
+//case "EventosPage":
+//    await App.Navigator.PushAsync(new EventosPage());
+//    break;
+//case "EventoPage":
+//    await App.Navigator.PushAsync(new EventoPage());
+//    break;
+//case "ConfiguracionPage":
+//    await App.Navigator.PushAsync(new NewOrderPage());
+//    break;
+
+//UsuariosPage
+//case "UsuariosPage":
+//    await App.Navigator.PushAsync(new UsuariosPage());
+//    break;
+//UsuariosPage

@@ -17,7 +17,7 @@ namespace PModelo
 
         //public static NavigationPage Navigator { get; internal set; }
 
-        
+
         //public static User CurrentUser { get; internal set; }
 
         #region Attributes
@@ -28,25 +28,29 @@ namespace PModelo
         #region Properties
         public static NavigationPage Navigator { get; internal set; }
         public static MasterPage Master { get; internal set; }
+        public static MasterAdminPage MasterAdmin { get; internal set; }
         public static User CurrentUser { get; internal set; }
         #endregion
 
-        public App ()
-		{
-			InitializeComponent();
+        public App()
+        {
+            InitializeComponent();
             try
             {
                 dataService = new DataService();
                 dialogService = new DialogService();
-
+                //Navigator = new NavigationPage();
+                //Master = new MasterPage();
+                //MasterAdmin = new MasterAdminPage();
                 var user = dataService.First<User>(false);
-                
-                if (user != null && user.IsRemembered && user.TokenExpires>DateTime.Now)
+
+                if (user != null && user.IsRemembered && user.TokenExpires > DateTime.Now)
                 {
                     if (user.UserTypeId == 4)
                     {
                         var persona = dataService.First<Persona>(false);
-                        if (persona!=null) {
+                        if (persona != null)
+                        {
                             user.Persona = new Persona
                             {
                                 Id_Persona = persona.Id_Persona,
@@ -62,34 +66,30 @@ namespace PModelo
                                 Picture = persona.Picture,
                                 Telefono = persona.Telefono
                             };
+                            var mainViewModel = MainViewModel.GetInstance();
+                            mainViewModel.LoadMenu(user);
+                            mainViewModel.LoadUser(user);
+                            mainViewModel.ReservaIdentity.ListParkingForUser();
+                            App.CurrentUser = user;
+                            //MainPage = new MasterPage();
+                            MainPage = new MasterAdminPage();
                         }
                     }
-                    
-                    var mainViewModel = MainViewModel.GetInstance();
-                    mainViewModel.LoadMenu(user);
-                    //if (string.IsNullOrEmpty(user.Phone) && user.UserTipeId == 1)
-                    //{
-                    //    var profile = new FacebookResponse
-                    //    {
-                    //        Name = user.FirstName,
-                    //        Link = user.Picture
-                    //    };
 
-                    //    mainViewModel.Profile = new ProfileViewModel(profile, 1, profile.Link);
-                    //    MainPage = new ProfilePage();
-                    //}
-                    //else
-                    //{
-                    //mainViewModel.ReloadUser(user);
-                    //    //mainViewModel.LoadNewUserWhite();
-                    //    //mainViewModel.LoadListAlertsForUser(true);
+                    if (user.UserTypeId == 2)
+                    {
+                        //var mainViewModel = MainViewModel.GetInstance();
+                        var mainViewModel = MainViewModel.GetInstance();
 
-                    //    //App.CurrentUser = user;
-                    //    MainPage = new MasterPage();
-                    //}
-                    mainViewModel.LoadUser(user);
-                    App.CurrentUser = user;
-                    MainPage = new MasterPage();
+                        mainViewModel.LoadMenu(user);
+                        mainViewModel.LoadUser(user);
+
+                        App.CurrentUser = user;
+                        MainPage = new MasterPage();
+                        //MasterAdminPage
+                    }
+
+
                 }
                 else
                 {
@@ -101,23 +101,23 @@ namespace PModelo
             catch (Exception ex)
             {
                 throw;
-            }  
+            }
         }
 
-        protected override void OnStart ()
-		{
-			// Handle when your app starts
-		}
+        protected override void OnStart()
+        {
+            // Handle when your app starts
+        }
 
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
+        }
 
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
+        }
     }
 }
 
@@ -181,3 +181,24 @@ public static NavigationPage NavigatorD { get; internal set; }
 **************/
 
 
+
+//if (string.IsNullOrEmpty(user.Phone) && user.UserTipeId == 1)
+//{
+//    var profile = new FacebookResponse
+//    {
+//        Name = user.FirstName,
+//        Link = user.Picture
+//    };
+
+//    mainViewModel.Profile = new ProfileViewModel(profile, 1, profile.Link);
+//    MainPage = new ProfilePage();
+//}
+//else
+//{
+//mainViewModel.ReloadUser(user);
+//    //mainViewModel.LoadNewUserWhite();
+//    //mainViewModel.LoadListAlertsForUser(true);
+
+//    //App.CurrentUser = user;
+//    MainPage = new MasterPage();
+//}

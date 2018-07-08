@@ -149,7 +149,7 @@
                         BackgroundColor="#FF2B28" 
                         TextColor="White" 
                         VerticalOptions="End"
-                        Command="{Binding NewLoginCommand}"
+                        Command="{Binding ReservePlaceCommand}"
                         />
             </Grid>
         </StackLayout>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PModelo.Pages.MainPage2"
+             xmlns:local="clr-namespace:PModelo.Pages;assembly=PModelo"
+             >
+
+    <Grid Padding="10">
+        <ListView SeparatorVisibility="None" ItemsSource="{Binding People}" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell >
+                        <Grid>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding EventDetailCommand}"/>
+                            </Grid.GestureRecognizers>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Frame BindingContext="{Binding Item1}" Padding="1" BackgroundColor="#31b0d5" HasShadow="True" OutlineColor="#bbb">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame BackgroundColor="White" Padding="5" HasShadow="False">
+                                        <Image Source="no_photo.png" Aspect="AspectFill"
+                           HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="80"/>
+                                    </Frame>
+                                    <StackLayout Grid.Row="1" Padding="5,0,5,5" Spacing="1">
+
+                                        <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16" LineBreakMode="TailTruncation" 
+                           TextColor="White" FontAttributes="Bold"/>
+                                        <Label Text="{Binding Code}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" LineBreakMode="TailTruncation"
+                           TextColor="White"/>
+                                        <Label Text="{Binding Address}" FontSize="12" TextColor="White" HorizontalOptions="Center"  VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Column="1" Text="Detail" VerticalOptions="Center" BorderRadius="16" FontSize="10" HeightRequest="34" BorderWidth="0"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+
+                            <Frame Grid.Column="2" IsVisible="{Binding IsVisible}"
+                     BindingContext="{Binding Item2}" Padding="1" BackgroundColor="#31b0d5" HasShadow="True" OutlineColor="#bbb">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame BackgroundColor="White" Padding="5" HasShadow="False">
+                                        <Image Source="no_photo.png" Aspect="AspectFill"
+                           HorizontalOptions="Center" VerticalOptions="Center" HeightRequest="80"/>
+                                    </Frame>
+                                    <StackLayout Grid.Row="1" Padding="5,0,5,5" Spacing="1">
+
+                                        <Label Text="{Binding Name}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="16" LineBreakMode="TailTruncation" 
+                           TextColor="White"  FontAttributes="Bold"/>
+                                        <Label Text="{Binding Code}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" LineBreakMode="TailTruncation"
+                           TextColor="White"/>
+                                        <Label Text="{Binding Address}" FontSize="12" TextColor="White" HorizontalOptions="Center"  VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="100"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Grid.Column="1" Text="Detail" VerticalOptions="Center" BorderRadius="16" FontSize="10" HeightRequest="34" BorderWidth="0"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+</ContentPage>

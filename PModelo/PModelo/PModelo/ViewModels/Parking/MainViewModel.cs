@@ -481,7 +481,7 @@ namespace PModelo.ViewModels
             var pin = new Pin
             {
                 Type = PinType.Place,
-                Position = PositionsSearch,
+                Position = PositionsState,
                 Label = name,
                 Address = address
             };
@@ -522,6 +522,7 @@ namespace PModelo.ViewModels
         }
 
         /****/
+
         public void LoadMenu(User currentUser)
         {
             //var currentUser = dataService.First<User>(false);
@@ -531,7 +532,14 @@ namespace PModelo.ViewModels
             switch (currentUser.UserTypeId)
             {
                 case 2:
-
+                    Menu.Clear();
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "SearchParkingPage",
+                        Title = "Buscar Parqueadero"
+                    });
+                   
                     Menu.Add(new MenuItemViewModel
                     {
                         Icon = "home.png",
@@ -545,26 +553,21 @@ namespace PModelo.ViewModels
                     //    PageName = "CierreVentasPage",
                     //    Title = "Cierre de Ventas",
                     //});
-                    Menu.Add(new MenuItemViewModel
-                    {
-                        Icon = "icon.png",
-                        PageName = "Page2",
-                        Title = "VER2",
-                    });
+                    //Menu.Add(new MenuItemViewModel
+                    //{
+                    //    Icon = "icon.png",
+                    //    PageName = "Page2",
+                    //    Title = "VER2",
+                    //});
 
-                    Menu.Add(new MenuItemViewModel
-                    {
-                        Icon = "icon.png",
-                        PageName = "Page",
-                        Title = "VER",
-                    });
+                    //Menu.Add(new MenuItemViewModel
+                    //{
+                    //    Icon = "icon.png",
+                    //    PageName = "Page",
+                    //    Title = "VER",
+                    //});
 
-                    Menu.Add(new MenuItemViewModel
-                    {
-                        Icon = "icon.png",
-                        PageName = "SearchParkingPage",
-                        Title = "Buscar Parqueadero"
-                    });
+                 
 
                     Menu.Add(new MenuItemViewModel
                     {
@@ -573,24 +576,22 @@ namespace PModelo.ViewModels
                         Title = "Cerrar Sesión"
                     });
 
-
-                    ; break;
-                case 4:
-
-                    Menu.Add(new MenuItemViewModel
-                    {
-                        Icon = "icon.png",
-                        PageName = "Page",
-                        Title = "VER",
-                    });
-                    
                     Menu.Add(new MenuItemViewModel
                     {
                         Icon = "home.png",
-                        PageName = "DashboardPage",
-                        Title = "Dashboard",
+                        PageName = "MainPage2",
+                        Title = "MainPage2",
                     });
 
+                    ; break;
+                case 4:
+                    Menu.Clear();
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "icon.png",
+                        PageName = "AdminParkinReservePage",
+                        Title = "Mis Parqueaderos",
+                    });
 
                     Menu.Add(new MenuItemViewModel
                     {
@@ -598,7 +599,12 @@ namespace PModelo.ViewModels
                         PageName = "ParkingPage",
                         Title = "Registrar Parqueadero",
                     });
-
+                    Menu.Add(new MenuItemViewModel
+                    {
+                        Icon = "home.png",
+                        PageName = "DashboardPage",
+                        Title = "Dashboard",
+                    });
 
                     Menu.Add(new MenuItemViewModel
                     {
@@ -606,8 +612,28 @@ namespace PModelo.ViewModels
                         PageName = "LogutPage",
                         Title = "Cerrar Sesión"
                     });
+
+
                     ; break;
             }
+
+
+
+            //Menu.Add(new MenuItemViewModel
+            //{
+            //    Icon = "home.png",
+            //    PageName = "Parqueaderos",
+            //    Title = "Menu",
+            //});
+
+            //Menu.Add(new MenuItemViewModel
+            //{
+            //    Icon = "icon.png",
+            //    PageName = "Page",
+            //    Title = "VER",
+            //});
+
+
             //Menu.Add(new MenuItemViewModel
             //{
             //    Icon = "icon.png",
@@ -684,6 +710,168 @@ namespace PModelo.ViewModels
             //    Title = "ReportsPage",
             //});
         }
+        //public void LoadMenu(User currentUser)
+        //{
+        //    //var currentUser = dataService.First<User>(false);
+        //    Menu = new ObservableCollection<MenuItemViewModel>();
+
+        //    if (currentUser != null) { }
+        //    switch (currentUser.UserTypeId)
+        //    {
+        //        case 2:
+
+        //            Menu.Add(new MenuItemViewModel
+        //            {
+        //                Icon = "home.png",
+        //                PageName = "DashboardPage",
+        //                Title = "Dashboard",
+        //            });
+
+        //            //Menu.Add(new MenuItemViewModel
+        //            //{
+        //            //    Icon = "icon.png",
+        //            //    PageName = "CierreVentasPage",
+        //            //    Title = "Cierre de Ventas",
+        //            //});
+        //            Menu.Add(new MenuItemViewModel
+        //            {
+        //                Icon = "icon.png",
+        //                PageName = "Page2",
+        //                Title = "VER2",
+        //            });
+
+        //            Menu.Add(new MenuItemViewModel
+        //            {
+        //                Icon = "icon.png",
+        //                PageName = "Page",
+        //                Title = "VER",
+        //            });
+
+        //            Menu.Add(new MenuItemViewModel
+        //            {
+        //                Icon = "icon.png",
+        //                PageName = "SearchParkingPage",
+        //                Title = "Buscar Parqueadero"
+        //            });
+
+        //            Menu.Add(new MenuItemViewModel
+        //            {
+        //                Icon = "icon.png",
+        //                PageName = "LogutPage",
+        //                Title = "Cerrar Sesión"
+        //            });
+
+
+        //            ; break;
+        //        case 4:
+
+        //            Menu.Add(new MenuItemViewModel
+        //            {
+        //                Icon = "icon.png",
+        //                PageName = "Page",
+        //                Title = "VER",
+        //            });
+
+        //            Menu.Add(new MenuItemViewModel
+        //            {
+        //                Icon = "home.png",
+        //                PageName = "DashboardPage",
+        //                Title = "Dashboard",
+        //            });
+
+
+        //            Menu.Add(new MenuItemViewModel
+        //            {
+        //                Icon = "icon.png",
+        //                PageName = "ParkingPage",
+        //                Title = "Registrar Parqueadero",
+        //            });
+
+
+        //            Menu.Add(new MenuItemViewModel
+        //            {
+        //                Icon = "icon.png",
+        //                PageName = "LogutPage",
+        //                Title = "Cerrar Sesión"
+        //            });
+        //            ; break;
+        //    }
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "icon.png",
+        //    //    PageName = "UsersGroupPage",
+        //    //    Title = "UsuariosGroupo ",
+        //    //});
+
+
+        //    //MapUbicateParkingPage
+
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "eventos.png",
+        //    //    PageName = "EventosPage",
+        //    //    Title = "Eventos",
+        //    //});
+
+
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "icon.png",
+        //    //    PageName = "LocatorioPage",
+        //    //    Title = "Usuarios",
+        //    //});
+
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "eventos.png",
+        //    //    PageName = "EventoPage",
+        //    //    Title = "Evento",
+        //    //});
+
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "icon.png",
+        //    //    PageName = "UsuariosPage",
+        //    //    Title = "Usuarios",
+        //    //});//UsuariosGroupPage
+
+
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "icon.png",
+        //    //    PageName = "UsuariosGroupPage",
+        //    //    Title = "UsuariosGroup",
+        //    //});//UsersGroupPage
+
+        //    //UsuariosPage
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "locatarios.png",
+        //    //    PageName = "LocatorioPage",
+        //    //    Title = "Locatorio",
+        //    //});
+
+
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "settings.png",
+        //    //    PageName = "ConfiguracionPage",
+        //    //    Title = "Configuración",
+        //    //});
+
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "icon.png",
+        //    //    PageName = "ListViewPage",
+        //    //    Title = "ListViewPage",
+        //    //});
+        //    //Menu.Add(new MenuItemViewModel
+        //    //{
+        //    //    Icon = "icon.png",
+        //    //    PageName = "ReportsPage",
+        //    //    Title = "ReportsPage",
+        //    //});
+        //}
 
         public void SetCurrentUser(User user)
         {

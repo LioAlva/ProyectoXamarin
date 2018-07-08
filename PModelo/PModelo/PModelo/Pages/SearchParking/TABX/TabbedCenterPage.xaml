@@ -9,4 +9,6 @@
     </local:ParkDetailTapPage>
     <local:ParkEspaceTapPage>
     </local:ParkEspaceTapPage>
+    <local:UbicationParkingMap>
+    </local:UbicationParkingMap>
 </TabbedPage>

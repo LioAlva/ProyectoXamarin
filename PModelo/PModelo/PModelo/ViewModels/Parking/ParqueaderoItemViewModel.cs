@@ -213,42 +213,50 @@ namespace PModelo.ViewModels
                             var resultList = (ResponseT<List<Espacio>>)response.Resullt;
                             isBusy = false;
                             IsEnabled = !isBusy;
-
-                            if (resultList.IsSuccess)
-                            {
-                                breakfastMenuList.Clear();
-                                ObservableCollection<BreakfastMenu> PlacesMenuList = new ObservableCollection<BreakfastMenu>();
-                                PlacesMenuList.Clear();
-                                foreach (var item in resultList.Result.Where(x=>x.Ocupado.Equals("D")))
+                            if (resultList!=null) {
+                                if (resultList.IsSuccess)
                                 {
-                                    PlacesMenuList.Add(new BreakfastMenu
+                                    breakfastMenuList.Clear();
+                                    ObservableCollection<BreakfastMenu> PlacesMenuList = new ObservableCollection<BreakfastMenu>();
+                                    PlacesMenuList.Clear();
+                                    foreach (var item in resultList.Result.Where(x => x.Ocupado.Equals("D")))
                                     {
-                                        ImageSource = item.Descripcion,
-                                        MenuTitle = item.Descripcion
-                                    });
+                                        PlacesMenuList.Add(new BreakfastMenu
+                                        {
+                                            ImageSource = item.Descripcion,
+                                            MenuTitle = item.Descripcion,
+                                            Id_Espacio = item.Id_Espacio
+
+                                        });
+                                    }
+                                    BreakfastMenuList = PlacesMenuList;
+
+
+                                    //await dialogService.ShowMessage("Confirmación", result.Message);
+                                    //var plas = new BreakfastMenu();
+                                    //var placesViewModel = new PlacesViewModel(null);
+                                    //var mainViewModel = MainViewModel.GetInstance();
+                                    //var placess = mainViewModel.Places.BreakfastMenuList;
+                                    //foreach (var item in resultList.Result)
+                                    //{
+                                    //    placess.Add(new BreakfastMenu {
+                                    //        ImageSource = item.Descripcion,
+                                    //        MenuTitle=item.Descripcion
+                                    //    });
+                                    //}
+
+
+                                    //await navigationService.Navigate("PlacesPage");
                                 }
-                               BreakfastMenuList = PlacesMenuList;
-
-
-                                //await dialogService.ShowMessage("Confirmación", result.Message);
-                                //var plas = new BreakfastMenu();
-                                //var placesViewModel = new PlacesViewModel(null);
-                                //var mainViewModel = MainViewModel.GetInstance();
-                                //var placess = mainViewModel.Places.BreakfastMenuList;
-                                //foreach (var item in resultList.Result)
-                                //{
-                                //    placess.Add(new BreakfastMenu {
-                                //        ImageSource = item.Descripcion,
-                                //        MenuTitle=item.Descripcion
-                                //    });
-                                //}
-
-
-                                //await navigationService.Navigate("PlacesPage");
+                                else
+                                {
+                                    await dialogService.ShowMessage("Mensaje", resultList.Message);
+                                    return;
+                                }
                             }
                             else
                             {
-                                await dialogService.ShowMessage("Mensaje", resultList.Message);
+                                await dialogService.ShowMessage("Sistema", "En estos momentos no hay servicio, intentelo mas tarde");
                                 return;
                             }
                         }
@@ -318,10 +326,13 @@ namespace PModelo.ViewModels
         {
             //Reserva
             var mainViewModel = MainViewModel.GetInstance();
-            var reserva = new Reserva {
-                Nombre_Espacio= SelectedBreakfastMenu.MenuTitle,
-                Nombre_Parqueadero=Nombre,
-                Nombre_Tipo_Parqueadero=NombreTipoParqueadero
+            var reserva = new Reserva
+            {
+                Nombre_Espacio = SelectedBreakfastMenu.MenuTitle,
+                Nombre_Parqueadero = Nombre,
+                Nombre_Tipo_Parqueadero = NombreTipoParqueadero,
+                Id_Parqueadero = Id_Parqueadero,
+                Id_Espacio = SelectedBreakfastMenu.Id_Espacio
             };
 
             mainViewModel.ReservaIdentity.ReloadReservaIdentity(reserva);

@@ -87,7 +87,10 @@ namespace PModelo.Pages.GridP
     }
 }
 
-public class BreakfastMenu {
+public class BreakfastMenu
+{
     public ImageSource ImageSource { get; set; }
     public string MenuTitle { get; set; }
+    public int Id_Espacio { get; set; }
+
 }

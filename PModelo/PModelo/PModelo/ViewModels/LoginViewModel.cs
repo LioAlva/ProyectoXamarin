@@ -269,7 +269,7 @@ namespace PModelo.ViewModels
             }
             //var data = dataService.Get<Persona>(false);
             dataService.DeleteAllAndInsert(user);
-         
+
             //dataService.InsertOrUpdate(user.FavoriteTeam);
             //dataService.InsertOrUpdate(user.UserType);
             //App.CurrentUser
@@ -277,11 +277,31 @@ namespace PModelo.ViewModels
             //var dataas = dataService.Get<User>(false);
 
             var mainViewModel = MainViewModel.GetInstance();
-            mainViewModel.LoadUser(user);
-            mainViewModel.SetCurrentUser(user);
-            mainViewModel.LoadMenu(user);
-            ClearForm();
-            navigationService.SetMainPage("MasterPage");
+
+            switch (user.UserTypeId)
+            {
+                case 2:
+                    mainViewModel.LoadUser(user);
+                    mainViewModel.SetCurrentUser(user);
+                    mainViewModel.LoadMenu(user);
+                    ClearForm();
+                    App.CurrentUser = user;
+                    navigationService.SetMainPage("MasterPage");
+                    ; break;
+                case 4:
+                    mainViewModel.LoadMenu(user);
+                    mainViewModel.LoadUser(user);
+                    mainViewModel.ReservaIdentity.ListParkingForUser();
+                    ClearForm();
+                    App.CurrentUser = user;
+                    navigationService.SetMainPage("MasterAdminPage");
+                    ; break;
+                default:
+                    break;
+            }
+
+          
+   
         }
 
         private void ClearForm()

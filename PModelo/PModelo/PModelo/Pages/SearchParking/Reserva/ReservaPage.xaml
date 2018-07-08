@@ -99,7 +99,7 @@
                         BackgroundColor="#FF2B28" 
                         TextColor="White" 
                         VerticalOptions="Start"
-                        Command="{Binding NewLoginCommand}"
+                        Command="{Binding ReservePlaceCommand}"
                         />
 
                 

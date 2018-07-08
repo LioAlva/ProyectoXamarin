@@ -20,8 +20,7 @@ namespace PModelo.Pages
                 InitializeComponent();
                 NavigationService navigationService = new NavigationService();
                 var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.SetGeolocationParqueaderos(
-                mainViewModel.Parqueaderos);
+                mainViewModel.SetGeolocationParqueaderos(mainViewModel.Parqueaderos);
 
                 foreach (Pin item in mainViewModel.Pins)
                 {
@@ -52,7 +51,7 @@ namespace PModelo.Pages
 
                 var location = await locator.GetPositionAsync();
                 var position = new Position(location.Latitude, location.Longitude);
-                MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.1)));
+                MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromMiles(.25)));
             }
             catch (Exception ex)
                 {
