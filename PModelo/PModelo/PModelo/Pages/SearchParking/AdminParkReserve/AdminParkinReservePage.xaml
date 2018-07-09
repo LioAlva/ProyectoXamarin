@@ -7,15 +7,19 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
 
-    <StackLayout BindingContext="{Binding ReservaIdentity}">
+    <!--<StackLayout >-->
 
         <ListView
-    ItemTemplate="{StaticResource ParqueaderoItemTemplate}"
-    ItemsSource="{Binding Parqueaderos}"
-    HasUnevenRows="True">
+            SeparatorVisibility="Default"
+            ItemTemplate="{StaticResource ParqueaderoItemTemplate}"
+            ItemsSource="{Binding Parqueaderos}"
+            HasUnevenRows="True">
         </ListView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="icon.png" Command="{Binding GoToCommand}" CommandParameter="ParkingPage"/>
+    </ContentPage.ToolbarItems>
 
-    </StackLayout>
+    <!--</StackLayout>-->
 
 
 </ContentPage>

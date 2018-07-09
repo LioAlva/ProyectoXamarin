@@ -97,9 +97,13 @@ namespace PModelo.Services
                 case "UsuariosGroupPage":
                     await App.Navigator.PushAsync(new UsuariosGroupPage());
                     break;
+                //case "MainPage":
+                //    App.Current.MainPage = new MasterPage();
+                //    break;
                 case "MainPage":
-                    App.Current.MainPage = new MasterPage();
+                    await App.Navigator.PopToRootAsync();
                     break;
+
                 case "LogutPage":
                     Logout();
                     ; break;
@@ -130,6 +134,7 @@ namespace PModelo.Services
                 case "MasterAdminPage":
                     App.Current.MainPage = new MasterAdminPage();
                     break;
+
                 //case "SignInPage":
                 //    App.CurrentUser = user;//esta
                 //    App.Current.MainPage = new SignInPage();

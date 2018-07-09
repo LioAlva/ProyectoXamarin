@@ -78,9 +78,9 @@
 
             <!--Si tuviera una Lista de Tremplates solo hago con esto -->
             <!-- Data Templates -->
-            <DataTemplate x:Key="ParqueaderoItemTemplate">
+            <DataTemplate x:Key="ParqueaderoItemTemplate" >
                 <ViewCell>
-                    <Grid Padding="8">
+                    <Grid Padding="8" RowSpacing="1" ColumnSpacing="1" >
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ParkingPlacesStatusCommand}"/>
                         </Grid.GestureRecognizers>
@@ -92,6 +92,7 @@
                             Source="park.png"
                             VerticalOptions="Start"
                             WidthRequest="50"
+                            Grid.Column="0"
                             HeightRequest="50"/>
                         <StackLayout Grid.Column="1">
                             <Label

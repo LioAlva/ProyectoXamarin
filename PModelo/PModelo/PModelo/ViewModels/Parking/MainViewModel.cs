@@ -1,20 +1,31 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using Plugin.Connectivity;
+using PModelo.Classes;
+using PModelo.Classes.NoMapping;
+using PModelo.Helper;
 using PModelo.Helpers;
 using PModelo.Models;
 using PModelo.Services;
+using PModelo.Util;
 using Syncfusion.SfChart.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms.Maps;
 
 namespace PModelo.ViewModels
 {
-    public class MainViewModel
+    public class MainViewModel: INotifyPropertyChanged
     {
         #region Attributes
-        private NavigationService navigationService;
+        public DataService dataService;
+        public ApiService apiService;
+        public DialogService dialogService;
+        public NavigationService navigationService;
+        public GeolocatorService geolocatorService;
+      
         private CierreVentaItemViewModel cierreVenta;
         #endregion
 
@@ -51,7 +62,7 @@ namespace PModelo.ViewModels
             get { return this.cierreVenta; }
             set { this.cierreVenta = value; }
         }
-
+       private ObservableCollection<ParqueaderoItemViewModel> parqueaderos;
         public ObservableCollection<UsuarioItemViewModel> Usuarios { get; set; }
         /*
          * user type monkeys**/
@@ -70,8 +81,24 @@ namespace PModelo.ViewModels
 
         public Position PositionsState { get; set; }
 
-        public ObservableCollection<ParqueaderoItemViewModel> Parqueaderos { get; set; }
+        //public ObservableCollection<ParqueaderoItemViewModel> Parqueaderos { get; set; }
         public ParqueaderoItemViewModel ParqueaderoSelected { get; set; }
+        public ObservableCollection<ParqueaderoItemViewModel> Parqueaderos
+        {
+            set
+            {
+                if (parqueaderos != value)
+                {
+                    parqueaderos = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Parqueaderos"));
+                }
+            }
+            get
+            {
+                return parqueaderos;
+            }
+        }
+
 
         public void LoadUser(User user)
         {
@@ -202,10 +229,96 @@ namespace PModelo.ViewModels
             UserLoged = new UserSistemViewModel();
             ParqueaderoSelected = new ParqueaderoItemViewModel();
             Pins2 = new ObservableCollection<Pin>();
+            dataService = new DataService();
+            apiService = new ApiService();
+            dialogService = new DialogService();
+            navigationService = new NavigationService();
+            apiService = new ApiService();
+            //Parqueaderos = new ObservableCollection<Parqueadero>();
             //LoadparqueaderoSeleccionado();
             // LoadParqueaderosBuscados();
             /***/
         }
+
+        public async void ListParkingForUser()
+        {
+            if (CrossConnectivity.Current.IsConnected)
+            {
+
+                var currentUser = dataService.First<User>(false);
+                var currentPersona = dataService.First<Persona>(false);
+
+                if (currentUser != null)
+                {
+                    if (currentUser.UserId > 0 && currentPersona.Id_Persona > 0 && !string.IsNullOrEmpty(currentUser.AccessToken))
+                    {
+                        var searchPakingsForm = new SearchPakingsForm
+                        {
+                            UserId = currentUser.UserId,
+                            UserTypeId = 4
+                        };
+
+                        var respuesta = await apiService.Post<SearchPakingsForm, ResponseT<List<Parqueadero>>>(Configuration.SERVER, "/api", "/Reserva/GetParkingWithReserveForIdUser", currentUser.TokenType, currentUser.AccessToken, searchPakingsForm);
+                        if (respuesta != null)
+                        {
+                            if (respuesta.IsSuccess)
+                            {
+                                var result = (ResponseT<List<Parqueadero>>)respuesta.Resullt;
+                                //var parqExits = dataService.Get<Parqueadero>(false).ToList();
+
+                                if (result.IsSuccess)
+                                {
+                                    var listParqueaderos = (List<Parqueadero>)result.Result;
+                                    Parqueaderos = UtilitiesReload.ReloadParqueaderosZS(listParqueaderos);
+
+                                    //Utilities. ReloadParqueaderos(listParqueaderos);
+                                    //await navigationService.Navigate("AdminParkingReservePage");
+                                    //foreach (var iParq in parqExits)
+                                    //{
+                                    //    dataService.Delete<Parqueadero>(iParq);
+                                    //}
+                                    //foreach (var iParqueadero in listParqueaderos)
+                                    //{
+                                    //    dataService.DeleteAllAndInsert<Parqueadero>(iParqueadero);
+                                    //}
+
+                                }
+                                else
+                                {
+
+                                    await dialogService.ShowMessage("Mensaje", result.Message);
+
+                                }
+                            }
+                            else
+                            {
+
+                                await dialogService.ShowMessage("Mensaje", "Servicio no encontrado");
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        await dialogService.ShowMessage("Mensaje", "Su sesión a caducado, por favor vuelva a ingresar con sus credenciales.");
+                        //var app = App.GetInstance();
+                        //app.CargarMain();
+
+                    }
+                }
+                else
+                {
+                    await dialogService.ShowMessage("Mensaje", "En estos momentos tenemos inconveniente, intente la busqueda mas tarde.");
+                    return;
+                }
+            }
+            else
+            {
+                await dialogService.ShowMessage("Mensaje", "Active su Wifi o su paquete de datos.");
+
+            }
+        }
+
 
         public void LoadparqueaderoSeleccionado(ParqueaderoItemViewModel parqueaderoSelected)
         {
@@ -536,7 +649,7 @@ namespace PModelo.ViewModels
                     Menu.Add(new MenuItemViewModel
                     {
                         Icon = "icon.png",
-                        PageName = "SearchParkingPage",
+                        PageName = "MainPage",
                         Title = "Buscar Parqueadero"
                     });
                    
@@ -589,7 +702,7 @@ namespace PModelo.ViewModels
                     Menu.Add(new MenuItemViewModel
                     {
                         Icon = "icon.png",
-                        PageName = "AdminParkinReservePage",
+                        PageName = "MainPage",
                         Title = "Mis Parqueaderos",
                     });
 
@@ -908,6 +1021,13 @@ namespace PModelo.ViewModels
         //    };
         //}
         /*********************/
+
+        #region Event
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        #endregion
+
     }
 }
 

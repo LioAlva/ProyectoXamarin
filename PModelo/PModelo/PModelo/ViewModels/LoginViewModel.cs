@@ -291,7 +291,7 @@ namespace PModelo.ViewModels
                 case 4:
                     mainViewModel.LoadMenu(user);
                     mainViewModel.LoadUser(user);
-                    mainViewModel.ReservaIdentity.ListParkingForUser();
+                    mainViewModel.ListParkingForUser();
                     ClearForm();
                     App.CurrentUser = user;
                     navigationService.SetMainPage("MasterAdminPage");

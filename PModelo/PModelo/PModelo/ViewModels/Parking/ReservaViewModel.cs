@@ -28,26 +28,11 @@ namespace PModelo.ViewModels
         public DialogService dialogService;
         public NavigationService navigationService;
         public GeolocatorService geolocatorService;
-        private ObservableCollection<Parqueadero> parqueaderos;
+     
         #endregion
 
         #region Properties
 
-        public ObservableCollection<Parqueadero> Parqueaderos
-        {
-            set
-            {
-                if (parqueaderos != value)
-                {
-                    parqueaderos = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Parqueaderos"));
-                }
-            }
-            get
-            {
-                return parqueaderos;
-            }
-        }
 
         public DateTime FechaInicio
         {
@@ -140,7 +125,7 @@ namespace PModelo.ViewModels
             dialogService = new DialogService();
             navigationService = new NavigationService();
             apiService = new ApiService();
-            Parqueaderos = new ObservableCollection<Parqueadero>();
+        
         }
         #endregion
 
@@ -161,6 +146,11 @@ namespace PModelo.ViewModels
         #endregion
 
         #region Command
+
+      
+
+
+
 
         public ICommand ReservePlaceCommand { get { return new RelayCommand(ReservePlace); } }
 
@@ -246,84 +236,7 @@ namespace PModelo.ViewModels
             }
         }
 
-        public async void ListParkingForUser()
-        {
-            if (CrossConnectivity.Current.IsConnected)
-            {
-
-                var currentUser = dataService.First<User>(false);
-                var currentPersona = dataService.First<Persona>(false);
-
-                if (currentUser != null)
-                {
-                    if (currentUser.UserId > 0 && currentPersona.Id_Persona > 0 && !string.IsNullOrEmpty(currentUser.AccessToken))
-                    {
-                        var searchPakingsForm = new SearchPakingsForm
-                        {
-                            UserId = currentUser.UserId,
-                            UserTypeId = 4
-                        };
-
-                        var respuesta = await apiService.Post<SearchPakingsForm, ResponseT<List<Parqueadero>>>(Configuration.SERVER, "/api", "/Reserva/GetParkingWithReserveForIdUser", currentUser.TokenType, currentUser.AccessToken, searchPakingsForm);
-                        if (respuesta != null)
-                        {
-                            if (respuesta.IsSuccess)
-                            {
-                                var result = (ResponseT<List<Parqueadero>>)respuesta.Resullt;
-                                //var parqExits = dataService.Get<Parqueadero>(false).ToList();
-
-                                if (result.IsSuccess)
-                                {
-                                    var listParqueaderos = (List<Parqueadero>)result.Result;
-                                    Parqueaderos = UtilitiesReload.ReloadParqueaderos(listParqueaderos);
-
-                                    //Utilities. ReloadParqueaderos(listParqueaderos);
-                                    //await navigationService.Navigate("AdminParkingReservePage");
-                                    //foreach (var iParq in parqExits)
-                                    //{
-                                    //    dataService.Delete<Parqueadero>(iParq);
-                                    //}
-                                    //foreach (var iParqueadero in listParqueaderos)
-                                    //{
-                                    //    dataService.DeleteAllAndInsert<Parqueadero>(iParqueadero);
-                                    //}
-
-                                }
-                                else
-                                {
-
-                                    await dialogService.ShowMessage("Mensaje", result.Message);
-
-                                }
-                            }
-                            else
-                            {
-
-                                await dialogService.ShowMessage("Mensaje", "Servicio no encontrado");
-
-                            }
-                        }
-                    }
-                    else
-                    {
-                        await dialogService.ShowMessage("Mensaje", "Su sesión a caducado, por favor vuelva a ingresar con sus credenciales.");
-                        //var app = App.GetInstance();
-                        //app.CargarMain();
-
-                    }
-                }
-                else
-                {
-                    await dialogService.ShowMessage("Mensaje", "En estos momentos tenemos inconveniente, intente la busqueda mas tarde.");
-                    return;
-                }
-            }
-            else
-            {
-                await dialogService.ShowMessage("Mensaje", "Active su Wifi o su paquete de datos.");
-
-            }
-        }
+        
         #endregion
 
         #region Datepicker

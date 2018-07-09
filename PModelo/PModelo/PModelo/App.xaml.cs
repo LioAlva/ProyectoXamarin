@@ -69,7 +69,7 @@ namespace PModelo
                             var mainViewModel = MainViewModel.GetInstance();
                             mainViewModel.LoadMenu(user);
                             mainViewModel.LoadUser(user);
-                            mainViewModel.ReservaIdentity.ListParkingForUser();
+                            mainViewModel.ListParkingForUser();
                             App.CurrentUser = user;
                             //MainPage = new MasterPage();
                             MainPage = new MasterAdminPage();

@@ -39,7 +39,38 @@ namespace PModelo.Helper
             }
             return null;
         }
-        
+
+        public static ObservableCollection<ParqueaderoItemViewModel> ReloadParqueaderosZS(List<Parqueadero> listParqueaderos)
+        {
+            if (listParqueaderos != null)
+            {
+                ObservableCollection<ParqueaderoItemViewModel> listPar = new ObservableCollection<ParqueaderoItemViewModel>();
+                if (listParqueaderos != null)
+                {
+                    foreach (var itemP in listParqueaderos)
+                    {
+                        listPar.Add(new ParqueaderoItemViewModel
+                        {
+                            Capacidad = itemP.Capacidad,
+                            Direccion = itemP.Direccion,
+                            Fecha_Creacion = itemP.Fecha_Creacion,
+                            Id_Parqueadero = itemP.Id_Parqueadero,
+                            Latitud = itemP.Latitud,
+                            Longitud = itemP.Longitud,
+                            Nombre = itemP.Nombre,
+                            Telefono_Fijo = itemP.Telefono_Fijo,
+                            Telefono_Movil = itemP.Telefono_Movil,
+                            Id_Tipo_Parking = itemP.Id_Tipo_Parking,
+                            Estado = itemP.Estado,
+                            Plazas_Disponibles = itemP.Plazas_Disponibles,
+                            Plazas_Ocupadas = itemP.Plazas_Ocupadas
+                        });
+                    }
+                }
+                return listPar;
+            }
+            return null;
+        }
     }
 }
 
