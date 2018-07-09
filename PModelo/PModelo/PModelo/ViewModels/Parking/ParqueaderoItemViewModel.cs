@@ -37,6 +37,7 @@ namespace PModelo.ViewModels
         private bool isRefreshingPlaces;
         private bool isRewelcome;
         private ImageSource _imageSource;
+
         //List<BreakfastMenu> breakfastMenuList;
         #endregion
 
@@ -60,6 +61,7 @@ namespace PModelo.ViewModels
         //        return breakfastMenuList;
         //    }
         //}
+       
 
         public bool IsRefreshingPlaces
         {
@@ -182,87 +184,105 @@ namespace PModelo.ViewModels
 
         public async void ParkingPlacesStatus()
         {
-            //var idEspacio = Id_Parqueadero;
 
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
-            if (isReachable)
+            var mainViewModel = MainViewModel.GetInstance();
+            if (Espacios != null && Espacios.Count > 0)
             {
-                var currentUser = dataService.First<User>(false);
-                if (currentUser != null)
+                //mainViewModel.ParqueaderoSelected.BreakfastMenuList;
+                mainViewModel.ParqueaderoSelected.BreakfastMenuList.Clear();
+                foreach (var item in Espacios)
                 {
-                    if (currentUser.UserId > 0 && !string.IsNullOrEmpty(currentUser.AccessToken))
+                    mainViewModel.ParqueaderoSelected.BreakfastMenuList.Add(new BreakfastMenu
                     {
-                        var registerReserveForm = new ReserveForm()
-                        {
-                            Id_Parqueadero = Id_Parqueadero,//SOLO
-                            //Fecha_Hora_Fin = FechaFin + HoraFin,
-                            //Fecha_Hora_Inicio = FechaInicio + HoraInicio,
-                            Id_Cliente = currentUser.UserId,
-                            //Id_Espacio = Id_Espacio,
-                            Latitud = Latitud,
-                            Longitud = Longitud,
-                            UserTypeId = currentUser.UserTypeId
-                        };
-
-                        var response = await apiService.Post<ReserveForm, ResponseT<Reserva>>(Configuration.SERVER, "/api", "/Reserva/ReserveEspace", currentUser.TokenType, currentUser.AccessToken, registerReserveForm);
-
-                        if (response != null)
-                        {
-                            var result = (ResponseT<Reserva>)response.Resullt;
-                            //isBusy = false;
-                            //IsEnabled = !isBusy;
-                            if (result != null)
-                            {
-                                if (result.IsSuccess)
-                                {
-                                    //breakfastMenuList.Clear();
-                                    //ObservableCollection<BreakfastMenu> PlacesMenuList = new ObservableCollection<BreakfastMenu>();
-                                    //PlacesMenuList.Clear();
-                                    //foreach (var item in resultList.Result.Where(x => x.Ocupado.Equals("D")))
-                                    //{
-                                    //    PlacesMenuList.Add(new BreakfastMenu
-                                    //    {
-                                    //        ImageSource = item.Descripcion,
-                                    //        MenuTitle = item.Descripcion
-                                    //    });
-                                    //}
-                                    //BreakfastMenuList = PlacesMenuList;
-                                    await dialogService.ShowMessage("Mensaje", result.Message);
-
-                                }
-                                else
-                                {
-                                    await dialogService.ShowMessage("Mensaje", result.Message);
-                                    return;
-                                }
-                            }
-                            else
-                            {
-                                await dialogService.ShowMessage("Mensaje", "En estos momentos tenemos inconvenientes , por favor intentelo mas tarde.");
-                            }
-
-                        }
-                    }
-                    else
-                    {
-                        await dialogService.ShowMessage("Mensaje", "Su sesión a caducado, por favor vuelva a ingresar con sus credenciales.");
-                        //var app = App.GetInstance();
-                        //app.CargarMain();
-                    }
+                        ImageSource = item.Descripcion,
+                        MenuTitle = item.Descripcion,
+                        Id_Espacio = item.Id_Espacio
+                    });
                 }
-                else
-                {
-                    await dialogService.ShowMessage("Mensaje", "Usuario no encontrado.");
-                    return;
-                }
+                //BreakfastMenuList = PlacesMenuList;
+                mainViewModel.ParqueaderoSelected.Id_Parqueadero = Id_Parqueadero;
+                mainViewModel.TitlePage = "Administrar Espacios";
+                await navigationService.Navigate("ParkAdminEspacePage");
             }
-            else
-            {
-                //isBusy = false;
-                //IsEnabled = !isBusy;
-                await dialogService.ShowMessage("Mensaje", "Es necesario tener conexión a internet para poder registrarse");
-                return;
-            }
+            //var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+            //if (isReachable)
+            //{
+            //    var currentUser = dataService.First<User>(false);
+            //    if (currentUser != null)
+            //    {
+            //        if (currentUser.UserId > 0 && !string.IsNullOrEmpty(currentUser.AccessToken))
+            //        {
+            //            var registerReserveForm = new ReserveForm()
+            //            {
+            //                Id_Parqueadero = Id_Parqueadero,//SOLO
+            //                //Fecha_Hora_Fin = FechaFin + HoraFin,
+            //                //Fecha_Hora_Inicio = FechaInicio + HoraInicio,
+            //                Id_Cliente = currentUser.UserId,
+            //                //Id_Espacio = Id_Espacio,
+            //                Latitud = Latitud,
+            //                Longitud = Longitud,
+            //                UserTypeId = currentUser.UserTypeId
+            //            };
+
+            //            var response = await apiService.Post<ReserveForm, ResponseT<Reserva>>(Configuration.SERVER, "/api", "/Reserva/ReserveEspace", currentUser.TokenType, currentUser.AccessToken, registerReserveForm);
+
+            //            if (response != null)
+            //            {
+            //                var result = (ResponseT<Reserva>)response.Resullt;
+            //                //isBusy = false;
+            //                //IsEnabled = !isBusy;
+            //                if (result != null)
+            //                {
+            //                    if (result.IsSuccess)
+            //                    {
+            //                        //breakfastMenuList.Clear();
+            //                        //ObservableCollection<BreakfastMenu> PlacesMenuList = new ObservableCollection<BreakfastMenu>();
+            //                        //PlacesMenuList.Clear();
+            //                        //foreach (var item in resultList.Result.Where(x => x.Ocupado.Equals("D")))
+            //                        //{
+            //                        //    PlacesMenuList.Add(new BreakfastMenu
+            //                        //    {
+            //                        //        ImageSource = item.Descripcion,
+            //                        //        MenuTitle = item.Descripcion
+            //                        //    });
+            //                        //}
+            //                        //BreakfastMenuList = PlacesMenuList;
+            //                        await dialogService.ShowMessage("Mensaje", result.Message);
+
+            //                    }
+            //                    else
+            //                    {
+            //                        await dialogService.ShowMessage("Mensaje", result.Message);
+            //                        return;
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    await dialogService.ShowMessage("Mensaje", "En estos momentos tenemos inconvenientes , por favor intentelo mas tarde.");
+            //                }
+
+            //            }
+            //        }
+            //        else
+            //        {
+            //            await dialogService.ShowMessage("Mensaje", "Su sesión a caducado, por favor vuelva a ingresar con sus credenciales.");
+            //            //var app = App.GetInstance();
+            //            //app.CargarMain();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        await dialogService.ShowMessage("Mensaje", "Usuario no encontrado.");
+            //        return;
+            //    }
+            //}
+            //else
+            //{
+            //    //isBusy = false;
+            //    //IsEnabled = !isBusy;
+            //    await dialogService.ShowMessage("Mensaje", "Es necesario tener conexión a internet para poder registrarse");
+            //    return;
+            //}
         }
 
 

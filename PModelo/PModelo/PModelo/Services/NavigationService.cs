@@ -67,7 +67,15 @@ namespace PModelo.Services
                 case "ReservaTimePickerPage":
                     await App.Navigator.PushAsync(new ReservaTimePickerPage());
                     break;
-               
+
+                case "ParkEspaceTapPage":
+                    await App.Navigator.PushAsync(new ParkEspaceTapPage());
+                    break;
+                case "ParkAdminEspacePage":
+                    await App.Navigator.PushAsync(new ParkAdminEspacePage());
+                    break;
+
+                //ParkAdminEspacePage
 
                 case "ParqueaderoDetailPage":
                     await App.Navigator.PushAsync(new ParqueaderoDetailPage());

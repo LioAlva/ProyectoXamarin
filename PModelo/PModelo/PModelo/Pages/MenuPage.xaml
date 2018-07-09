@@ -12,15 +12,21 @@
 
             <Label  FontSize="Medium" HorizontalOptions="Center" TextColor="White"  />
 
-            <StackLayout BackgroundColor="#2196F3"
-                 HeightRequest="150">
-
-                <Label Text=""
+            <!--<StackLayout 
+                 HeightRequest="150">-->
+            <Grid HeightRequest="150">
+                <Image Source="addPark.png" Aspect="AspectFill" />
+                <StackLayout Padding="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <Image  Source="icon.png" Aspect="AspectFill" WidthRequest="85" HeightRequest="85" />
+                    <Label Text="Adam Pedley" TextColor="White" FontSize="Large" />
+                </StackLayout>
+            </Grid>
+            <!--<Label Text=""
              FontSize="20"
              VerticalOptions="CenterAndExpand"
              TextColor="White"
-             HorizontalOptions="Center"/>
-            </StackLayout>
+             HorizontalOptions="Center"/>-->
+            <!--</StackLayout>-->
             <ListView 
                     ItemsSource="{Binding Menu}"
                     HasUnevenRows="True">

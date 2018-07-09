@@ -74,6 +74,9 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
+      <DependentUpon>*.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Pages\DataGridViewPage.xaml.cs">
       <DependentUpon>DataGridViewPage.xaml</DependentUpon>
     </Compile>
@@ -140,10 +143,7 @@
     <EmbeddedResource Update="Pages\NewOrderPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\SearchParking\AdminParkReserve\AdminParkinReservePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\SearchParking\AdminParkReserve\MainPage2.xaml">
+    <EmbeddedResource Update="Pages\SearchParking\AdminParkReserve\ParkAdminEspacePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\SearchParking\ParqueaderoDetailPage.xaml">

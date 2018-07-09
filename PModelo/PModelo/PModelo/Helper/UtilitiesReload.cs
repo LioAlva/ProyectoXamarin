@@ -63,7 +63,8 @@ namespace PModelo.Helper
                             Id_Tipo_Parking = itemP.Id_Tipo_Parking,
                             Estado = itemP.Estado,
                             Plazas_Disponibles = itemP.Plazas_Disponibles,
-                            Plazas_Ocupadas = itemP.Plazas_Ocupadas
+                            Plazas_Ocupadas = itemP.Plazas_Ocupadas,
+                            Espacios=itemP.Espacios
                         });
                     }
                 }

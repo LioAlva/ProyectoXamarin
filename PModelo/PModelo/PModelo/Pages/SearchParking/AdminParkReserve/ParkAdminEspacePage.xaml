@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PModelo.Pages.ParkEspaceTapPage"
+             x:Class="PModelo.Pages.ParkAdminEspacePage"  
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" 
              xmlns:localT="clr-namespace:PModelo.Pages.Template;assembly=PModelo"
              Title="{Binding TitlePage}"
@@ -43,5 +43,5 @@
             </flv:FlowListView.FlowColumnTemplate>
         </flv:FlowListView>
     </StackLayout>
-    
+
 </ContentPage>

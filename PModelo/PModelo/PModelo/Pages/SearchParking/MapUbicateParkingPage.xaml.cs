@@ -28,7 +28,8 @@ namespace PModelo.Pages
                      {
                          var _pin = sender as Pin;
                          var _model =(ParqueaderoItemViewModel)_pin.BindingContext;
-                         mainViewModel.LoadparqueaderoSeleccionado(_model);                        
+                         mainViewModel.LoadparqueaderoSeleccionado(_model);
+                         mainViewModel.TitlePage = "Haga su reserva";
                          mainViewModel.ParqueaderoSelected.SeePlaces();                      
                          mainViewModel.SetGeolocation(_model.Latitud??0,_model.Longitud??0,_model.Nombre,_model.Direccion);
 

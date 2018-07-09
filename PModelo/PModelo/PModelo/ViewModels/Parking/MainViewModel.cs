@@ -20,16 +20,51 @@ namespace PModelo.ViewModels
     public class MainViewModel: INotifyPropertyChanged
     {
         #region Attributes
+        private string _titlePage;
         public DataService dataService;
         public ApiService apiService;
         public DialogService dialogService;
         public NavigationService navigationService;
         public GeolocatorService geolocatorService;
-      
-        private CierreVentaItemViewModel cierreVenta;
+
+        CierreVentaItemViewModel cierreVenta;
+        private bool isRefreshingParkings;
         #endregion
 
         #region Properties
+
+        public bool IsRefreshingParkings
+        {
+            set
+            {
+                if (isRefreshingParkings != value)
+                {
+                    isRefreshingParkings = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsRefreshingParkings"));
+                }
+            }
+            get
+            {
+                return isRefreshingParkings;
+            }
+        }
+
+
+        public string TitlePage
+        {
+            set
+            {
+                if (_titlePage != value)
+                {
+                    _titlePage = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("TitlePage"));
+                }
+            }
+            get
+            {
+                return _titlePage;
+            }
+        }
 
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
@@ -309,7 +344,7 @@ namespace PModelo.ViewModels
                 else
                 {
                     await dialogService.ShowMessage("Mensaje", "En estos momentos tenemos inconveniente, intente la busqueda mas tarde.");
-                    return;
+                   
                 }
             }
             else
@@ -532,6 +567,19 @@ namespace PModelo.ViewModels
 
 
         #region Commands
+
+
+        public ICommand RefreshParkinsListCommand { get { return new RelayCommand(RefreshParkinsList); } }
+
+        public void RefreshParkinsList()
+        {
+            IsRefreshingParkings = true;
+            ListParkingForUser();
+            IsRefreshingParkings = false;
+        }
+
+
+
         public ICommand GoToCommand { get { return new RelayCommand<string>(GoTo); } }
 
         private async void GoTo(string pageName)
