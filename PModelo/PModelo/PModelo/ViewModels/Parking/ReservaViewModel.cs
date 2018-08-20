@@ -176,28 +176,17 @@ namespace PModelo.ViewModels
                             UserTypeId = currentUser.UserTypeId
                         };
 
-                        var response = await apiService.Post<ReserveForm, ResponseT<Reserva>>(Configuration.SERVER, "/api", "/Reserva/ReserveEspace", currentUser.TokenType, currentUser.AccessToken, registerReserveForm);
+                        var response = await apiService.Post<ReserveForm, ResponseT<Reserva>>(Configuration.SERVER, "/api", "/Reserva/ReserveEspace",
+                            currentUser.TokenType, currentUser.AccessToken, registerReserveForm);
 
                         if (response != null)
                         {
                             var result = (ResponseT<Reserva>)response.Resullt;
-                            //isBusy = false;
-                            //IsEnabled = !isBusy;
+            
                             if (result!=null) {
                                 if (result.IsSuccess)
                                 {
-                                    //breakfastMenuList.Clear();
-                                    //ObservableCollection<BreakfastMenu> PlacesMenuList = new ObservableCollection<BreakfastMenu>();
-                                    //PlacesMenuList.Clear();
-                                    //foreach (var item in resultList.Result.Where(x => x.Ocupado.Equals("D")))
-                                    //{
-                                    //    PlacesMenuList.Add(new BreakfastMenu
-                                    //    {
-                                    //        ImageSource = item.Descripcion,
-                                    //        MenuTitle = item.Descripcion
-                                    //    });
-                                    //}
-                                    //BreakfastMenuList = PlacesMenuList;
+                                   
                                     await dialogService.ShowMessage("Mensaje", result.Message);
 
                                 }

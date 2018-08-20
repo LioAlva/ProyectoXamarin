@@ -100,7 +100,7 @@ namespace PModelo.ViewModels
 
 
         #region Methods
-        private async void Conectarse(User user)
+        private async void BuscarParqueaderoPorUsuario(User user)
         {
             if (CrossConnectivity.Current.IsConnected)
             {
@@ -121,7 +121,8 @@ namespace PModelo.ViewModels
                             Longitude= searchParkForm.Longitude
                         };
 
-                        var respuesta = await apiService.Post<SearchParkForm, ResponseT<List<Parqueadero>>>(Configuration.SERVER, "/api", "/Parking/SearchParking", user.TokenType, user.AccessToken, sear);
+                        var respuesta = await apiService.Post<SearchParkForm, ResponseT<List<Parqueadero>>>(Configuration.SERVER, 
+                            "/api", "/Parking/SearchParking", user.TokenType, user.AccessToken, sear);
                         if (respuesta != null)
                         {
                             if (respuesta.IsSuccess)
@@ -134,14 +135,6 @@ namespace PModelo.ViewModels
                                     var listParqueaderos = (List<Parqueadero>)result.Result;
                                     ReloadParqueaderos(listParqueaderos);
                                     await navigationService.Navigate("MapUbicateParkingPage");
-                                    //foreach (var iParq in parqExits)
-                                    //{
-                                    //    dataService.Delete<Parqueadero>(iParq);
-                                    //}
-                                    //foreach (var iParqueadero in listParqueaderos)
-                                    //{
-                                    //    dataService.DeleteAllAndInsert<Parqueadero>(iParqueadero);
-                                    //}
                                     IsBusy = false;
                                     IsEnabled = !IsBusy;
                                 }
@@ -256,7 +249,7 @@ namespace PModelo.ViewModels
                                 var result = await dialogService.ShowMessageYesAndNot("Confimación", "¿Estás seguro de realizar la búsqueda?");
                                 if (result)
                                 {
-                                    Conectarse(user);
+                                    BuscarParqueaderoPorUsuario(user);
                                 }
                                 else
                                 {
@@ -275,7 +268,7 @@ namespace PModelo.ViewModels
                         {
                             IsBusy = true;
                             IsEnabled = !IsBusy;
-                            Conectarse(user);
+                            BuscarParqueaderoPorUsuario(user);
                         }
                         else
                         {
