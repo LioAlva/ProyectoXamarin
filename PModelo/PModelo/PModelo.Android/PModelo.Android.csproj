@@ -52,10 +52,10 @@
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="SampleBrowser.Core">
-      <HintPath>E:\Forms EXAMPLES\SfPicker\packages\SampleBrowser.Core.16.1.0.24\lib\MonoAndroid10\SampleBrowser.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Public\Documents\Syncfusion\16.1.0.24\Xamarin\sample\Forms\DataForm\packages\SampleBrowser.Core.16.1.0.24\lib\MonoAndroid10\SampleBrowser.Core.dll</HintPath>
     </Reference>
     <Reference Include="SampleBrowser.Core.Android">
-      <HintPath>E:\Forms EXAMPLES\SfPicker\packages\SampleBrowser.Core.16.1.0.24\lib\MonoAndroid10\SampleBrowser.Core.Android.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Public\Documents\Syncfusion\16.1.0.24\Xamarin\sample\Forms\DataForm\packages\SampleBrowser.Core.16.1.0.24\lib\MonoAndroid10\SampleBrowser.Core.Android.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

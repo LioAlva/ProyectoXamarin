@@ -207,7 +207,7 @@
 
   <ItemGroup>
     <Reference Include="SampleBrowser.Core">
-      <HintPath>E:\Forms EXAMPLES\SfPicker\packages\SampleBrowser.Core.16.1.0.24\lib\portable-win+net45+wp80+win81+wpa81\SampleBrowser.Core.dll</HintPath>
+      <HintPath>C:\Users\Public\Documents\Syncfusion\16.1.0.24\Xamarin\sample\Forms\DataGrid\packages\SampleBrowser.Core.16.1.0.24\lib\portable-win+net45+wp80+win81+wpa81\SampleBrowser.Core.dll</HintPath>
     </Reference>
     <Reference Include="Syncfusion.DataSource.Portable">
       <HintPath>..\..\..\..\Xamarin\sample\Forms\DataSource\packages\Syncfusion.Xamarin.DataSource.15.4.0.17\lib\portable-win+net45+wp80+win81+wpa81\Syncfusion.DataSource.Portable.dll</HintPath>
